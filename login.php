@@ -1,3 +1,53 @@
+<?php
+
+
+include("sharedAssets/connect.php");
+
+session_start();
+session_destroy();
+session_start();
+
+if (isset($_POST['btnLogin'])) {
+    $username = $_POST['uname'];
+    $password = $_POST['password'];
+
+    // CLEAN INJECTION
+    $username = str_replace('\'', '', $username);
+    $password = str_replace('\'', '', $password);
+
+    $loginQuery = "SELECT * FROM users WHERE (username = '$username' OR email = '$username' OR phoneNumber = '$username') AND password = '$password'";
+    $loginResult = executeQuery($loginQuery);
+
+    $_SESSION['userID'] = "";
+    $_SESSION['username'] = "";
+    $_SESSION['email'] = "";
+    $_SESSION['phoneNumber'] = "";
+    $_SESSION['role'] = "";
+    $_SESSION['profilePicture'] = "";
+    $error = "";
+
+    if (mysqli_num_rows($loginResult) > 0) {
+        while ($user = mysqli_fetch_assoc($loginResult)) {
+            $_SESSION['userID'] = $user['userID'];
+            $_SESSION['userName'] = $user['username'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['phoneNumber'] = $user['phoneNumber'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['profilePicture'] = $user['profilePicture'];
+            $_SESSION['accountDate'] = $user['accountDate'];
+            $_SESSION['birthDate'] = $user['birthDate'];
+            $_SESSION['address'] = $user['address'];
+            $_SESSION['gender'] = $user['gender'];
+
+            header("Location: ./");
+        }
+    } else {
+        $error = "NO USER";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +56,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/login/style.css">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>ServeIT | Login</title>
+
+
 </head>
 
 <body>
@@ -23,13 +79,14 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form>
+            <form method="POST">
                 <h1>Log In</h1>
-                <span>Email or phone number</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <label class="mt-3" for="uname" class="form-label">Username | Email | Phone</label>
+                <input type="text" id="uname" class="form-control" name="uname" placeholder="Username">
+                <label class="mt-3" for="password" class="form-label">Password</label>
+                <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button name="btnLogin">Sign In</button>
             </form>
         </div>
         <div class="toggle-container">
