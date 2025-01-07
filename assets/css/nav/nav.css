@@ -1,0 +1,62 @@
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.navbar{
+    background-color: transparent !important;
+
+}
+
+.nav-bar-style{
+   
+    border-bottom: 1px solid #19AFA5;
+}
+
+.nav-link {
+    position: relative;
+    transition: color 0.3s ease; 
+}
+
+.nav-link:hover {
+    color: #19AFA5 !important; 
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px; 
+    width: 0;
+    height: 3px;
+    background: #19AFA5;
+    transition: width 0.3s ease; 
+}
+
+.nav-link:hover::after {
+    width: 100%; 
+}
+
+.dropdown-toggle {
+    background: none ;
+    border: none !important;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+}
+
+.dropdown-toggle::after { 
+    border: none !important;
+}
+
+.nav-account-title{
+    padding-left: 15px;
+    font-weight:bolder;
+}
+
+/* nav icons */
+.nav-icons{
+    color: #19AFA5;
+    padding-right: 5px;
+}
