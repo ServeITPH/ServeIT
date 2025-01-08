@@ -22,7 +22,6 @@ if (isset($_POST['btnLogin'])) {
     $_SESSION['username'] = "";
     $_SESSION['email'] = "";
     $_SESSION['phoneNumber'] = "";
-    $_SESSION['role'] = "";
     $_SESSION['profilePicture'] = "";
     $error = "";
 
@@ -32,12 +31,7 @@ if (isset($_POST['btnLogin'])) {
             $_SESSION['userName'] = $user['username'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['phoneNumber'] = $user['phoneNumber'];
-            $_SESSION['role'] = $user['role'];
-            $_SESSION['profilePicture'] = $user['profilePicture'];
-            $_SESSION['accountDate'] = $user['accountDate'];
             $_SESSION['birthDate'] = $user['birthDate'];
-            $_SESSION['address'] = $user['address'];
-            $_SESSION['gender'] = $user['gender'];
 
             header("Location: ./");
         }
@@ -56,11 +50,14 @@ if (isset($_POST['btnLogin'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="assets/css/login/style.css">
+    <link rel="icon" href="assets/images/nav/logo-nav.png">
+
 
     <!-- bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>ServeIT | Login</title>
+    
 
 
 </head>
