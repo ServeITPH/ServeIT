@@ -1,0 +1,14 @@
+.sidebar {
+    background-color: #444;
+    color: #ffffff;
+    height: auto !important;
+    padding-top: 30px;
+  }
+  .sidebar .sidebuttons {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  .sidebar .sidebuttons.active {
+    color: #00ffee;
+    font-weight: bold;
+  }

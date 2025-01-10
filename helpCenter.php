@@ -37,6 +37,8 @@ if ($userID == "") {
 
 <body>
     <?php include("sharedAssets/nav.php");?>
+
+    hello world
     
     <!-- icons -->
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>

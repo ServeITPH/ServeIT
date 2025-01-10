@@ -1,0 +1,120 @@
+/* payment section */
+
+.smpayment-container {
+    background-color: #19AFA5;
+    height: auto;
+    margin-top: 30px;
+    border-radius: 60px;
+    margin-bottom: 50px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.main-smpayment-title {
+    font-size: 70px;
+    font-weight: bold;
+    color: white;
+    line-height: 1.2;
+    padding-top: 50px;
+
+}
+
+.smpayment-info-container{
+    padding-top: 100px;
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.smpayment-title {
+    font-size: 32px;
+    font-weight: bold;
+    color: rgb(0, 0, 0);
+    line-height: 1.2;
+
+}
+
+@media(max-width: 767px){
+    .main-smpayment-title {
+        font-size: 40px;
+    }
+}
+
+/* about us section */
+.about-title{
+    font-size: 65px;
+    font-weight: bold;
+}
+
+.about-subtitle{
+    font-size: 14px;
+}
+.about-btn{
+    width: 125px;
+    height: 35px;
+    background-color: #19AFA5!important;
+    font-size: 12px;
+    border-color: #19AFA5!important;
+}
+
+@media(max-width: 767px){
+    .about-title{
+        font-size: 40px;
+
+    }
+    
+    .about-subtitle{
+        font-size: 12px;
+    }
+}
+
+/* help section */
+
+.help-section{
+height: auto;
+background-color: black;
+}
+
+.need-help{
+    width: 654px;
+    border-radius: 11px;
+    display: flex;
+    align-items: center;
+    outline: none;
+    /* Removes the black line */
+    padding-left: 20px;
+    height: 45px;
+}
+
+.need-help-btn{
+    /* margin-bottom: 0px; */
+}
+
+.help-title{
+    text-align: center;
+    font-size: 65px;
+    color: white;
+    font-weight: bold;
+    padding-top: 30px;
+}
+
+@media(max-width: 767px){
+    .help-title{
+        font-size: 32px;
+    }
+    .need-help{
+        width: 300px;
+        border-radius: 11px;
+        display: flex;
+        align-items: center;
+        outline: none;
+        /* Removes the black line */
+        padding-left: 20px;
+        height: 45px;
+        margin-bottom: 50px;
+    }
+}
+
+a{
+    text-decoration: none!important;
+}
+

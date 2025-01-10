@@ -25,6 +25,7 @@ session_start();
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="stylesheet" href="assets/css/about/about.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
+    <link rel="stylesheet" href="assets/css/footer/footer.css">
 
     <style>
         .active4 {
@@ -85,6 +86,10 @@ session_start();
             </div>
         </div>
     </div>
+
+
+     <!-- footer -->
+    <?php include("sharedAssets/footer.php") ?>
 
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
