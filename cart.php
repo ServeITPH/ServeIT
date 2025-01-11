@@ -27,7 +27,7 @@ $fetchCart = executeQuery($sql);
     <div class="container">
         <div class="mt-3 d-flex align-items-center">
             <a href="services.php">
-                <img src="assets/images/cart/back.png" alt="Back Button">
+                <img src="assets/images/about/prev.png" alt="Back Button">
             </a>
             <p class="fs-1 fw-bold mb-0 ms-3">
                 ACCOUNT/CART

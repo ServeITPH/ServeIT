@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg ">
     <div class="container nav-bar-style">
-      <a class="navbar-brand mx-5" href=""><img src="assets/images/nav/logo-nav.png" style="width: 50px; height: 45px;"></a>
+      <a class="navbar-brand mx-5" href="index.php"><img src="assets/images/nav/logo-nav.png" style="width: 50px; height: 45px;"></a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
