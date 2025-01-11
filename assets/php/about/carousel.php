@@ -23,7 +23,7 @@
             echo "
                         <div class='col-4 col-md-3 col-sml-6'> 
                             <div class='team-member'>
-                                <img src='{$developer[1]}' class='img-fluid rounded-circle' alt='{$developer[0]}'>
+                                <a href='{$developer[2]}'><img src='{$developer[1]}' class='img-fluid rounded-circle' alt='{$developer[0]}'></a>
                                 <h5>{$developer[0]}</h5>
                             </div>
                         </div>";

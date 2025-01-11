@@ -1,6 +1,6 @@
 <!-- smpayment -->
 
-<div class="container">
+<div class="container wow animate__animated animate__fadeIn">
         <div class="smpayment-container">
             <div class="main-smpayment-title text-center">
                 <span style=" color: #000000 ">SIMPLIFIED </span>PAYMENT
@@ -9,34 +9,26 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="smpayment-info-container">
                         <div class="smpayment-icon">
-                            icon
+                        <i class="fas fa-bolt fa-3x animate__animated animate__pulse animate__infinite" ></i> 
                         </div>
                         <div class="smpayment-title">
-                            LOREM IPSUM
+                            Fast Transactions
                         </div>
                         <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip ex ea commodo consequat.
+                            Enjoy quick and seamless payment processing for a hassle-free experience.
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="smpayment-info-container">
                         <div class="smpayment-icon">
-                            icon
+                        <i class="fas fa-lock fa-3x animate__animated animate__pulse animate__infinite" ></i> 
                         </div>
                         <div class="smpayment-title">
-                            LOREM IPSUM
+                            Secure Payments
                         </div>
                         <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip ex ea commodo consequat.
+                            Your data is protected with advanced security measures for worry-free transactions.
                         </div>
                     </div>
                 </div>
@@ -44,17 +36,13 @@
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="smpayment-info-container">
                         <div class="smpayment-icon">
-                            icon
+                        <i class="fas fa-user-check fa-3x animate__animated animate__pulse animate__infinite"></i> 
                         </div>
                         <div class="smpayment-title">
-                            LOREM IPSUM
+                            User Convenience
                         </div>
                         <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut
-                            aliquip ex ea commodo consequat.
+                            Simplified payment options designed to suit your needs and preferences.
                         </div>
                     </div>
                 </div>

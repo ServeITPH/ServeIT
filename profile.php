@@ -173,36 +173,11 @@ function safe_echo($value) {
 
  
 
+       <!-- smpayment -->
+       <?php include("sharedAssets/smpayment.php"); ?>
     <!-- footer -->
-    <?php include("sharedAssets/smpayment.php") ?>
-    <div class="container-fluid" style="background-color: #000000">
-        <div class="container">
-            <footer class="text-center text-lg-start text-white">
-                <div class="container-fluid p-4 pb-0">
-                    <section class="p-3 pt-0">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-md-7 col-lg-8 text-center text-md-start">
-                                <div class="p-3">
-                                    © 2024 Copyright:
-                                    <a href="" style="color:#19AFA5">Serve-It.Ph</a>
-                                </div>
-                            </div>
-                            <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
-                                <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                                        class="fab fa-github"></i></a>
-                                <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                                        class="fab fa-google"></i></a>
-                                <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                                        class="fab fa-linkedin"></i></a>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </footer>
-        </div>
-    </div>
+    <?php include("sharedAssets/footer.php") ?>
+
     
     <script 
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

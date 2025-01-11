@@ -20,7 +20,7 @@
 }
 
 .smpayment-info-container{
-    padding-top: 100px;
+    padding-top: 50px;
     text-align: center;
     margin-bottom: 80px;
 }
@@ -48,12 +48,18 @@
 .about-subtitle{
     font-size: 14px;
 }
-.about-btn{
+.about-btn {
     width: 125px;
     height: 35px;
     background-color: #19AFA5!important;
     font-size: 12px;
     border-color: #19AFA5!important;
+
+}
+
+.about-btn:hover {
+    transform: scale(1.1);
+    background-color: #17A096!important;
 }
 
 @media(max-width: 767px){

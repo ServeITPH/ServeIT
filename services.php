@@ -12,7 +12,14 @@
     <link rel="icon" href="assets/images/nav/logo-nav.png">
     <link rel="stylesheet" href="assets/css/services/services.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
-    
+
+    <!-- font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+            <!-- animation -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
     <style>
         .active2 {
             color: #19AFA5;
@@ -23,17 +30,19 @@
 <body>
     <?php include("sharedAssets/nav.php") ?>
 
-    <div class="container mt-3">
+    <div class="container mt-3 animate__animated animate__fadeIn">
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Services</h5>
-                        <p class="card-text mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae, modi?
-                            Cumque fugiat eius at, ratione veritatis in odio porro expedita minus sapiente ut, incidunt
-                            rerum, obcaecati amet. Sunt, eveniet ad! Lorem, ipsum dolor sit amet consectetur adipisicing
-                            elit. Eum, blanditiis natus, tempora maiores labore unde nemo culpa dolorum excepturi
-                            reprehenderit provident hic fuga necessitatibus eius obcaecati
+                        <h5 class="card-title">SERVICES</h5>
+                        <p class="card-text mb-3">ServeIT is dedicated to providing top-quality, affordable digital
+                            services that are designed with your convenience in mind. Whether you're looking for
+                            personal or professional solutions, our services are tailored to meet your unique needs.
+                            Accessible anytime, anywhere, we ensure seamless integration into your daily life, offering
+                            unparalleled flexibility. Our goal is to make digital solutions easy and efficient,
+                            empowering you to achieve more with less effort. Experience the freedom and simplicity of
+                            digital services that work for you, wherever you are.
                         </p>
                     </div>
                 </div>
@@ -41,7 +50,7 @@
         </div>
     </div>
 
-    <div class="container mt-4">
+    <div class="container mt-4 animate__animated animate__fadeIn">
         <div class="row justify-content-center align-items-center">
 
             <div class="col-lg-6 col-md-6 col-sm-10 col-8 d-flex justify-content-center align-items-center pt-3">
@@ -347,7 +356,20 @@
         </div>
     </div>
 
+    <!-- smpayment -->
+    <?php include("sharedAssets/smpayment.php"); ?>
+    <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
+
+    <!-- scroll animation  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW({
+            offset: 200,
+            mobile: true,
+        }).init();
+    </script>
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

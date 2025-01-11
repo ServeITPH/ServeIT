@@ -31,19 +31,20 @@ body {
 }
 
 .card-title {
-    color: #19AFA5;
-    font-size: 10vh;
+    color:  #19AFA5;
+    font-size: 70px;
     text-align: center;
+    font-weight: bold;
+    line-height: 1;
 }
 
 .card-text {
     color: white;
-    font-size: 2vh;
+    font-size: 14px;
     text-align: justify;
     padding-left: 10vh;
     padding-right: 10vh;
 }
-
 .search-bar {
     color: black;
     background-color: #D2D3D3;
@@ -140,4 +141,17 @@ body {
     width: 45px;
     height: 45px;
     object-fit: contain;
+}
+
+@media(max-width: 767px){
+    .card-title {
+        font-size: 30px;
+    }
+    
+    .card-text {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+
 }
