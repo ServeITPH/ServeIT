@@ -1,0 +1,99 @@
+body {
+    background-color: #ffffff;
+    background-image: url("../../../assets/images/about/bg.png");
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+.about, .story, .links {
+    padding: 2.5rem 0;
+}
+
+.title{
+font-weight: bold;  
+    color: #19AFA5;  
+}
+
+.about-content, .story-content {
+    border-radius: 50px;
+    padding: 40px;
+    color: #fff;
+}
+
+.about-content {
+    background-color: #000;
+}
+
+.story-content {
+    background-color: #19AFA5;
+    box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.5);
+}
+
+.story-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.story-title span {
+    color: black;
+}
+
+.story-title span:last-child {
+    color: white;
+}
+
+.about-text, .story-text {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.about-text p, .story-text p {
+    font-size: 1rem;
+    line-height: 1.8;
+    text-indent: 50px;
+}
+
+/* Carousel styles */
+.carousel-inner .carousel-item .team-member {
+    text-align: center;
+}
+
+.carousel-inner .carousel-item img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.icon-link:hover i {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.carousel-control-prev img, .carousel-control-next img {
+    width: 40px;
+    height: 40px;
+}
+
+.line1 {
+    width: 100%;
+    height: 4px;
+    background-color: #ffffff;
+    margin-bottom: 1.5rem;
+}
+
+.line2 {
+    width: 100%;
+    height: 4px;
+    background-color: #19AFA5;
+    margin-bottom: 1.5rem;
+}
+
+.icon-link i {
+    font-size: 2.5rem;
+    color: #000101;
+}
+.connect-team .icn-style {
+    font-weight: 500; 
+}
