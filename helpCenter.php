@@ -24,9 +24,7 @@ if ($userID == "") {
     <link
         href="https://fonts.googleapis.com/css2?family=ABeeZee:ital@0;1&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
 
     <!-- nav css -->
     <link rel="stylesheet" href="assets/css/nav/nav.css">
@@ -47,11 +45,8 @@ if ($userID == "") {
             display: flex;
             align-items: center;
             color: #19AFA5;
-            box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2);
-
 
         }
-
 
         body {
             background-color: #ffffff;
@@ -90,7 +85,8 @@ if ($userID == "") {
                         style="width: 50px; height:auto; ">
                 </button>
             </div>
-            <div class="col d-none d-sm-none d-md-block col-md-3 col-lg-3 wow animate__animated animate__fadeIn" data-wow-delay="5s">
+            <div class="col d-none d-sm-none d-md-block col-md-3 col-lg-3 wow animate__animated animate__fadeIn"
+                data-wow-delay="5s">
                 <img src="assets/images/helpCenter/logo.png" alt="Logo" style="width: 200px; height:auto;">
 
             </div>
@@ -110,14 +106,14 @@ if ($userID == "") {
                     </button>
                 </div>
             </div>
-            <div class="row m-3 wow animate__animated animate__zoomIn"  data-wow-duration="5s">
+            <div class="row m-3 wow animate__animated animate__fadeInUp" data-wow-duration="5s">
                 <h1 style="font-size: 40px; font-weight: 500;font-family: Poppins; text-align: center;">Most Popular
                     Articles
                 </h1>
             </div>
 
         </div>
-        <div class="row m-5 wow animate__animated animate__zoomIn" data-wow-duration="5s" >
+        <div class="row m-5 wow animate__animated animate__fadeInUp" data-wow-duration="5s">
             <button class="btn p-0 border-0 d-flex justify-content-start">
                 <p style="font-size: 32px; font-weight: 700;font-family: Poppins;text-align: left;">How to buy digital
                     Product?</p>
@@ -136,10 +132,9 @@ if ($userID == "") {
             </button>
         </div>
     </div>
+
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
-
-
 
     <!-- icons -->
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>

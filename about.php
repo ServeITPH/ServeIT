@@ -3,10 +3,10 @@ include("sharedAssets/connect.php");
 include("assets/php/about/aboutContent.php");
 session_start();
 
-// $userID = $_SESSION['userID'];
-// if ($userID == "") {
-//   header("Location: login.php");
-// }
+$userID = $_SESSION['userID'];
+if ($userID == "") {
+    header("Location: login.php");
+}
 ?>
 
 <head>
@@ -39,9 +39,9 @@ session_start();
 
     <!-- About Us -->
     <div class="about text-center py-5">
-        <div class="container wow animate__animated animate__fadeInUp" style="max-width: 1300px; margin: 0 auto;">
+        <div class="container wow animate__animated animate__fadeIn" style="max-width: 1300px; margin: 0 auto;">
             <div class="about-content p-4">
-                <h1 class="title">ABOUT US</h1>
+                <div class="title">ABOUT US</div>
                 <div class="about-text">
                     <p>
                         <?php echo $abtUsContent; ?>
@@ -67,6 +67,9 @@ session_start();
         </div>
     </div>
 
+    <!-- smpayment -->
+    <?php include("sharedAssets/smpayment.php"); ?>
+
     <!-- Meet the Team -->
     <div class="team text-center py-5">
         <div class="container wow animate__animated animate__fadeInUp">
@@ -88,7 +91,7 @@ session_start();
     </div>
 
 
-     <!-- footer -->
+    <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
 
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
