@@ -39,6 +39,7 @@ $fetchItem = executeQuery($items);
     <!-- assets -->
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
+    <link rel="stylesheet" href="assets/css/landing-page/style.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
 
 </head>
@@ -89,8 +90,10 @@ $fetchItem = executeQuery($items);
                                 <hr>
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <p class="card-text"><?php echo $fetchCartRow['description']; ?></p>
-                                    <div class="d-flex">
+                                    <p class="card-text text-truncate" style="max-width: calc(65% - 100px);">
+                                        <?php echo $fetchCartRow['description']; ?>
+                                    </p>
+                                    <div class="d-flex ms-auto flex-nowrap">
                                         <form method="post">
                                             <input type="hidden" name="deleteCartID"
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
@@ -112,43 +115,51 @@ $fetchItem = executeQuery($items);
                 }
                 ?>
             </div>
+
             <div class="col-12 col-md-6">
-                <div class="card rounded-5">
-                    <p class="fw-bold fs-1 text-center ms-5 ms-5"> SUMMARY </p>
-                    <p class="fw-lighter fs-5 text-start ms-5 ms-5"> Items:</p>
-                    <p class="fw-medium fs-5 ms-5 ms-5"><?php echo $itemsList; ?></p>
-                    <hr>
-                    <p class="fw-lighter fs-5 text-start ms-5 ms-5"> Subtotal: ₱<span><?php echo $grandTotal ?></span>
-                    </p>
-                    <hr>
-                    <p class="fw-lighter fs-5 text-start ms-5 ms-5"> Mode Of Payment:</p>
-                    <div class="form-check fw-lighter fs-5 text-start ms-5 ms-5">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                            value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Cash On Delivery
-                        </label>
-                    </div>
+                <ul class="list-group rounded-5">
+                    <li class="list-group-item">
+                        <p class="fw-bold fs-2 text-center"> SUMMARY </p>
+                        <p class="fw-lighter fs-5 text-start ms-5"> Items:</p>
+                        <p class="fw-medium fs-5 ms-5 ms-5"><?php echo $itemsList; ?></p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="fw-lighter fs-5 text-start ms-5"> Subtotal:
+                            ₱<span><?php echo $grandTotal ?></span>
+                        </p>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="fw-lighter fs-5 text-start ms-5"> Mode Of Payment:</p>
+                        <div class="form-check fw-lighter fs-5 text-start ms-5 ms-5">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Cash On Delivery
+                            </label>
+                        </div>
 
-                    <div class="form-check fw-lighter fs-5 text-start ms-5 ms-5">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                            value="option1" checked>
-                        <label class="form-check-label" for="exampleRadios1">
-                            Gcash
-                        </label>
-                    </div>
-                    <hr>
-                    <p class="fw-lighter fs-5 text-start ms-5 ms-5"> VAT: ₱0.00 </p>
-                    <hr>
-                    <p class="fw-bolder fs-5 text-start ms-5 ms-5 text-center">Total:
-                        ₱<span><?php echo $grandTotal ?></span>
-                    </p>
+                        <div class="form-check fw-lighter fs-5 text-start ms-5 ms-5">
+                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
+                                value="option1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Gcash
+                            </label>
+                        </div>
+                    </li>
+                    <li class="list-group-item">
+                        <p class="fw-lighter fs-5 text-start ms-5"> VAT: ₱0.00 </p>
+                    </li>
+                    <li class="list-group-item mb-0">
+                        <p class="fw-bolder fs-4 text-start ms-5 text-center">Total:
+                            ₱<span><?php echo $grandTotal ?></span>
+                        </p>
+                    </li>
+                </ul>
 
-                </div>
-
+                
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="button" class="btn rounded-5 fs-3 fw-bold" data-bs-toggle="modal"
-                        data-bs-target="#myModal" style="background-color: #19AFA5; color: black;" <?php if ($cartEmpty)
+                    <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
+                        data-bs-target="#myModal" <?php if ($cartEmpty)
                             echo 'disabled'; ?>>Check Out</button>
                 </div>
 
@@ -195,15 +206,11 @@ $fetchItem = executeQuery($items);
                         ?>
 
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 d-flex flex-column align-items-center">
-    
+
                             <div class="div">
                                 <div class="card">
-                                    <img src="https://plus.unsplash.com/premium_photo-1701090939615-1794bbac5c06?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JheSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D" class="card-img-top" alt="...">
-                                    <!-- <div class="card-body">
-                                        <p class="card-text">Some quick example image to build on the card title and make up the
-                                            bulk
-                                            of the card's content.</p>
-                                    </div> -->
+                                    <img src="https://plus.unsplash.com/premium_photo-1701090939615-1794bbac5c06?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JheSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D"
+                                        class="card-img-top" alt="...">
                                 </div>
 
 
@@ -217,10 +224,11 @@ $fetchItem = executeQuery($items);
                                         <div class="d-flex justify-content-between align-items-center">
                                             <p class="card-text">Description</p>
                                             <div class="d-flex">
-                                            <a href="productInfo.php">
-                                                <button type="button" class="btn rounded-5"
-                                                    style="background-color: #19AFA5; color: black; width: 110px">See More</button>
-                                                    </a>
+                                                <a href="productInfo.php">
+                                                    <button type="button" class="btn rounded-5"
+                                                        style="background-color: #19AFA5; color: black; width: 110px">See
+                                                        More</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
