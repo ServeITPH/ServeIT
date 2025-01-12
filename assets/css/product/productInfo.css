@@ -73,7 +73,6 @@ body {
 .feedbackCard {
     background-color: #ffffff;
     max-width: 100%;
-    ;
     width: 300px;
     height: 130px;
     text-align: center;
@@ -104,7 +103,7 @@ body {
 }
 
 .feedbackText {
-    font-size: 15px;
+    font-size: 14px;
     color: #333;
     position: absolute;
     top: 25px;

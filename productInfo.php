@@ -331,7 +331,7 @@
             <div class="col-12 mb-3">
                 <h2 class="moreProductsTitle text-start fw-bold">MORE PRODUCTS</h2>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-3 col-6">
                 <div class="productCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="productImage">
@@ -354,7 +354,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-3 col-6">
                 <div class="productCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="productImage">
@@ -377,7 +377,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-3 col-6">
                 <div class="productCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="productImage">
@@ -400,7 +400,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+            <div class="col-lg-3 col-6">
                 <div class="productCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="productImage">

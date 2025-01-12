@@ -75,7 +75,7 @@
 
     <div class="container mt-5">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -144,7 +144,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -167,7 +167,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -190,7 +190,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -213,7 +213,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -236,7 +236,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -259,7 +259,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -282,7 +282,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -305,7 +305,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
@@ -328,7 +328,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
+            <div class="col-lg-3 col-6 d-flex flex-row">
                 <div class="serviceCard rounded mx-auto">
                     <div class="card-body d-flex flex-column justify-content-between align-items-center">
                         <div class="serviceImage">
