@@ -26,26 +26,11 @@
             <div class="col">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="imageGallery">
+                        <div class="imageContainer">
                             <div class="row">
-                                <div class="col-3 text-center">
-                                    <div class="smallImages">
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <div class="mainImage">
-                                        <div class="mainImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
+                                <div class="col">
+                                    <div class="imageCard">
+                                        <img src="https://via.placeholder.com/150" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +62,8 @@
                             </p>
                             <div class="productButtons">
                                 <a href="cart.php">
-                                    <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO CART</button>
+                                    <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                        CART</button>
                                 </a>
                                 <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
                             </div>
