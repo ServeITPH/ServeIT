@@ -63,7 +63,7 @@ if ($userID == "") {
 <body>
     <?php include("sharedAssets/nav.php"); ?>
 
-    <div class="container p-3 mt-5">
+    <div class="container" style="margin-top: 30px;">
         <div class="row justify-content-center">
             <div class="oval wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <h1 style="font-family: Poppins; font-weight: 700; font-size: 64px;">HELP CENTER</h1>

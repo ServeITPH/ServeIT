@@ -20,7 +20,7 @@
     <div class="container-fluid">
         <div class="row mainRow p-2">
             <!-- Chat List -->
-            <div class="col-12 col-md-3 mb-3">
+            <!-- <div class="col-12 col-md-3 mb-3">
                 <div class="card rounded-5 chatBox">
                     <div class="row p-2" style="background-color: black;">
                         <div class="ps-3">
@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <!-- Search Box and Dropdown -->
+               
                     <div class="row p-3 search-box">
                         <div class="d-flex align-items-center">
                             <div class="input-group">
@@ -45,10 +45,10 @@
 
                     <p class="p-3 text-muted">No chats available</p>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Chat Messages -->
-            <div class="col-12 col-md-9 mb-3">
+            <div class="container">
                 <div class="card rounded-5 chatBox">
                     <div class="row p-2" style="background-color: black;">
                         <div class="ps-3">

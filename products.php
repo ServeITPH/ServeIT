@@ -30,7 +30,7 @@
 <body>
     <?php include("sharedAssets/nav.php") ?>
 
-    <div class="container mt-3 animate__animated animate__fadeIn">
+    <div class="container animate__animated animate__fadeIn" style="margin-top: 30px;">
         <div class="row">
             <div class="col">
                 <div class="card">

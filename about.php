@@ -38,7 +38,7 @@ if ($userID == "") {
     <?php include("sharedAssets/nav.php"); ?>
 
     <!-- About Us -->
-    <div class="about text-center py-5">
+    <div class="about text-center" styl="margin-top: 30px">
         <div class="container wow animate__animated animate__fadeIn" style="max-width: 1300px; margin: 0 auto;">
             <div class="about-content p-4">
                 <div class="title">ABOUT US</div>

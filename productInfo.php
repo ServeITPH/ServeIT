@@ -53,8 +53,8 @@
                     </div>
                     <div class="col-lg-6 d-flex align-items-center text-start">
                         <div class="productInfo">
-                            <h1 class="productTitleInfo pt-1">COLLAGE PICTURE</h1>
-                            <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            <h1 class="productTitleInfo pt-1" style="font-size: 32px;">COLLAGE PICTURE</h1>
+                            <p style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor incididunt
                                 ut labore</p>
                             <p class="reviewStars">
@@ -63,23 +63,23 @@
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
-                                <span class="rating-value ms-2">Reviews</span>
+                                <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
                             </p>
                             <div class="price fw-bold">
-                                <span style="font-size: 40px;">₱500</span><span>.00</span>
+                                <span style="font-size: 32px;">₱500</span><span>.00</span>
                             </div>
                             <div style="border-top: 2px solid #19AFA5; width: 100%; margin: 10px 0; "></div>
                             <h4 class="productDescriptionTitle fw-bold" style="font-size: 16;">PRODUCT DESCRIPTION</h4>
-                            <p class="productDescriptionInfo" style="font-size: 16px;">
+                            <p class="productDescriptionInfo" style="font-size: 14px;">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </p>
                             <div class="productButtons">
                                 <a href="cart.php">
-                                    <button class="btnAddCart rounded-pill">ADD TO CART</button>
+                                    <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO CART</button>
                                 </a>
-                                <button class="btnBuyNow rounded-pill">BUY NOW</button>
+                                <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
                             </div>
                         </div>
                     </div>
