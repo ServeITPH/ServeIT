@@ -87,7 +87,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -108,7 +110,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -129,7 +133,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -150,7 +156,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -171,7 +179,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -192,7 +202,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -213,7 +225,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -234,7 +248,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -255,7 +271,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -276,7 +294,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -297,7 +317,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">
@@ -318,7 +340,9 @@
                         </div>
                         <div class="w-100 d-flex justify-content-between align-items-center">
                             <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
+                            <a href="servicesInfo.php">
+                                <button class="btnSeeMore rounded-pill">See More</button>
+                            </a>
                         </div>
                         <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                         <div class="category">

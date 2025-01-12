@@ -1,0 +1,193 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.smallImages {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.smallImageCard {
+    width: 100%;
+    height: 140px;
+    background-color: #A9A9A9;
+    border-radius: 23px;
+}
+
+.mainImageCard {
+    width: 100%;
+    height: 440px;
+    background-color: #A9A9A9;
+    border-radius: 23px;
+}
+
+.productTitleInfo {
+    font-weight: bold;
+    margin: 0;
+}
+
+.reviewStars i {
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.btnAddCart {
+    background-color: #19AFA5;
+    width: 100px;
+    height: 35px;
+    border: none;
+    font-size: 10px;
+}
+
+.btnBuyNow {
+    background-color: #19AFA5;
+    width: 100px;
+    height: 35px;
+    border: none;
+    font-size: 10px;
+}
+
+.feedbackCardContainer {
+    max-width: 1200px;
+    width: 100%;
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin: auto;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+.feedbackCard {
+    background-color: #ffffff;
+    max-width: 100%;
+    ;
+    width: 300px;
+    height: 130px;
+    text-align: center;
+    border-radius: 18px;
+    position: relative;
+}
+
+.profilePicture {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #6e7f80;
+}
+
+.feedbackInput {
+    width: 100%;
+    height: 50px;
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.feedbackInput::placeholder {
+    font-size: 13px;
+}
+
+.feedbackText {
+    font-size: 15px;
+    color: #333;
+    position: absolute;
+    top: 25px;
+    left: 75px;
+}
+
+.feedbackDate {
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+    right: 20px;
+}
+
+.stars {
+    font-size: 15px;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.btnAddFeedback {
+    background-color: #19AFA5;
+    width: 100px;
+    height: 25px;
+    border: none;
+    font-size: 12px;
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+    width: 5%;
+}
+
+.productCard {
+    width: 100%;
+    max-width: 250px;
+    height: 378px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-bottom: 30px;
+}
+
+.productImage {
+    width: 100%;
+    height: 250px;
+    background-color: black;
+    border-radius: 23px;
+}
+
+.productTitle {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.productPrice {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.productDescription {
+    font-size: 10px;
+}
+
+.btnSeeMore {
+    background-color: #19AFA5;
+    width: 100px;
+    height: 25px;
+    border: none;
+    font-size: 12px;
+}
+
+.line-divider {
+    width: 100%;
+    height: 2px;
+    background-color: #19AFA5;
+    margin-top: 5px;
+    margin-bottom: 50px;
+}
