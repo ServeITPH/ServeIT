@@ -26,7 +26,7 @@
         <ul class="navbar-nav ms-auto mx-5">
           <li class="nav-item dropdown mx-3">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Hi, Name<i class="fa-regular fa-user px-2"></i>
+              Hi, Name<i class="fa-regular fa-user p-2"></i>
             </a>
             <ul class="dropdown-menu">
               <div class="nav-account-title">

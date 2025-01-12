@@ -39,22 +39,22 @@
                             <hr class="w-100 clearfix d-md-none" />
                             <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3 text-center">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">MarketPlace</h6>
-                                <p><a class="text-white">Services</a></p>
-                                <p><a class="text-white">Products</a></p>
+                                <p><a class="text-white" href="services.php">Services</a></p>
+                                <p><a class="text-white" href="products.php">Products</a></p>
                             </div>
                             <hr class="w-100 clearfix d-md-none" />
                             <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3 text-center">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">COMPANY</h6>
-                                <p><a class="text-white">About ServeIt</a></p>
-                                <p><a class="text-white">Help Center</a></p>
-                                <p><a class="text-white">Contact Us</a></p>
+                                <p><a class="text-white" href="about.php">About ServeIt</a></p>
+                                <p><a class="text-white" href="helpCenter.php">Help Center</a></p>
+                                <p><a class="text-white" href="chats.php">Contact Us</a></p>
                             </div>
                             <hr class="w-100 clearfix d-md-none" />
                             <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3 text-center">
                                 <h6 class="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-                                <p><i class="fa-brands fa-tiktok mx-1"></i> ServeIT</p>
-                                <p><i class="fa-brands fa-github mx-1"></i> Serve-IT</p>
-                                <p><i class="fa-brands fa-discord mx-1"></i>Serve-IT.ph</p>
+                                <p><i class="fa-brands fa-tiktok mx-1" href="."></i> ServeIT</p>
+                                <a href="https://github.com/ServeITPH"><p><i class="fa-brands fa-github mx-1" ></i> Serve-IT</p></a>
+                                <a href="https://discord.gg/czuSHrzM"><p><i class="fa-brands fa-discord mx-1" ></i>Serve-IT.ph</p></a>
                             </div>
                         </div>
                     </section>
@@ -64,14 +64,14 @@
                             <div class="col-md-7 col-lg-8 text-center text-md-start">
                                 <div class="p-3">
                                     © 2024 Copyright:
-                                    <a href="" style="color:#19AFA5">Serve-It.Ph</a>
+                                    <a href="https://github.com/ServeITPH" style="color:#19AFA5">Serve-It.Ph</a>
                                 </div>
                             </div>
                             <div class="col-md-5 col-lg-4 ml-lg-0 text-center text-md-end">
                                 <a class="btn btn-outline-light btn-floating m-1" role="button"><i
                                         class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-outline-light btn-floating m-1" role="button"><i
-                                        class="fab fa-github"></i></a>
+                                <a class="btn btn-outline-light btn-floating m-1" role="button" href="https://github.com/ServeITPH"><i
+                                        class="fab fa-github" ></i></a>
                                 <a class="btn btn-outline-light btn-floating m-1" role="button"><i
                                         class="fab fa-google"></i></a>
                                 <a class="btn btn-outline-light btn-floating m-1" role="button"><i

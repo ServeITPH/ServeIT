@@ -43,7 +43,7 @@ if ($userID == "") {
             <div class="about-content p-4">
                 <div class="title">ABOUT US</div>
                 <div class="about-text">
-                    <p>
+                    <p style="font-size:14px">
                         <?php echo $abtUsContent; ?>
                     </p>
                 </div>
@@ -59,7 +59,7 @@ if ($userID == "") {
                     <span>Our</span> <span>Story</span>
                 </h1>
                 <div class="story-text">
-                    <p>
+                    <p style="font-size:14px">
                         <?php echo $storyContent; ?>
                     </p>
                 </div>

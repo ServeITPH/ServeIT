@@ -30,6 +30,8 @@ if ($userID == "") {
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
+    <link rel="stylesheet" href="assets/css/help/style.css">
+
 
     <style>
         .active5 {
@@ -50,10 +52,21 @@ if ($userID == "") {
 
         body {
             background-color: #ffffff;
-            background-image: url('assets/images/helpCenter/bg.png');
-            background-size: cover;
-            background-attachment: fixed;
+            position: relative;
+        }
 
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("assets/images/about/bg.png");
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
+            opacity: 0.8;
         }
     </style>
 
@@ -74,7 +87,7 @@ if ($userID == "") {
     <div class="container wow animate__animated animate__fadeIn">
         <div class="row p-2 mt-4 ">
             <p style="font-family: Poppins; font-size: 40px;">
-                Welcome to GigHUB, How can we help?
+                Welcome to ServeIT, How can we help?
             </p>
         </div>
         <div class="row justify-content-center ">
@@ -92,23 +105,9 @@ if ($userID == "") {
             </div>
         </div>
         <div class="row justify-content-center">
-            <div class="col-7 col-sm-7 col-md-5 col-lg-4 col-xl-4 m-5 ">
-                <div class="card align-items-center p-5 p-2 wow animate__animated animate__fadeIn" data-wow-delay="5s"
-                    style="background-color: white; box-shadow: 0 4px 8px 4px rgba(0, 0, 0, 0.2); border-radius: 20px">
-                    <button class="btn p-0 border-0" style="font-size: 24px;">
-                        <p>ICON BUYER</p>
-                    </button>
-                    <button class="btn p-0 border-0" style="font-size: 32px; font-family: Poppins;">
-                        <p>For Buyers</p>
-                    </button>
-                    <button class="btn p-0 border-0" style="font-size: 24px; font-weight: 700;font-family: Poppins;">
-                        <p style="color:#19AFA5">20 Articles</p>
-                    </button>
-                </div>
-            </div>
-            <div class="row m-3 wow animate__animated animate__fadeInUp" data-wow-duration="5s">
-                <h1 style="font-size: 40px; font-weight: 500;font-family: Poppins; text-align: center;">Most Popular
-                    Articles
+
+            <div class="row wow animate__animated animate__fadeInUp" data-wow-duration="5s">
+                <h1 style="font-size: 40px; font-weight: bold;font-family: Poppins;">FAQS
                 </h1>
             </div>
 
