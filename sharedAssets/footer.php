@@ -2,7 +2,7 @@
 
 <!-- help -->
 
-<div class="container-fluid help-section">
+<div class="container-fluid help-section" style="margin: 0px">
         <div class="help-title">
             HOW CAN WE HELP?
         </div>
@@ -10,7 +10,6 @@
             <input class="me-2 need-help" type="search" placeholder="need help?" aria-label="Search">
             <button class="btn btn-outline-primary need-help-btn" type="submit">Send</button>
         </form>
-
     </div>
 
 

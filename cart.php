@@ -42,6 +42,9 @@ $fetchItem = executeQuery($items);
     <link rel="stylesheet" href="assets/css/landing-page/style.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
 
+    <link rel="stylesheet" href="assets/css/cart/cart.css">
+
+
 </head>
 
 <body>
@@ -79,7 +82,7 @@ $fetchItem = executeQuery($items);
 
                         ?>
 
-                        <div class="card border-0 mt-3">
+                        <div class=" border-0 mt-3">
                             <div class="card-body">
 
                                 <div class="d-flex justify-content-between align-items-center">
@@ -156,7 +159,7 @@ $fetchItem = executeQuery($items);
                     </li>
                 </ul>
 
-                
+
                 <div class="d-flex justify-content-center mt-3">
                     <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
                         data-bs-target="#myModal" <?php if ($cartEmpty)
@@ -197,7 +200,7 @@ $fetchItem = executeQuery($items);
         <hr>
 
 
-        <div class="container">
+        <div class="container mt-5">
             <div class="row d-flex justify-content-center align-items-center">
 
                 <?php
@@ -205,6 +208,29 @@ $fetchItem = executeQuery($items);
                     while ($fetchItemRow = mysqli_fetch_assoc($fetchItem)) {
                         ?>
 
+                        <div class="col-lg-3 col-6 d-flex flex-row">
+                            <div class="serviceCard rounded mx-auto">
+                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                    <div class="serviceImage">
+                                        <img src="" alt="Service Image">
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-between align-items-center">
+                                        <span class="serviceTitle">Service Title</span>
+                                        <span class="servicePrice">₱500</span>
+                                    </div>
+                                    <div class="w-100 d-flex justify-content-between align-items-center">
+                                        <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
+                                        <a href="servicesInfo.php">
+                                            <button class="btnSeeMore rounded-pill">See More</button>
+                                        </a>
+                                    </div>
+                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                    <div class="category">
+                                        <span>Asset</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-lg-4 col-md-6 col-sm-12 col-12 d-flex flex-column align-items-center">
 
                             <div class="div">
@@ -214,7 +240,7 @@ $fetchItem = executeQuery($items);
                                 </div>
 
 
-                                <div class="card border-0 mb-1">
+                                <div class="-card border-0 mb-1">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <h5 class="card-title fw-bold fs-5">Title</h5>

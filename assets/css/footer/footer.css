@@ -103,6 +103,7 @@ background-color: black;
     padding-top: 30px;
 }
 
+
 @media(max-width: 767px){
     .help-title{
         font-size: 32px;

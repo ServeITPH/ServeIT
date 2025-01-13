@@ -81,7 +81,6 @@ if ($userID == "") {
 
         <div class="links text-center py-5">
             <div class="container wow animate__animated animate__fadeInUp">
-                <div class="line1 mb-4"></div>
                 <div class="line2 mb-4"></div>
                 <h2 class="fw-bold mb-4">More Ways to Connect With Our Team</h2>
                 <p class="mx-auto"><?php echo $connect; ?></p>
