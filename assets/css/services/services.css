@@ -15,7 +15,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* margin: auto; */
 }
 
 .card {
@@ -25,7 +24,6 @@ body {
   max-height: auto;
   background-color: black;
   border-radius: 60px;
-  /* margin-top: 40px; */
   justify-content: center;
 }
 

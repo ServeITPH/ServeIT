@@ -6,11 +6,14 @@ include("assets/php/about/aboutContent.php");
 session_start();
 
 $userID = $_SESSION['userID'];
+$role = $_SESSION['role'];
+$userName = $_SESSION['username'];
 
 if ($userID == "") {
     header("Location: login.php");
 }
 
+<<<<<<< Updated upstream
 
 $userCountQuery = "SELECT COUNT(userID) AS userCount FROM users";
 $userCountResult = executeQuery($userCountQuery);
@@ -35,6 +38,13 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
 
 
 
+=======
+if ($role == "admin") {
+    header("Location: admin/index.php");
+}
+
+
+>>>>>>> Stashed changes
 ?>
 
 <head>

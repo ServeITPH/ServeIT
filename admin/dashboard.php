@@ -1,3 +1,24 @@
+<?php
+include("../sharedAssets/connect.php");
+
+// Service Count
+$countServiceQuery = "SELECT COUNT(itemID) AS countService FROM `items` WHERE type = 'services'";
+$countServiceResult = executeQuery($countServiceQuery);
+$serviceCount = 0;
+
+while ($countServiceRow = mysqli_fetch_assoc($countServiceResult)) {
+    $serviceCount = $countServiceRow['countService'];
+}
+
+// Product Count
+$countProductQuery = "SELECT COUNT(itemID) AS countProduct FROM `items` WHERE type = 'products'";
+$countProductResult = executeQuery($countProductQuery);
+$productCount = 0;
+
+while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
+    $productCount = $countProductRow['countProduct'];
+}
+?>
 <!doctype html>
 <html lang="en">
 
@@ -20,8 +41,7 @@
         href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
     <style>
-
-        .card-body{
+        .card-body {
             background-color: #19AFA5;
         }
     </style>
@@ -42,7 +62,7 @@
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Services</p>
-                                    <p class="h3">#</p>
+                                    <p class="h3"><?php echo $serviceCount ?></p>
                                 </div>
                             </div>
                         </div>
@@ -50,7 +70,7 @@
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Products</p>
-                                    <p class="h3">#</p>
+                                    <p class="h3"><?php echo $productCount ?></p>
                                 </div>
                             </div>
                         </div>
