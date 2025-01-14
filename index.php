@@ -11,11 +11,35 @@ if ($userID == "") {
     header("Location: login.php");
 }
 
+
+$userCountQuery = "SELECT COUNT(userID) AS userCount FROM users";
+$userCountResult = executeQuery($userCountQuery);
+$userCount = 0;
+while ($userCountRow = mysqli_fetch_assoc($userCountResult)) {
+    $userCount = $userCountRow['userCount'];
+}
+
+$transactionCountQuery = "SELECT COUNT(transactionID) AS transactionCount FROM transactions";
+$transactionCountResult = executeQuery($transactionCountQuery);
+$transactionCount = 0;
+while ($transactionCountRow = mysqli_fetch_assoc($transactionCountResult)) {
+    $transactionCount = $transactionCountRow['transactionCount'];
+}
+
+$productCountQuery = "SELECT COUNT('itemID') AS productCount FROM items WHERE type = 'product'";
+$productCountResult = executeQuery($productCountQuery);
+$productCount = 0;
+while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
+    $productCount = $productCountRow['productCount'];
+}
+
+
+
 ?>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">s
     <title>ServeIT | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -71,7 +95,7 @@ if ($userID == "") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container ">
                     <div class="count-num">
-                        0
+                        <?php echo $userCount?>
                     </div>
                     <div class="title-count">
                         REGISTERED MEMBERS</span>
@@ -84,7 +108,7 @@ if ($userID == "") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container">
                     <div class="count-num">
-                        0
+                    <?php echo $transactionCount?>
                     </div>
                     <div class="title-count">
                         HAPPY CUSTOMERS</span>
@@ -98,7 +122,7 @@ if ($userID == "") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container">
                     <div class="count-num">
-                        0
+                    <?php echo $productCount?>
                     </div>
                     <div class="title-count">
                         AVAILABLE PRODUCT</span>
@@ -538,7 +562,7 @@ if ($userID == "") {
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
 
-    
+
 
 
     <!-- icons -->
@@ -546,8 +570,8 @@ if ($userID == "") {
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
-<!-- scroll animation  -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <!-- scroll animation  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
     <script>
         new WOW({
             offset: 200,

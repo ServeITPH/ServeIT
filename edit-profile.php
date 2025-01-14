@@ -160,7 +160,7 @@ function safe_echo($value)
                         </div>
 
                         <div class="form-group">
-                            <label>Phone Num.</label>
+                            <label>Phone Number</label>
                             <input type="text" name="phoneNumber"
                                 value="<?php echo safe_echo($user['phoneNumber']); ?>">
                         </div>
