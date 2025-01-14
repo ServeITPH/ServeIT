@@ -36,31 +36,34 @@ if ($userID == "") {
 <body>
     <?php include("sharedAssets/nav.php"); ?>
 
-    <!-- About Us -->
-    <div class="about text-center" styl="margin-top: 30px">
-        <div class="container wow animate__animated animate__fadeIn" style="max-width: 1300px; margin: 0 auto;">
-            <div class="about-content p-4">
-                <div class="title">ABOUT US</div>
-                <div class="about-text">
-                    <p style="font-size:14px">
-                        <?php echo $abtUsContent; ?>
-                    </p>
+    <div class="container wow animate__animated animate__fadeIn"
+        style="margin-top: 30px;  justify-content: center;  display: flex;">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">ABOUT US</h5>
+                        <p class="card-text mb-3">
+                            <?php echo $abtUsContent; ?>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Our Story -->
-    <div class="story text-center py-5">
-        <div class="container wow animate__animated animate__fadeInUp" style="max-width: 1300px; margin: 0 auto;">
-            <div class="story-content p-4">
-                <h1 class="story-title">
-                    <span>Our</span> <span>Story</span>
-                </h1>
-                <div class="story-text">
-                    <p style="font-size:14px">
-                        <?php echo $storyContent; ?>
-                    </p>
+    <div class="container wow animate__animated animate__fadeInUp"
+        style="margin-top: 30px;  justify-content: center;  display: flex;">
+        <div class="row">
+            <div class="col">
+                <div class="card storyCard">
+                    <div class="card-body">
+                        <h5 class="story-title"><span>Our</span> <span>Story</span></h5>
+                        <p class="card-text mb-3" style="text-indent: 50px;">
+                            <?php echo $storyContent; ?>
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +83,7 @@ if ($userID == "") {
 
         <div class="links text-center py-5">
             <div class="container wow animate__animated animate__fadeInUp">
-                <div class="line2 mb-4"></div>
+                <div class="line mb-4"></div>
                 <h2 class="fw-bold mb-4">More Ways to Connect With Our Team</h2>
                 <p class="mx-auto"><?php echo $connect; ?></p>
                 <?php include("assets/php/about/links.php"); ?>

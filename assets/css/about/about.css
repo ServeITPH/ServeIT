@@ -1,5 +1,5 @@
 body {
-    background-color: #ffffff;
+    background-color: white;
     position: relative;
 }
 
@@ -12,9 +12,9 @@ body::before {
     height: 100%;
     background-image: url("../../../assets/images/about/bg.png");
     background-size: cover;
-    filter: blur(5px); 
+    filter: blur(5px);
     z-index: -1;
-    opacity: 0.8; 
+    opacity: 0.8;
 }
 
 .about,
@@ -23,33 +23,71 @@ body::before {
     margin-top: 30px;
 }
 
-.title {
-    font-weight: bold;
-    color: #19AFA5;
+.card {
+    width: 100%;
+    max-width: 1190px;
+    height: auto;
+    background-color: black;
+    border-radius: 60px;
+    justify-content: center;
+}
+
+.storyCard {
+    width: 100%;
+    max-width: 1190px;
+    height: auto;
+    background-color: #19afa5;
+    border-radius: 60px;
+    justify-content: center;
+}
+
+.card-title {
+    color: #19afa5;
     font-size: 70px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
 }
 
-.about-content,
-.story-content {
-    border-radius: 50px;
-    padding: 40px;
-    color: #fff;
+.card-text {
+    color: white;
+    font-size: 14px;
+    text-align: justify;
+    padding-left: 10vh;
+    padding-right: 10vh;
 }
 
-.about-content {
-    background-color: #000;
+@media (max-width: 767px) {
+    .card-title {
+        font-size: 30px;
+    }
+
+    .story-title span {
+        font-size: 30px;
+    }
+
+    .story-title span:last-child {
+        font-size: 30px;
+    }
+
+    .card-text {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
 }
 
-.story-content {
+/* shadow add tom */
+/* .story-content {
     background-color: #19AFA5;
     box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.5);
-}
+} */
 
 .story-title {
-    font-size: 2rem;
+    font-size: 70px;
     text-align: center;
-    margin-bottom: 20px;
     font-weight: bold;
+    line-height: 1;
 }
 
 .story-title span {
@@ -58,24 +96,6 @@ body::before {
 
 .story-title span:last-child {
     color: white;
-}
-
-.about-text,
-.story-text {
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: justify;
-}
-
-.about-text p {
-    font-size: 1rem;
-    line-height: 1.8;
-}
-
-.story-text p {
-    font-size: 1rem;
-    line-height: 1.8;
-    text-indent: 50px;
 }
 
 /* Carousel styles */
@@ -99,14 +119,7 @@ body::before {
     height: 40px;
 }
 
-.line1 {
-    width: 100%;
-    height: 4px;
-    background-color: #ffffff;
-    margin-bottom: 1.5rem;
-}
-
-.line2 {
+.line {
     width: 100%;
     height: 4px;
     background-color: #19AFA5;
