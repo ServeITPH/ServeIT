@@ -31,7 +31,6 @@
             flex-direction: column;
             justify-content: center;
             height: 170px;
-
         }
 
         .card-custom:hover {
@@ -41,15 +40,13 @@
         }
 
         .fi-dashboard {
-            font-size: 30px;
+            font-size: 25px;
         }
     </style>
 </head>
 
 <body>
-
     <?php include("adminAssets/nav.php"); ?>
-
 
     <div class="container py-5">
         <div class="row">
@@ -62,8 +59,7 @@
 
     <div class="container py-5">
         <div class="row g-5 justify-content-center">
-
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="dashboard.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-dashboard-monitor"></i>
@@ -72,10 +68,7 @@
                     </div>
                 </a>
             </div>
-
-
-
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="addProducts.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-box-open"></i>
@@ -84,10 +77,7 @@
                     </div>
                 </a>
             </div>
-
-
-
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="feedback.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-feedback-review"></i>
@@ -98,8 +88,7 @@
             </div>
         </div>
         <div class="row g-5 justify-content-center mt-4">
-
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="managePosts.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-blog-text"></i>
@@ -108,8 +97,7 @@
                     </div>
                 </a>
             </div>
-
-            <div class="col-md-3">
+            <div class="col-12 col-md-6 col-lg-4">
                 <a href="manageUsers.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-user-gear"></i>
@@ -120,7 +108,8 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 
 </html>

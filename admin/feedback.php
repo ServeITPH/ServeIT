@@ -10,7 +10,6 @@
 
     <!-- css -->
     <link rel="stylesheet" href="adminAssets/css/nav/nav.css">
-    <link rel="stylesheet" href="adminAssets/css/sidebar/sidebar.css">
     <!-- tab icon -->
     <link rel="icon" href="../assets/images/nav/logo-nav.png">
     <!-- font -->
@@ -29,17 +28,12 @@
             background-color: #D9D9D9;
         }
 
-        /* for temporary sidebar use only. tanggalin once na malagay data ng tables */
-        .container-space {
-            padding-top: 400px;
-        }
     </style>
 
 </head>
 
 <body>
     <?php include("adminAssets/nav.php"); ?>
-    <?php include("adminAssets/sidebar.php"); ?>
     <div class="col">
         <div class="col py-5 text-center">
             <h1><b style="color: #19AFA5;">CLIENT</b> <b>FEEDBACKS</b></h1>
@@ -54,44 +48,48 @@
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
+                    <div class="table-responsive">
+                        <table class="table table-secondary table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">User</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Role</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>wowuser</td>
+                                    <td>very nice</td>
+                                    <td>tutor</td>
+                                    <td>tutor</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>graphic drawing</td>
+                                    <td>tutor</td>
 
-                    <table class="table table-secondary table-striped">
-                        <thead>
-                            <tr>
-                                <th scope="col">User</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Feedback</th>
-                                <th scope="col">Item</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>wowuser</td>
-                                <td>very nice</td>
-                                <td>tutor</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>graphic drawing</td>
-                            
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td colspan="2">Larry the Bird</td>
-                                <td>pics</td>
-                            
-                            </tr>
-                        </tbody>
-                    </table>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td colspan="2">Larry the Bird</td>
+                                    <td>pics</td>
+                                    <td>tutor</td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- for temporary sidebar use only. tanggalin once na malagay data ng tables-->
-        <div class="container container-space">
-        </div>
+        <!-- for temporary sidebar use only. tanggalin once na malagay data ng tables -->
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

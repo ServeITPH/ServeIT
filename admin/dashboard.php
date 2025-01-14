@@ -10,7 +10,6 @@
 
     <!-- css -->
     <link rel="stylesheet" href="adminAssets/css/nav/nav.css">
-    <link rel="stylesheet" href="adminAssets/css/sidebar/sidebar.css">
     <!-- tab icon -->
     <link rel="icon" href="../assets/images/nav/logo-nav.png">
     <!-- font -->
@@ -21,16 +20,9 @@
         href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
     <style>
-        textarea {
-            resize: none;
-        }
 
-        .card-1 {
-            background-color: #D9D9D9;
-        }
-
-        .statistics-custom {
-            border-bottom: 3px solid #19AFA5;
+        .card-body{
+            background-color: #19AFA5;
         }
     </style>
 
@@ -38,144 +30,158 @@
 
 <body>
     <?php include("adminAssets/nav.php"); ?>
-    <?php include("adminAssets/sidebar.php"); ?>
-    <div class="col">
-        <div class="col py-5 text-center">
-
-            <h1><b style="color: #19AFA5;">ADMIN</b> <b>DASHBOARD</b></h1>
-            <p class="lead"><i>Unlock your potential. Let earnings follow.</i></p>
-
-            <!-- statistics -->
-        </div>
-        <div class="container text-center mb-5">
-            <div class="row justify-content-start">
-                <div class="col-4">
-                    <p class="lead statistics-custom">Services</p>
-                    <p class="h3">#</p>
-                </div>
-                <div class="col-4">
-                    <p class="lead statistics-custom">Products</p>
-                    <p class="h3">#</p>
-                </div>
-                <div class="col-4">
-                    <p class="lead statistics-custom">Sales</p>
-                    <p class="h3">#</p>
-                </div>
-            </div>
-        </div>
-        <!-- graph -->
-        <div class="container">
+    <div class="container-fluid">
+        <div class="row">
             <div class="col">
-                <?php include("adminAssets/graph.php") ?>
-            </div>
-        </div>
-        <br>
+                <div class="p-5 text-center">
+                    <h1><b>ADMIN DASHBOARD</b></h1>
+                </div>
+                <div class="container text-center mb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-12 col-md-4 mb-3">
+                            <div class="card rounded-5">
+                                <div class="card-body rounded-5">
+                                    <p class="h2 statistics-custom">Services</p>
+                                    <p class="h3">#</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3 ">
+                            <div class="card rounded-5">
+                                <div class="card-body rounded-5">
+                                    <p class="h2 statistics-custom">Products</p>
+                                    <p class="h3">#</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-4 mb-3">
+                            <div class="card rounded-5">
+                                <div class="card-body rounded-5">
+                                    <p class="h2 statistics-custom">Sales</p>
+                                    <p class="h3">#</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- graph -->
+                <div class="container">
+                    <div class="col">
+                        <?php include("adminAssets/graph.php") ?>
+                    </div>
+                </div>
+                <br>
 
-        <div class="col py-5 text-center">
-            <h1><b style="color: #19AFA5;">PRODUCTS</b></h1>
-            <!-- table -->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-7">
-                        <form class="d-flex py-5" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
+                <div class="col py-5 text-center">
+                    <h1><b>PRODUCTS</b></h1>
+                    <!-- table -->
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-10">
+                                <form class="d-flex py-5" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
 
-                        <table class="table table-secondary table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td><img src="#"></td>
-                                    <td>drawing commision</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td><img src="#"></td>
-                                    <td>graphic drawing</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
+                                <div class="table-responsive">
+                                    <table class="table table-secondary table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td><img src="#" alt="Product Image"></td>
+                                                <td>drawing commision</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td><img src="#" alt="Product Image"></td>
+                                                <td>graphic drawing</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td><img src="#" alt="Product Image"></td>
+                                                <td>pics</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
 
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td><img src="#"></td>
-                                    <td>pics</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <div class="col py-5 text-center">
+                    <h1><b style="color: #000000;">SERVICES</b></h1>
+                    <!-- table -->
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-10">
+                                <form class="d-flex py-5" role="search">
+                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                        aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                </form>
+
+                                <div class="table-responsive">
+                                    <table class="table table-secondary table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Product Name</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">2</th>
+                                                <td><img src="#" alt="Service Image"></td>
+                                                <td>drawing commision</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">3</th>
+                                                <td><img src="#" alt="Service Image"></td>
+                                                <td>graphic drawing</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">4</th>
+                                                <td><img src="#" alt="Service Image"></td>
+                                                <td>pics</td>
+                                                <td>tutor</td>
+                                                <td>9.99</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <br>
-
-        <div class="col py-5 text-center">
-            <h1><b style="color: #000000;">SERVICES</b></h1>
-            <!-- table -->
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-7">
-                        <form class="d-flex py-5" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
-                        </form>
-
-                        <table class="table table-secondary table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Product Name</th>
-                                    <th scope="col">Description</th>
-                                    <th scope="col">Price</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td><img src="#"></td>
-                                    <td>drawing commision</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td><img src="#"></td>
-                                    <td>graphic drawing</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td><img src="#"></td>
-                                    <td>pics</td>
-                                    <td>tutor</td>
-                                    <td>9.99</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
