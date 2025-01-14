@@ -1,0 +1,66 @@
+.mainRow {
+    height: 50vh;
+    background-color: #ffffff;
+}
+
+
+.card {
+    height: 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.chatBox {
+    overflow: hidden;
+}
+
+.mainContainer {
+    height: 100%;
+}
+
+.chatInput {
+    width: 100%;
+    height: auto;
+}
+
+.chatTextBox {
+    border-radius: 100px 0px 0px 100px;
+}
+
+.send-btn-img,
+.attachment-btn-img {
+    width: 45px;
+    height: 45px;
+    cursor: pointer;
+}
+
+
+.search-box {
+    margin-bottom: 15px;
+    border-radius: 40px;
+}
+
+.input-group .form-control {
+    border-radius: 40px 0 0 40px; 
+    border: 1px solid black;
+}
+
+.input-group .input-group-text {
+    border-radius: 0 40px 40px 0;
+    background:black; 
+    color:#ffffff;
+    border: 1px solid black;
+}
+.see-more-btn-img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.see-more-btn-link {
+    float: right;
+    margin-left: 15px; 
+}

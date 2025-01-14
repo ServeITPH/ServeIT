@@ -32,17 +32,19 @@
     </div>
 
     <nav class="nav flex-column">
-      <a href="dashboard.php" class="nav-link text-light"><i class="fi fi-dashboard fi-rr-dashboard-monitor"></i>
+      <a href="dashboard.php" class="nav-link text-light"><i class="fi fi-rr-dashboard-monitor"></i>
         Dashboard</a>
-      <a href="addProducts.php" class="nav-link text-light"><i class="fi fi-dashboard fi-rr-box-open"></i> Add
+      <a href="addProducts.php" class="nav-link text-light"><i class="fi fi-rr-box-open"></i> Add
         Product/Services</a>
-      <a href="feedback.php" class="nav-link text-light"><i class="fi fi-dashboard fi-rr-feedback-review"></i> Client
+      <a href="feedback.php" class="nav-link text-light"><i class="fi  fi-rr-feedback-review"></i> Client
         Feedbacks</a>
-      <a href="managePosts.php" class="nav-link text-light"><i class="fi fi-dashboard fi-rr-blog-text"></i> Manage
+      <a href="managePosts.php" class="nav-link text-light"><i class="fi fi-rr-blog-text"></i> Manage
         Posts</a>
-      <a href="manageUsers.php" class="nav-link text-light"><i class="fi fi-dashboard fi-rr-user-gear"></i> Manage
+      <a href="manageUsers.php" class="nav-link text-light"><i class="fi fi-rr-user-gear"></i> Manage
         Users</a>
-      <a href="../login.php" class="nav-link text-danger"><i class="fi fi-rr-sign-out"></i> Log-out</a>
+        <a href="customerChat.php" class="nav-link text-light"><i class="fi fi-rr-comment-alt"></i> Customer
+        Chat</a>
+      <a href="../login.php" class="nav-link text-danger"><i class="fi fi-rr-exit"></i></i> Log-out</a>
     </nav>
 
   </div>

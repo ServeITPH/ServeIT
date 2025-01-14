@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ServeIT | Admin Dashboard</title>
+    <title>ServeIT | Menu</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -64,7 +64,6 @@
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-dashboard-monitor"></i>
                         <h3>Dashboard</h3>
-                        <p>Description</p>
                     </div>
                 </a>
             </div>
@@ -73,7 +72,6 @@
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-box-open"></i>
                         <h3>Services/Products</h3>
-                        <p>Description</p>
                     </div>
                 </a>
             </div>
@@ -82,7 +80,6 @@
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-feedback-review"></i>
                         <h3>Client Feedbacks</h3>
-                        <p>Description</p>
                     </div>
                 </a>
             </div>
@@ -93,7 +90,6 @@
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-blog-text"></i>
                         <h3>Manage Posts</h3>
-                        <p>Description</p>
                     </div>
                 </a>
             </div>
@@ -102,14 +98,21 @@
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-user-gear"></i>
                         <h3>Manage Users</h3>
-                        <p>Description</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4">
+                <a href="customerChat.php">
+                    <div class="card-custom">
+                        <i class="fi fi-rr-comment-alt"></i>
+                        <h3>Customer Support</h3>
                     </div>
                 </a>
             </div>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
+
 </body>
 
 </html>

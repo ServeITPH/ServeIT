@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ServeIT | Admin Dashboard</title>
+    <title>ServeIT | Manage Users</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -36,7 +36,7 @@
     <?php include("adminAssets/nav.php"); ?>
     <div class="col">
         <div class="col py-5 text-center">
-            <h1><b style="color: #19AFA5;">MANAGE</b> <b>USERS</b></h1>
+            <h1><b>MANAGE USERS</b></h1>
         </div>
 
 
