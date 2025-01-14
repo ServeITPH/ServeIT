@@ -42,6 +42,7 @@ function safe_echo($value) {
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
+    <link rel="stylesheet" href="assets/css/product/product.css">
     <link rel="stylesheet" href="assets/css/profile/profile.css">
 
    
@@ -70,50 +71,101 @@ function safe_echo($value) {
             <div class="tab-buttons">
                 <button class="tab-btn active" onclick="showTab('services')">Services</button>
                 <button class="tab-btn" onclick="showTab('products')">Products</button>
-            </div>
+            </div>    
+       
 
             <div id="services" class="tab-content">
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <div class="service-title">Service Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <div class="service-title">Service Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="serviceCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Service Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="serviceCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Service Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="service-info">
-                            <div class="service-title">Service Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
+                    </div>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="serviceCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Service Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="serviceCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Service Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -121,53 +173,102 @@ function safe_echo($value) {
             </div>
 
             <div id="products" class="tab-content">
-            <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <div class="service-title">Product Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
-                        </div>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
-                        </div>
-                        <div class="service-info">
-                            <div class="service-title">Product Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="productCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Product Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="service-card">
-                        <div class="service-image">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#666" stroke-width="2">
-                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                                <circle cx="8.5" cy="8.5" r="1.5"></circle>
-                                <polyline points="21 15 16 10 5 21"></polyline>
-                            </svg>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="productCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Product Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="service-info">
-                            <div class="service-title">Product Title</div>
-                            <div class="service-price">₱500</div>
-                            <button class="service-button">See More</button>
+                    </div>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="productCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Product Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-6 d-flex flex-row">
+                        <div class="productCard rounded mx-auto">
+                            <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                <div class="productImage">
+                                    <img src="" alt="Product Image">
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <span class="productTitle">Product Title</span>
+                                    <span class="productPrice">₱500</span>
+                                </div>
+                                <div class="w-100 d-flex justify-content-between align-items-center">
+                                    <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                    <a href="productInfo.php">
+                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                    </a>
+                                </div>
+                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                <div class="category">
+                                    <span>Asset</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <button class="show-all">Show all</button>
             </div>
-        </div>
     </div>
 
 
