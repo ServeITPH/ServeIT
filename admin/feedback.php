@@ -1,10 +1,16 @@
+<?php
+
+include("../sharedAssets/connect.php");
+include("adminAssets/user.php");
+
+?>
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ServeIT | Client Feedbacks</title>
+    <title>ServeIT | Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
@@ -27,7 +33,6 @@
         .card-1 {
             background-color: #D9D9D9;
         }
-
     </style>
 
 </head>
@@ -36,7 +41,7 @@
     <?php include("adminAssets/nav.php"); ?>
     <div class="col">
         <div class="col py-5 text-center">
-            <h1><b>CLIENT FEEDBACKS</b></h1>
+            <h1><b style="color: #19AFA5;">CLIENT</b> <b>FEEDBACKS</b></h1>
         </div>
 
 
@@ -52,10 +57,10 @@
                         <table class="table table-secondary table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">User</th>
+                                    <th scope="col">Item</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
+                                    <th scope="col">Review</th>
+                                    <th scope="col">Rating Value</th>
                                     <th scope="col">Status</th>
                                 </tr>
                             </thead>

@@ -7,13 +7,14 @@ session_start();
 
 $userID = $_SESSION['userID'];
 $role = $_SESSION['role'];
-$userName = $_SESSION['username'];
 
 if ($userID == "") {
     header("Location: login.php");
 }
 
-<<<<<<< Updated upstream
+if ($role == "admin") {
+    header("Location: admin/index.php");
+}
 
 $userCountQuery = "SELECT COUNT(userID) AS userCount FROM users";
 $userCountResult = executeQuery($userCountQuery);
@@ -38,18 +39,11 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
 
 
 
-=======
-if ($role == "admin") {
-    header("Location: admin/index.php");
-}
-
-
->>>>>>> Stashed changes
 ?>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">s
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ServeIT | Home</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -105,7 +99,7 @@ if ($role == "admin") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container ">
                     <div class="count-num">
-                        <?php echo $userCount?>
+                        <?php echo $userCount ?>
                     </div>
                     <div class="title-count">
                         REGISTERED MEMBERS</span>
@@ -118,7 +112,7 @@ if ($role == "admin") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container">
                     <div class="count-num">
-                    <?php echo $transactionCount?>
+                        <?php echo $transactionCount ?>
                     </div>
                     <div class="title-count">
                         HAPPY CUSTOMERS</span>
@@ -132,7 +126,7 @@ if ($role == "admin") {
             <div class="col-12 col-sm-6 col-md-4">
                 <div class="count-container">
                     <div class="count-num">
-                    <?php echo $productCount?>
+                        <?php echo $productCount ?>
                     </div>
                     <div class="title-count">
                         AVAILABLE PRODUCT</span>

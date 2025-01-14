@@ -1,5 +1,7 @@
 <?php
 include("sharedAssets/connect.php");
+include("admin/adminAssets/user.php");
+
 
 $sql = "SELECT * 
         FROM carts 
@@ -80,7 +82,7 @@ $fetchItem = executeQuery($items);
                         $grandTotal += $fetchCartRow['price'];
                         $itemsList .= "* " . $fetchCartRow['title'] . "<br>";
 
-                        ?>
+                ?>
 
                         <div class=" border-0 mt-3">
                             <div class="card-body">
@@ -111,7 +113,7 @@ $fetchItem = executeQuery($items);
                         </div>
 
 
-                        <?php
+                <?php
                     }
                 } else {
                     echo "No product";
@@ -163,7 +165,7 @@ $fetchItem = executeQuery($items);
                 <div class="d-flex justify-content-center mt-3">
                     <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
                         data-bs-target="#myModal" <?php if ($cartEmpty)
-                            echo 'disabled'; ?>>Check Out</button>
+                                                        echo 'disabled'; ?>>Check Out</button>
                 </div>
 
                 <div class="modal" id="myModal" tabindex="-1">
@@ -206,7 +208,7 @@ $fetchItem = executeQuery($items);
                 <?php
                 if (mysqli_num_rows($fetchItem) > 0) {
                     while ($fetchItemRow = mysqli_fetch_assoc($fetchItem)) {
-                        ?>
+                ?>
 
                         <div class="col-lg-3 col-6 d-flex flex-row">
                             <div class="serviceCard rounded mx-auto">
@@ -262,7 +264,7 @@ $fetchItem = executeQuery($items);
                                 </div>
                             </div>
                         </div>
-                        <?php
+                <?php
                     }
                 } else {
                     echo "No product";

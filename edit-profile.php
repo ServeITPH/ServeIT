@@ -1,7 +1,7 @@
 <?php
-session_start();
 
 require_once 'sharedAssets/connect.php';
+include("admin/adminAssets/user.php");
 
 if (!isset($_SESSION['userID'])) {
     die("Unauthorized access!");

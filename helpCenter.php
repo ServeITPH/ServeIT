@@ -2,9 +2,7 @@
 
 include("sharedAssets/connect.php");
 
-session_start();
-
-$userID = $_SESSION['userID'];
+include("admin/adminAssets/user.php");
 
 if ($userID == "") {
     header("Location: login.php");
@@ -37,69 +35,69 @@ if ($userID == "") {
 
     <style>
         .active5 {
-        color: #19AFA5;
+            color: #19AFA5;
         }
 
         .oval {
-        width: 100%;
-        height: auto;
-        background: black;
-        border-radius: 60px;
-        justify-content: center;
-        display: flex;
-        align-items: center;
-        color: #19AFA5;
+            width: 100%;
+            height: auto;
+            background: black;
+            border-radius: 60px;
+            justify-content: center;
+            display: flex;
+            align-items: center;
+            color: #19AFA5;
 
         }
 
         body {
-        background-color: #ffffff;
-        position: relative;
+            background-color: #ffffff;
+            position: relative;
         }
 
         body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: url("assets/images/about/bg.png");
-        background-size: cover;
-        filter: blur(5px);
-        z-index: -1;
-        opacity: 0.8;
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("assets/images/about/bg.png");
+            background-size: cover;
+            filter: blur(5px);
+            z-index: -1;
+            opacity: 0.8;
         }
 
         .text {
-        font-size: 24px;
-        font-weight: 700;
-        font-family: Poppins;
-        text-align: left;
+            font-size: 24px;
+            font-weight: 700;
+            font-family: Poppins;
+            text-align: left;
         }
 
         @media(max-width: 767px) {
-        .text {
-        font-size: 16px;
-        }
+            .text {
+                font-size: 16px;
+            }
         }
 
         .information {
-        padding-bottom: 15px;
+            padding-bottom: 15px;
         }
 
-        .expandbtn-img{
-        width:30px;
-        height:30px;
+        .expandbtn-img {
+            width: 30px;
+            height: 30px;
         }
 
         @media (max-width: 767px) {
-        .expandbtn-img {
-        width: 20px;
-        height: 20px;
+            .expandbtn-img {
+                width: 20px;
+                height: 20px;
+            }
         }
-        }
-        </style>
+    </style>
 
 </head>
 </head>
@@ -215,7 +213,8 @@ if ($userID == "") {
         crossorigin="anonymous"></script>
     <script src="js/wow.min.js"></script>
 
-    <script>var display = "none";
+    <script>
+        var display = "none";
 
         function expandContent(button) {
             const information = button.nextElementSibling;
@@ -223,15 +222,14 @@ if ($userID == "") {
 
             if (information.style.display === "none" || information.style.display === "") {
                 information.style.display = "block";
-                img.src = "assets/images/helpCenter/minus.png"; 
+                img.src = "assets/images/helpCenter/minus.png";
             } else {
-                information.style.display = "none"; 
+                information.style.display = "none";
                 img.src = "assets/images/helpCenter/plus.png";
             }
         }
     </script>
     <script>
-
         new WOW().init();
     </script>
 </body>

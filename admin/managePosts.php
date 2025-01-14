@@ -1,3 +1,9 @@
+<?php
+
+include("../sharedAssets/connect.php");
+include("adminAssets/user.php");
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -27,8 +33,6 @@
         .card-1 {
             background-color: #D9D9D9;
         }
-
-
     </style>
 
 </head>

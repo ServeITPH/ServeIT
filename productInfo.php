@@ -1,3 +1,10 @@
+<?php
+
+include("sharedAssets/connect.php");
+
+include("admin/adminAssets/user.php");
+
+?>
 <!doctype html>
 <html lang="en">
 

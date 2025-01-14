@@ -1,3 +1,9 @@
+<?php
+
+include("../sharedAssets/connect.php");
+include("adminAssets/user.php");
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -27,7 +33,6 @@
         .card-1 {
             background-color: #D9D9D9;
         }
-
     </style>
 
 </head>
@@ -89,7 +94,7 @@
             </div>
         </div>
 
-        
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

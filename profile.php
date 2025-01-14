@@ -1,8 +1,8 @@
 <?php
-session_start();
-
 require_once 'sharedAssets/connect.php';
 
+
+include("admin/adminAssets/user.php");
 
 if (!isset($_SESSION['userID'])) {
     die("Unauthorized access!");
@@ -17,7 +17,8 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
 
-function safe_echo($value) {
+function safe_echo($value)
+{
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
 }
 ?>
@@ -45,12 +46,12 @@ function safe_echo($value) {
     <link rel="stylesheet" href="assets/css/product/product.css">
     <link rel="stylesheet" href="assets/css/profile/profile.css">
 
-   
+
 </head>
 
 <body>
     <?php include("sharedAssets/nav.php") ?>
-    <div  class="profile-container">
+    <div class="profile-container">
 
         <div>
             <div class="profile-header">
@@ -63,19 +64,19 @@ function safe_echo($value) {
                     </div>
                 </div>
                 <div class="header-buttons">
-                     <a href="edit-profile.php" class="btn btn-message">Edit</a>
-                     <button class="btn btn-logout" onclick="window.location.href='login.php';">Log out</button>
-    
+                    <a href="edit-profile.php" class="btn btn-message">Edit</a>
+                    <button class="btn btn-logout" onclick="window.location.href='login.php';">Log out</button>
+
                 </div>
             </div>
-    
+
             <div class="tabs">
                 <div class="tab-buttons">
                     <button class="tab-btn active" onclick="showTab('services')">Services</button>
                     <button class="tab-btn" onclick="showTab('products')">Products</button>
-                </div>    
-           
-    
+                </div>
+
+
                 <div id="services" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-lg-3 col-6 d-flex flex-row">
@@ -173,7 +174,7 @@ function safe_echo($value) {
                     </div>
                     <button class="show-all">Show all</button>
                 </div>
-    
+
                 <div id="products" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-lg-3 col-6 d-flex flex-row">
@@ -271,20 +272,20 @@ function safe_echo($value) {
                     </div>
                     <button class="show-all">Show all</button>
                 </div>
+            </div>
         </div>
     </div>
-</div>
 
 
- 
 
-       <!-- smpayment -->
-       <?php include("sharedAssets/smpayment.php"); ?>
-     <!-- footer -->
+
+    <!-- smpayment -->
+    <?php include("sharedAssets/smpayment.php"); ?>
+    <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
 
-    
-    <script 
+
+    <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous">

@@ -1,9 +1,8 @@
 <?php
 include("sharedAssets/connect.php");
 include("assets/php/about/aboutContent.php");
-session_start();
+include("admin/adminAssets/user.php");
 
-$userID = $_SESSION['userID'];
 if ($userID == "") {
     header("Location: login.php");
 }

@@ -1,6 +1,9 @@
 <?php
 include("../sharedAssets/connect.php");
 
+session_start();
+
+$userID = $_SESSION['userID'];
 // Service Count
 $countServiceQuery = "SELECT COUNT(itemID) AS countService FROM `items` WHERE type = 'services'";
 $countServiceResult = executeQuery($countServiceQuery);

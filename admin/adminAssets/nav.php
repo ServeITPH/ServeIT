@@ -54,7 +54,7 @@ if (mysqli_num_rows($userresult) > 0) {
         Posts</a>
       <a href="manageUsers.php" class="nav-link text-light"><i class="fi fi-rr-user-gear"></i> Manage
         Users</a>
-        <a href="customerChat.php" class="nav-link text-light"><i class="fi fi-rr-comment-alt"></i> Customer
+      <a href="customerChat.php" class="nav-link text-light"><i class="fi fi-rr-comment-alt"></i> Customer
         Chat</a>
       <a href="../login.php" class="nav-link text-danger"><i class="fi fi-rr-exit"></i></i> Log-out</a>
     </nav>

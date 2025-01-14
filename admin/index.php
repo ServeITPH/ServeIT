@@ -1,10 +1,7 @@
 <?php
 include("../sharedAssets/connect.php");
 
-session_start();
-
-$userID = $_SESSION['userID'];
-$role = $_SESSION['role'];
+include("adminAssets/user.php");
 
 if ($userID == "" || $role == "") {
     header("Location: login.php");
