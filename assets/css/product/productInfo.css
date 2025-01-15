@@ -14,7 +14,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 100%;
+    max-width: 500px;
     height: 440px;
     background-color: #A9A9A9;
     border-radius: 23px;

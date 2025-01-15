@@ -1,7 +1,7 @@
 * {
-  font-family: "Poppins", sans-serif;
   margin: 0;
   padding: 0;
+
 }
 
 body {
@@ -9,6 +9,7 @@ body {
   padding: 0;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden;
 }
 
 .container {
@@ -28,7 +29,7 @@ body {
 }
 
 .card-title {
-  color: #19afa5;
+  color: #19AFA5;
   font-size: 70px;
   text-align: center;
   font-weight: bold;
@@ -42,9 +43,10 @@ body {
   padding-left: 10vh;
   padding-right: 10vh;
 }
+
 .search-bar {
   color: black;
-  background-color: #d2d3d3;
+  background-color: #D2D3D3;
   border-color: black;
   width: 625px;
   max-width: 100%;
@@ -52,7 +54,7 @@ body {
 
 .filter {
   color: black;
-  background-color: #d2d3d3;
+  background-color: #D2D3D3;
   border-color: black;
   width: 100%;
   max-width: 300px;
@@ -65,7 +67,7 @@ body {
   border-radius: 10px;
   border: none;
   color: black;
-  background-color: #19afa5;
+  background-color: #19AFA5;
 }
 
 .serviceCard {
@@ -85,7 +87,7 @@ body {
 }
 
 .serviceTitle {
-  font-size: 25px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -99,7 +101,7 @@ body {
 }
 
 .btnSeeMore {
-  background-color: #19afa5;
+  background-color: #19AFA5;
   width: 100px;
   height: 25px;
   border: none;
@@ -139,14 +141,49 @@ body {
   object-fit: contain;
 }
 
-@media (max-width: 767px) {
+@media(max-width: 767px) {
   .card-title {
-    font-size: 30px;
+      font-size: 30px;
   }
 
   .card-text {
-    font-size: 12px;
-    padding-left: 5vh;
-    padding-right: 5vh;
+      font-size: 12px;
+      padding-left: 5vh;
+      padding-right: 5vh;
   }
+
+  .serviceTitle {
+      font-size: 16px;
+
+  }
+
+  .serviceDescription {
+      display: none;
+  }
+
+  .servicePrice {
+      font-size: 20px;
+  }
+
+  .serviceImage {
+
+      height: 200px;
+  }
+
+  .btnSeeMore {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+  }
+  .category {
+      font-size: 12px;
+
+     
+  }
+  .serviceCard{
+      height: 328px;
+      margin-bottom: 0px;
+  }
+
 }

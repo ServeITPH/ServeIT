@@ -11,7 +11,7 @@ include("admin/adminAssets/user.php");
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ServeIT | ServiceInfo</title>
+    <title>ServeIT | Service Info</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -33,26 +33,11 @@ include("admin/adminAssets/user.php");
             <div class="col">
                 <div class="row justify-content-center">
                     <div class="col-lg-6">
-                        <div class="imageGallery">
+                        <div class="imageContainer">
                             <div class="row">
-                                <div class="col-3 text-center">
-                                    <div class="smallImages">
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                        <div class="smallImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-9">
-                                    <div class="mainImage">
-                                        <div class="mainImageCard">
-                                            <img src="https://via.placeholder.com/150" alt="">
-                                        </div>
+                                <div class="col">
+                                    <div class="imageCard">
+                                        <img src="https://via.placeholder.com/150" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -60,8 +45,8 @@ include("admin/adminAssets/user.php");
                     </div>
                     <div class="col-lg-6 d-flex align-items-center text-start">
                         <div class="serviceInfo">
-                            <h1 class="serviceTitleInfo pt-1">COLLAGE PICTURE</h1>
-                            <p style="font-size: 13px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                            <h1 class="productTitleInfo pt-1" style="font-size: 32px;">COLLAGE PICTURE</h1>
+                            <p style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                                 eiusmod tempor incididunt
                                 ut labore</p>
                             <p class="reviewStars">
@@ -70,23 +55,24 @@ include("admin/adminAssets/user.php");
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
                                 <i class="fa-regular fa-star"></i>
-                                <span class="rating-value ms-2">Reviews</span>
+                                <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
                             </p>
                             <div class="price fw-bold">
-                                <span style="font-size: 40px;">₱500</span><span>.00</span>
+                                <span style="font-size: 32px;">₱500</span><span>.00</span>
                             </div>
                             <div style="border-top: 2px solid #19AFA5; width: 100%; margin: 10px 0; "></div>
-                            <h4 class="serviceDescriptionTitle fw-bold" style="font-size: 16;">SERVICE DESCRIPTION</h4>
-                            <p class="serviceDescriptionInfo" style="font-size: 16px;">
+                            <h4 class="productDescriptionTitle fw-bold" style="font-size: 16;">SERVICE DESCRIPTION</h4>
+                            <p class="productDescriptionInfo" style="font-size: 14px;">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
                                 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
                                 exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                             </p>
-                            <div class="serviceButtons">
+                            <div class="productButtons">
                                 <a href="cart.php">
-                                    <button class="btnAddCart rounded-pill">ADD TO CART</button>
+                                    <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                        CART</button>
                                 </a>
-                                <button class="btnBuyNow rounded-pill">BUY NOW</button>
+                                <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
                             </div>
                         </div>
                     </div>
