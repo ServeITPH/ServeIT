@@ -21,6 +21,15 @@ $productCount = 0;
 while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
     $productCount = $countProductRow['countProduct'];
 }
+
+//Service List
+$serviceGetQuery = "SELECT * FROM items WHERE type ='service'";
+$serviceGetResult = executeQuery($serviceGetQuery);
+
+//Product List
+$productGetQuery = "SELECT * FROM items WHERE type ='product'";
+$productGetResult = executeQuery($productGetQuery);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -96,7 +105,7 @@ while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
                 <br>
 
                 <div class="col py-5 text-center">
-                    <h1><b>PRODUCTS</b></h1>
+                    <h1><b>SERVICES</b></h1>
                     <!-- table -->
                     <div class="container">
                         <div class="row justify-content-center">
@@ -119,27 +128,25 @@ while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><img src="../assets/uploads/chocoMilk.webp" alt="Product Image" style="width:100px"></td>
-                                                <td>drawing commision</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><img src="#" alt="Product Image"></td>
-                                                <td>graphic drawing</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td><img src="#" alt="Product Image"></td>
-                                                <td>pics</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
+
+                                            <?php
+                                            if (mysqli_num_rows($serviceGetResult) > 0) {
+                                                while ($serviceGetRow = mysqli_fetch_assoc($serviceGetResult)) {
+
+                                            ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
+                                                        <td><img src="../assets/uploads/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                        <td><?php echo $serviceGetRow['title']; ?></td>
+                                                        <td><?php echo $serviceGetRow['shortDescription']; ?></td>
+                                                        <td><?php echo $serviceGetRow['price']; ?></td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
+
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -150,7 +157,7 @@ while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
                 <br>
 
                 <div class="col py-5 text-center">
-                    <h1><b style="color: #000000;">SERVICES</b></h1>
+                    <h1><b style="color: #000000;">PRODUCTS</b></h1>
                     <!-- table -->
                     <div class="container">
                         <div class="row justify-content-center">
@@ -173,27 +180,22 @@ while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">2</th>
-                                                <td><img src="#" alt="Service Image"></td>
-                                                <td>drawing commision</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">3</th>
-                                                <td><img src="#" alt="Service Image"></td>
-                                                <td>graphic drawing</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">4</th>
-                                                <td><img src="#" alt="Service Image"></td>
-                                                <td>pics</td>
-                                                <td>tutor</td>
-                                                <td>9.99</td>
-                                            </tr>
+                                            <?php
+                                            if (mysqli_num_rows($productGetResult) > 0) {
+                                                while ($productGetRow = mysqli_fetch_assoc($productGetResult)) {
+
+                                            ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
+                                                        <td><img src="../assets/uploads/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                        <td><?php echo $productGetRow['title']; ?></td>
+                                                        <td><?php echo $productGetRow['shortDescription']; ?></td>
+                                                        <td><?php echo $productGetRow['price']; ?></td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                                         </tbody>
                                     </table>
                                 </div>
