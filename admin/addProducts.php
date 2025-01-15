@@ -3,6 +3,50 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+$success = false;
+$error = '';
+
+if (isset($_POST['btnSubmit'])) {
+    // Get the form data
+    $type = $_POST['type'];
+    $title = $_POST['name'];
+    $category = $_POST['category'];
+    $description = $_POST['longDescription'];
+    $shortDescription = $_POST['shortDescription'];
+    $price = $_POST['price'];
+    $attachment = $_FILES['attachment']['name']; // Get the attachment filename
+    $attachmentTemp = $_FILES['attachment']['tmp_name']; // Temporary file path
+
+    // Validate input (optional but recommended)
+    if (empty($title) || empty($category) || empty($price)) {
+        $error = "Please fill out all required fields.";
+    } else {
+        // Define the path to upload the file
+        $uploadDir = "../assets/uploads/";
+        $uploadFile = $uploadDir . basename($attachment);
+
+        // Attempt to move the uploaded file to the server
+        if (move_uploaded_file($attachmentTemp, $uploadFile)) {
+            // File uploaded successfully, now insert the data into the database
+            $stmt = $conn->prepare("INSERT INTO items (title, description, price, attachment, type, categoryID, shortDescription) 
+                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+            $stmt->bind_param("sssssis", $title, $description, $price, $attachment, $type, $category, $shortDescription);
+
+            // Execute the statement
+            if ($stmt->execute()) {
+                $success = true;
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
+
+            // Close the statement
+            $stmt->close();
+        } else {
+            $error = "Failed to upload the file.";
+        }
+    }
+}
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -51,11 +95,11 @@ include("adminAssets/user.php");
                 <div class="col-md-11 card card-1 m-5 rounded-5 mx-auto">
                     <div class="container-fluid rounded-top-5" style="background-color: #000; height: 50px;"></div>
                     <div class="row p-5">
-                        <form>
+                        <form method="POST" enctype="multipart/form-data">
                             <div class="row g-5 justify-content-center">
                                 <div class="col-md-6 mt-5">
                                     <label for="category" class="form-label">Type</label>
-                                    <select class="form-select rounded-pill" id="category" name="name">
+                                    <select class="form-select rounded-pill" id="category" name="type">
                                         <option selected>Service</option>
                                         <option>Product</option>
                                     </select>
@@ -74,7 +118,7 @@ include("adminAssets/user.php");
                                 </div>
                                 <div class="col-md-6">
                                     <label for="productDescription" class="form-label">Short Description</label>
-                                    <textarea class="form-control rounded-4" id="productDescription" rows="4" name="description"
+                                    <textarea class="form-control rounded-4" id="productDescription" rows="4" name="shortDescription"
                                         placeholder="Enter product description"></textarea>
                                 </div>
                                 <div class="col-md-6">
@@ -93,7 +137,7 @@ include("adminAssets/user.php");
                                 </div>
                             </div>
                             <div class="col-12 mt-5 text-center">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary" name="btnSubmit">Submit</button>
                             </div>
                         </form>
                     </div>

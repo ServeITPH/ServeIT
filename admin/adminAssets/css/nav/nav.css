@@ -1,64 +1,59 @@
 body {
-    font-family: 'Poppins', sans-serif;
-
+  font-family: "Poppins", sans-serif;
 }
 
 a {
-    text-decoration: none;
-    
+  text-decoration: none;
 }
 
-.navbar{
-    background-color: transparent !important;
-
+.navbar {
+  background-color: transparent !important;
 }
 
-.nav-bar-style{
-   
-    border-bottom: 1px solid #19AFA5;
+.nav-bar-style {
+  border-bottom: 1px solid #19afa5;
 }
 
 .nav-link {
-    position: relative;
-    transition: color 0.3s ease; 
-    text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+  text-decoration: none;
 }
 
 .nav-link:hover {
-    color: #19AFA5 !important; 
-    padding-bottom: 5px;
+  color: #19afa5 !important;
+  padding-bottom: 5px;
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 5px; 
-    width: 0;
-    height: 3px;
-    background: #19AFA5;
-    transition: width 0.2s ease; 
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 5px;
+  width: 0;
+  height: 3px;
+  background: #19afa5;
+  transition: width 0.2s ease;
 }
 
 .nav-link:hover::after {
-    width: 100%; 
+  width: 100%;
 }
 
 .dropdown-toggle {
-    background: none ;
-    border: none !important;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px; 
+  background: none;
+  border: none !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.dropdown-toggle::after { 
-    border: none !important;
+.dropdown-toggle::after {
+  border: none !important;
 }
 
-.nav-account-title{
-    padding-left: 15px;
-    font-weight:bolder;
+.nav-account-title {
+  padding-left: 15px;
+  font-weight: bolder;
 }
-

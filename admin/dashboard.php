@@ -5,7 +5,7 @@ session_start();
 
 $userID = $_SESSION['userID'];
 // Service Count
-$countServiceQuery = "SELECT COUNT(itemID) AS countService FROM `items` WHERE type = 'services'";
+$countServiceQuery = "SELECT COUNT(itemID) AS countService FROM `items` WHERE type = 'service'";
 $countServiceResult = executeQuery($countServiceQuery);
 $serviceCount = 0;
 
@@ -14,7 +14,7 @@ while ($countServiceRow = mysqli_fetch_assoc($countServiceResult)) {
 }
 
 // Product Count
-$countProductQuery = "SELECT COUNT(itemID) AS countProduct FROM `items` WHERE type = 'products'";
+$countProductQuery = "SELECT COUNT(itemID) AS countProduct FROM `items` WHERE type = 'product'";
 $countProductResult = executeQuery($countProductQuery);
 $productCount = 0;
 
@@ -121,7 +121,7 @@ while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
                                         <tbody>
                                             <tr>
                                                 <th scope="row">2</th>
-                                                <td><img src="#" alt="Product Image"></td>
+                                                <td><img src="../assets/uploads/chocoMilk.webp" alt="Product Image" style="width:100px"></td>
                                                 <td>drawing commision</td>
                                                 <td>tutor</td>
                                                 <td>9.99</td>
