@@ -1,7 +1,8 @@
 <?php
 include("sharedAssets/connect.php");
-include("admin/adminAssets/user.php");
 
+
+$creditCardFilter = isset($_GET['creditCardType']);
 
 $sql = "SELECT * 
         FROM carts 
@@ -20,6 +21,7 @@ if (isset($_POST['deleteCartID'])) {
 
 $items = "SELECT * FROM items";
 $fetchItem = executeQuery($items);
+
 
 ?>
 
@@ -82,7 +84,7 @@ $fetchItem = executeQuery($items);
                         $grandTotal += $fetchCartRow['price'];
                         $itemsList .= "* " . $fetchCartRow['title'] . "<br>";
 
-                ?>
+                        ?>
 
                         <div class=" border-0 mt-3">
                             <div class="card-body">
@@ -113,7 +115,7 @@ $fetchItem = executeQuery($items);
                         </div>
 
 
-                <?php
+                        <?php
                     }
                 } else {
                     echo "No product";
@@ -165,7 +167,7 @@ $fetchItem = executeQuery($items);
                 <div class="d-flex justify-content-center mt-3">
                     <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
                         data-bs-target="#myModal" <?php if ($cartEmpty)
-                                                        echo 'disabled'; ?>>Check Out</button>
+                            echo 'disabled'; ?>>Check Out</button>
                 </div>
 
                 <div class="modal" id="myModal" tabindex="-1">
@@ -197,89 +199,61 @@ $fetchItem = executeQuery($items);
         </div>
 
 
-        <span id="services" class="clickable">Services</span>
-        <span id="products" class="clickable ms-3">Products</span>
-        <hr>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-secondary">Secondary</button>
 
 
-        <div class="container mt-5">
-            <div class="row d-flex justify-content-center align-items-center">
+        <select name="service">
+            <div class="container mt-5">
+                <div class="row d-flex justify-content-center align-items-center">
 
-                <?php
-                if (mysqli_num_rows($fetchItem) > 0) {
-                    while ($fetchItemRow = mysqli_fetch_assoc($fetchItem)) {
-                ?>
+                    <?php
+                    if (mysqli_num_rows($fetchCart) > 0) {
+                        while ($fetchCartRow = mysqli_fetch_assoc($fetchCartRow)) {
+                            ?>
 
-                        <div class="col-lg-3 col-6 d-flex flex-row">
-                            <div class="serviceCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="serviceImage">
-                                        <img src="" alt="Service Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="serviceTitle">Service Title</span>
-                                        <span class="servicePrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="servicesInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
+                            <div class="col-lg-3 col-6 d-flex flex-row">
+                                <div class="serviceCard rounded mx-auto">
+                                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                        <div class="serviceImage">
+                                            <img src="" alt="Service Image">
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <span class="serviceTitle"><?php echo $fetchCartRow['title'] ?></span>
+                                            <span class="servicePrice">₱<?php echo $fetchCartRow['price'] ?></span>
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <p class="serviceDescription text-truncate" style="max-width: calc(65% - 100px);">
+                                                <?php echo $fetchCartRow['description'] ?>
+                                            </p>
+                                            <a href="servicesInfo.php">
+                                                <button class="btnSeeMore rounded-pill">See More</button>
+                                            </a>
+                                        </div>
+                                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                        <div class="category">
+                                            <span>Asset</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-4 col-md-6 col-sm-12 col-12 d-flex flex-column align-items-center">
-
-                            <div class="div">
-                                <div class="card">
-                                    <img src="https://plus.unsplash.com/premium_photo-1701090939615-1794bbac5c06?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8Z3JheSUyMGJhY2tncm91bmR8ZW58MHx8MHx8fDA%3D"
-                                        class="card-img-top" alt="...">
-                                </div>
-
-
-                                <div class="-card border-0 mb-1">
-                                    <div class="card-body">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h5 class="card-title fw-bold fs-5">Title</h5>
-                                            <p class="card-text mb-0 fs-5">Price</p>
-                                        </div>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <p class="card-text">Description</p>
-                                            <div class="d-flex">
-                                                <a href="productInfo.php">
-                                                    <button type="button" class="btn rounded-5"
-                                                        style="background-color: #19AFA5; color: black; width: 110px">See
-                                                        More</button>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr style="margin-top: -12px; margin-bottom: 1rem;">
-                                </div>
-                            </div>
-                        </div>
-                <?php
+                            <?php
+                        }
+                    } else {
+                        echo "No product";
                     }
-                } else {
-                    echo "No product";
-                }
-                ?>
-            </div>
-        </div>
+                    ?>
+        </select>
+    </div>
+    </div>
 
 
-        <div class="d-flex justify-content-center mt-3">
-            <a href="products.php">
-                <button type="button" class="btn rounded-5 fs-3 fw-normal"
-                    style="background-color:rgb(0, 0, 0); color: white;">Show all</button>
-            </a>
-        </div>
+    <div class="d-flex justify-content-center mt-3">
+        <a href="products.php">
+            <button type="button" class="btn rounded-5 fs-3 fw-normal"
+                style="background-color:rgb(0, 0, 0); color: white;">Show all</button>
+        </a>
+    </div>
 
     </div>
 
