@@ -69,8 +69,7 @@ if ($userID == "") {
         </div>
     </div>
 
-    <!-- smpayment -->
-    <?php include("sharedAssets/smpayment.php"); ?>
+
 
     <!-- Meet the Team -->
     <div class="team text-center py-5">
@@ -91,9 +90,11 @@ if ($userID == "") {
         </div>
     </div>
 
-
+    <!-- smpayment -->
+    <?php include("sharedAssets/smpayment.php"); ?>
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
+
 
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
