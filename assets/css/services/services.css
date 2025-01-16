@@ -71,12 +71,13 @@ body {
 }
 
 .serviceCard {
-  width: 100%;
-  max-width: 250px;
+  width: 250px;
   height: 378px;
   background-color: #fff;
   border-radius: 20px;
   margin-bottom: 30px;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .serviceImage {
@@ -86,9 +87,19 @@ body {
   border-radius: 23px;
 }
 
+.serviceImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .serviceTitle {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 190px;
 }
 
 .servicePrice {
@@ -143,47 +154,39 @@ body {
 
 @media(max-width: 767px) {
   .card-title {
-      font-size: 30px;
+    font-size: 30px;
   }
 
   .card-text {
-      font-size: 12px;
-      padding-left: 5vh;
-      padding-right: 5vh;
-  }
-
-  .serviceTitle {
-      font-size: 16px;
-
-  }
-
-  .serviceDescription {
-      display: none;
-  }
-
-  .servicePrice {
-      font-size: 20px;
+    font-size: 12px;
+    padding-left: 5vh;
+    padding-right: 5vh;
   }
 
   .serviceImage {
+    height: 200px;
+  }
 
-      height: 200px;
+  .serviceTitle {
+    font-size: 16px;
+  }
+
+  .serviceDescription {
+    display: none;
+  }
+
+  .servicePrice {
+    font-size: 20px;
   }
 
   .btnSeeMore {
-      align-items: center;
-      display: flex;
-      justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 
   }
+
   .category {
-      font-size: 12px;
-
-     
+    font-size: 12px;
   }
-  .serviceCard{
-      height: 328px;
-      margin-bottom: 0px;
-  }
-
 }
