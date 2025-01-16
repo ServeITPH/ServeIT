@@ -34,7 +34,7 @@ function handleGet($pdo)
 
 function handlePost($pdo, $input)
 {
-  $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryID, shortDescription ) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryID , :shortDescription )";
+  $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryID, shortDescription,  isBought, isAdded) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryID , :shortDescription , :isBought , :isAdded )";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
     'userID' => $input['userID'],
@@ -44,7 +44,10 @@ function handlePost($pdo, $input)
     'attachment' => $input['attachment'],
     'type' => $input['type'],
     'categoryID' => $input['categoryID'],
-    'shortDescription' =>$input['shortDescription']
+    'shortDescription' =>$input['shortDescription'],
+    'isBought' =>$input['isBought'],
+    'isAdded' =>$input['isAdded']
+    
 
 
   ]);
@@ -56,7 +59,7 @@ function handlePut($pdo, $input)
 {
   $sql = "UPDATE items 
             SET title = :title, description = :description, price = :price, 
-                attachment = :attachment, type = :type, categoryID = :categoryID, shortDescription = :shortDescription,
+                attachment = :attachment, type = :type, categoryID = :categoryID, shortDescription = :shortDescription, isBought = :isBought, isAdded = :isAdded
             WHERE itemID = :itemID";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
@@ -67,7 +70,9 @@ function handlePut($pdo, $input)
     'attachment' => $input['attachment'],
     'type' => $input['type'],
     'categoryID' => $input['categoryID'],
-    'shortDescription' => $input['shortDescription']
+    'shortDescription' => $input['shortDescription'],
+    'isBought' => $input['isBought'],
+    'isAdded' => $input['isAdded']
 
   ]);
   echo json_encode(['message' => 'User updated successfully']);
