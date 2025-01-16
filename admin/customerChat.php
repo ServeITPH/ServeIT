@@ -20,6 +20,8 @@ include("adminAssets/user.php");
     <!-- tab icon -->
     <link rel="icon" href="../assets/images/nav/logo-nav.png">
     <!-- font -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <!-- icons -->
@@ -56,72 +58,62 @@ include("adminAssets/user.php");
 <body data-bs-theme="light">
     <?php include("adminAssets/nav.php"); ?>
 
-    <div class="container">
-        <div class="row py-5">
+    <div class="container-fluid">
+        <div class="row mainRow p-2">
             <!-- Chat List -->
-            <div class="col-12 col-md-3 mb-5">
+            <div class="col-12 col-md-3 mb-3">
                 <div class="card rounded-5 chatBox">
                     <div class="row p-2" style="background-color: black;">
-                        <div class="ps-4">
+                        <div class="ps-3">
                             <span class="h4" style="color: #19afa5;">Chats</span>
                         </div>
                     </div>
-
+                    <!-- Search Box and Dropdown -->
                     <div class="row p-3 search-box">
                         <div class="d-flex align-items-center">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Search name" style="flex: 1;">
-                                <span class="input-group-text"><i class="fi fi-rr-search"></i></span>
+                                <span class="input-group-text"><i class="fa fa-search"></i></span>
                             </div>
-                            <select class="form-select ms-2" style="width: 80px;">
+                            <select class="form-select ms-2" style="width: 70px;">
                                 <option value="all">All</option>
                                 <option value="unread">Unread</option>
                                 <option value="read">Read</option>
                             </select>
                         </div>
                     </div>
-
                     <p class="p-3 text-muted">No chats available</p>
                 </div>
             </div>
-
             <!-- Chat Messages -->
-            <div class="col-12 col-md-9">
-                <div class="container">
-                    <div class="card rounded-5 chatBox">
-                        <div class="row p-2" style="background-color: black;">
-                            <div class="ps-4">
-                                <span class="h4" style="color: #19afa5;" s>ServeIT</span>
-                                <!-- <a href="profile.php?userID=<?php echo $userID; ?>" class="see-more-btn-link"> -->
-                                </a>
-                            </div>
+            <div class="col-12 col-md-9 mb-3">
+                <div class="card rounded-5 chatBox">
+                    <div class="row p-2" style="background-color: black;">
+                        <div class="ps-3">
+                            <span class="h4" style="color: #19afa5;">Full Name</span>
                         </div>
-                        <div class="d-flex align-items-end flex-column" style="height: 68vh; overflow-y: scroll;">
-                            <div class="p-3 text-muted">No chat history</div>
-                        </div>
-
-                        <!-- Send Message -->
-                        <div class="d-flex align-items-end mainContainer" style="height: 15%;">
-                            <div class="card p-2 chatInput" style="background-color: black; width: 100%;">
-                                <div class="d-flex align-items-center">
-                                    <input class="form-control p-1 chatTextBox mx-3" type="text"
-                                        placeholder="Type a message here" style="flex-grow: 1;">
-                                    <label for="attachment" class="ms-2">
-                                        <img src="adminAssets/img/chats/attachment button.png" alt="Attachment"
-                                            class="attachment-btn-img">
-                                    </label>
-                                    <button style="background-color: transparent; border: none;" class="ms-2">
-                                        <img src="adminAssets/img/chats/send button.png" alt="Send"
-                                            class="send-btn-img">
-                                    </button>
-                                </div>
+                    </div>
+                    <div class="d-flex align-items-end flex-column" style="height: 68vh; overflow-y: scroll;">
+                        <div class="p-3 text-muted">No chat history</div>
+                    </div>
+                    <!-- Send Message -->
+                    <div class="d-flex align-items-end mainContainer" style="height: 15%;">
+                        <div class="card p-1 chatInput" style="background-color: black; width: 100%;">
+                            <div class="d-flex align-items-center">
+                                <input class="form-control p-1 chatTextBox mx-3" type="text" placeholder="Type a message here" style="flex-grow: 1;">
+                                <label for="attachment" class="ms-2">
+                                    <img src="adminAssets/img/chats/attachment button.png" alt="Attachment" class="attachment-btn-img">
+                                </label>
+                                <button style="background-color: transparent; border: none;" class="ms-2">
+                                    <img src="adminAssets/img/chats/send button.png" alt="Send" class="send-btn-img">
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
+    </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
