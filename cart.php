@@ -1,7 +1,10 @@
 <?php
 include("sharedAssets/connect.php");
+include("admin/adminAssets/user.php");
 
-
+if ($userID == "") {
+    header("Location: login.php");
+}
 
 $creditCardFilter = isset($_GET['creditCardType']);
 

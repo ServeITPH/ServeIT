@@ -34,7 +34,7 @@ function handleGet($pdo)
 
 function handlePost($pdo, $input)
 {
-  $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryID, shortDescription ) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryID , :shortDescription )";
+  $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryName, shortDescription ) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryName , :shortDescription )";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
     'userID' => $input['userID'],
@@ -43,7 +43,7 @@ function handlePost($pdo, $input)
     'price' => $input['price'],
     'attachment' => $input['attachment'],
     'type' => $input['type'],
-    'categoryID' => $input['categoryID'],
+    'categoryName' => $input['categoryName'],
     'shortDescription' =>$input['shortDescription']
 
 
@@ -56,7 +56,7 @@ function handlePut($pdo, $input)
 {
   $sql = "UPDATE items 
             SET title = :title, description = :description, price = :price, 
-                attachment = :attachment, type = :type, categoryID = :categoryID, shortDescription = :shortDescription
+                attachment = :attachment, type = :type, categoryName = :categoryName, shortDescription = :shortDescription
             WHERE itemID = :itemID";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
@@ -66,7 +66,7 @@ function handlePut($pdo, $input)
     'price' => $input['price'],
     'attachment' => $input['attachment'],
     'type' => $input['type'],
-    'categoryID' => $input['categoryID'],
+    'categoryName' => $input['categoryName'],
     'shortDescription' => $input['shortDescription']
 
   ]);
