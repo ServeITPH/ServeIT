@@ -17,12 +17,6 @@ body::before {
     opacity: 0.8;
 }
 
-.about,
-.story,
-.links {
-    margin-top: 30px;
-}
-
 .card {
     width: 100%;
     max-width: 1190px;
@@ -30,15 +24,20 @@ body::before {
     background-color: black;
     border-radius: 60px;
     justify-content: center;
+    margin-top: 30px;
+    display: flex;
+
 }
 
 .storyCard {
     width: 100%;
-    max-width: 1190px;
+    max-width: 1500px !important;
     height: auto;
     background-color: #19afa5;
     border-radius: 60px;
     justify-content: center;
+    display: flex;
+    border: 1px solid #19AFA5;
 }
 
 .card-title {
@@ -46,7 +45,6 @@ body::before {
     font-size: 70px;
     text-align: center;
     font-weight: bold;
-    line-height: 1;
 }
 
 .card-text {
@@ -57,37 +55,18 @@ body::before {
     padding-right: 10vh;
 }
 
-@media (max-width: 767px) {
-    .card-title {
-        font-size: 30px;
-    }
-
-    .story-title span {
-        font-size: 30px;
-    }
-
-    .story-title span:last-child {
-        font-size: 30px;
-    }
-
-    .card-text {
-        font-size: 12px;
-        padding-left: 5vh;
-        padding-right: 5vh;
-    }
+.card-textBlack {
+    color: rgb(0, 0, 0);
+    font-size: 14px;
+    text-align: justify;
+    padding-left: 10vh;
+    padding-right: 10vh;
 }
 
-/* shadow add tom */
-/* .story-content {
-    background-color: #19AFA5;
-    box-shadow: inset 0px 0px 15px rgba(0, 0, 0, 0.5);
-} */
-
 .story-title {
-    font-size: 70px;
+    font-size: 60px;
     text-align: center;
     font-weight: bold;
-    line-height: 1;
 }
 
 .story-title span {
@@ -96,6 +75,55 @@ body::before {
 
 .story-title span:last-child {
     color: white;
+}
+
+.choose-title {
+    font-size: 60px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.choose-title span {
+    color: black;
+}
+
+.choose-title span:last-child {
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .card-title {
+        font-size: 30px;
+    }
+
+    .story-title span {
+        font-size: 25px;
+    }
+
+    .story-title span:last-child {
+        font-size: 25px;
+    }
+
+    .choose-title span {
+        font-size: 25px;
+    }
+
+    .choose-title span:last-child {
+        font-size: 25px;
+    }
+
+    .card-text {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+
+    .card-textBlack {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
 }
 
 /* Carousel styles */

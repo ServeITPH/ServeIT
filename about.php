@@ -35,9 +35,8 @@ if ($userID == "") {
 
 <body>
     <?php include("sharedAssets/nav.php"); ?>
-
-    <div class="container wow animate__animated animate__fadeIn"
-        style="margin-top: 30px;  justify-content: center;  display: flex;">
+    <!-- About title and desc -->
+    <div class="container wow animate__animated animate__fadeIn" style="justify-content: center;  display: flex;">
         <div class="row">
             <div class="col">
                 <div class="card">
@@ -52,16 +51,17 @@ if ($userID == "") {
         </div>
     </div>
 
-    <!-- Our Story -->
+    <!-- Why choose ServeIT -->
     <div class="container wow animate__animated animate__fadeInUp"
         style="margin-top: 30px;  justify-content: center;  display: flex;">
         <div class="row">
             <div class="col">
                 <div class="card storyCard">
                     <div class="card-body">
-                        <h5 class="story-title"><span>Our</span> <span>Story</span></h5>
-                        <p class="card-text mb-3" style="text-indent: 50px;">
-                            <?php echo $storyContent; ?>
+                        <h5 class="story-title"><span>Why Choose
+                            </span> <span>ServeIT?</span></h5>
+                        <p class="card-textBlack mb-3">
+                            <?php echo $chooseContent; ?>
                         </p>
                     </div>
                 </div>
@@ -69,7 +69,22 @@ if ($userID == "") {
         </div>
     </div>
 
-
+    <!-- Our Story -->
+    <div class="container wow animate__animated animate__fadeInUp"
+        style="margin-top: 30px; justify-content: center;  display: flex;">
+        <div class="row">
+            <div class="col">
+                <div class="card storyCard">
+                    <div class="card-body">
+                        <h5 class="story-title"><span>Our</span> <span>Story</span></h5>
+                        <p class="card-textBlack mb-3" style="text-indent: 50px;">
+                            <?php echo $storyContent; ?>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Meet the Team -->
     <div class="team text-center py-5">
@@ -91,10 +106,11 @@ if ($userID == "") {
     </div>
 
     <!-- smpayment -->
-    <?php include("sharedAssets/smpayment.php"); ?>
+    <?php
+    include("sharedAssets/smpayment.php"); ?>
+
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
-
 
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
