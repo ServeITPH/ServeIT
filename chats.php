@@ -47,42 +47,13 @@ include("admin/adminAssets/user.php");
     <?php include("sharedAssets/nav.php"); ?>
 
     <div class="container">
-        <!-- Chat List -->
-        <!-- <div class="col-12 col-md-3 mb-3">
-                <div class="card rounded-5 chatBox">
-                    <div class="row p-2" style="background-color: black;">
-                        <div class="ps-3">
-                            <span class="h4" style="color: #19afa5;">Chats</span>
-                        </div>
-                    </div>
-
-               
-                    <div class="row p-3 search-box">
-                        <div class="d-flex align-items-center">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search name" style="flex: 1;">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
-                            <select class="form-select ms-2" style="width: 70px;">
-                                <option value="all">All</option>
-                                <option value="unread">Unread</option>
-                                <option value="read">Read</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <p class="p-3 text-muted">No chats available</p>
-                </div>
-            </div> -->
-
+       
         <!-- Chat Messages -->
         <div class="container" style="margin-top:30px; margin-bottom:150px">
             <div class="card rounded-5 chatBox">
                 <div class="row p-2" style="background-color: black;">
                     <div class="ps-3 text-center">
                         <span class="h4" style="color: #19afa5;" s>ServeIT</span>
-                        <!-- <a href="profile.php?userID=<?php echo $userID; ?>" class="see-more-btn-link"> -->
-                        </a>
                     </div>
                 </div>
                 <div class="d-flex align-items-end flex-column" style="height: 68vh; overflow-y: scroll;">
