@@ -2,6 +2,7 @@
 include("sharedAssets/connect.php");
 
 
+
 $creditCardFilter = isset($_GET['creditCardType']);
 
 $sql = "SELECT * 
