@@ -56,7 +56,7 @@ function handlePut($pdo, $input)
 {
   $sql = "UPDATE items 
             SET title = :title, description = :description, price = :price, 
-                attachment = :attachment, type = :type, categoryID = :categoryID, shortDescription = :shortDescription,
+                attachment = :attachment, type = :type, categoryID = :categoryID, shortDescription = :shortDescription
             WHERE itemID = :itemID";
   $stmt = $pdo->prepare($sql);
   $stmt->execute([
