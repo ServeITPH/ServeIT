@@ -164,10 +164,6 @@ body {
         padding-right: 5vh;
     }
 
-    .productCard {
-        min-height: 378px;
-    }
-
     .productImage {
         object-fit: cover;
         height: 100%;

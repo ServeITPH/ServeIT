@@ -138,12 +138,13 @@ body {
 }
 
 .serviceCard {
-    width: 100%;
-    max-width: 250px;
+    width: 250px;
     height: 378px;
     background-color: #fff;
     border-radius: 20px;
     margin-bottom: 30px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 .serviceImage {
@@ -153,9 +154,19 @@ body {
     border-radius: 23px;
 }
 
+.serviceImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .serviceTitle {
-    font-size: 25px;
+    font-size: 20px;
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 190px;
 }
 
 .servicePrice {
@@ -173,6 +184,11 @@ body {
     height: 25px;
     border: none;
     font-size: 12px;
+}
+
+.category {
+    text-align: center;
+    font-size: 14px;
 }
 
 .line-divider {

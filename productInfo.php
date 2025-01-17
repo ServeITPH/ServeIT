@@ -4,6 +4,14 @@ include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
 
+$productInfoID = $_GET['itemID'];
+
+$productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
+$productInfoResult = executeQuery($productInfoQuery);
+
+$productListQuery = "SELECT * FROM items WHERE type = 'product'";
+$productListResult = executeQuery($productListQuery);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -32,50 +40,58 @@ include("admin/adminAssets/user.php");
         <div class="row align-items-center">
             <div class="col">
                 <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="imageContainer">
-                            <div class="row">
-                                <div class="col">
-                                    <div class="imageCard">
-                                        <img src="https://via.placeholder.com/150" alt="">
+
+                    <?php
+                    while ($productInfoRow = mysqli_fetch_assoc($productInfoResult)) {
+                        ?>
+
+                        <div class="col-lg-6">
+                            <div class="imageContainer">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="imageCard">
+                                            <img src="assets/images/<?php echo $productInfoRow['attachment'] ?>"
+                                                alt="<?php echo $productInfoRow['title'] ?>">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 d-flex align-items-center text-start">
-                        <div class="productInfo">
-                            <h1 class="productTitleInfo pt-1" style="font-size: 32px;">COLLAGE PICTURE</h1>
-                            <p style="font-size: 14px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt
-                                ut labore</p>
-                            <p class="reviewStars">
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <i class="fa-regular fa-star"></i>
-                                <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
-                            </p>
-                            <div class="price fw-bold">
-                                <span style="font-size: 32px;">₱500</span><span>.00</span>
-                            </div>
-                            <div style="border-top: 2px solid #19AFA5; width: 100%; margin: 10px 0; "></div>
-                            <h4 class="productDescriptionTitle fw-bold" style="font-size: 16;">PRODUCT DESCRIPTION</h4>
-                            <p class="productDescriptionInfo" style="font-size: 14px;">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            </p>
-                            <div class="productButtons">
-                                <a href="cart.php">
-                                    <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
-                                        CART</button>
-                                </a>
-                                <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
+                        <div class="col-lg-6 d-flex align-items-center text-start">
+                            <div class="serviceInfo">
+                                <h1 class="productTitleInfo pt-1" style="font-size: 32px;">
+                                    <?php echo $productInfoRow['title'] ?>
+                                </h1>
+                                <p style="font-size: 14px;"><?php echo $productInfoRow['shortDescription'] ?></p>
+                                <p class="reviewStars">
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <i class="fa-regular fa-star"></i>
+                                    <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
+                                </p>
+                                <div class="price fw-bold">
+                                    <span style="font-size: 32px;">₱<?php echo $productInfoRow['price'] ?></span><span>.00</span>
+                                </div>
+                                <div style="border-top: 2px solid #19AFA5; width: 100%; margin: 10px 0; "></div>
+                                <h4 class="productDescriptionTitle fw-bold" style="font-size: 16;">PRODUCT DESCRIPTION</h4>
+                                <p class="productDescriptionInfo" style="font-size: 14px;">
+                                    <?php echo $productInfoRow['description'] ?>
+                                </p>
+                                <div class="productButtons">
+                                    <a href="cart.php">
+                                        <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                            CART</button>
+                                    </a>
+                                    <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+                        <?php
+                    }
+                    ?>
                 </div>
             </div>
         </div>
@@ -324,98 +340,40 @@ include("admin/adminAssets/user.php");
             <div class="col-12 mb-3">
                 <h2 class="moreProductsTitle text-start fw-bold">MORE PRODUCTS</h2>
             </div>
-            <div class="col-lg-3 col-6">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <a href="productInfo.php">
-                                <button class="btnSeeMore rounded-pill">See More</button>
-                            </a>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <a href="productInfo.php">
-                                <button class="btnSeeMore rounded-pill">See More</button>
-                            </a>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
+
+            <?php
+            while ($productListRow = mysqli_fetch_assoc($productListResult)) {
+                ?>
+
+                <div class="col-lg-3 col-6 d-flex flex-row">
+                    <div class="productCard rounded mx-auto">
+                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                            <div class="productImage">
+                                <img src="assets/images/items/<?php echo $productListRow['attachment'] ?>"
+                                    alt="<?php echo $productListRow['title'] ?>">
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <span class="productTitle"><?php echo $productListRow['title'] ?></span>
+                                <span class="productPrice">₱<?php echo $productListRow['price'] ?></span>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <p class="productDescription"><?php echo $productListRow['shortDescription'] ?></p>
+                                <a href="productInfo.php?itemID=<?php echo $productListRow['itemID'] ?>">
+                                    <button class="btnSeeMore rounded-pill">See More</button>
+                                </a>
+                            </div>
+                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="category">
+                                <span><?php echo $productListRow['categoryName'] ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <a href="productInfo.php">
-                                <button class="btnSeeMore rounded-pill">See More</button>
-                            </a>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-6">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <a href="productInfo.php">
-                                <button class="btnSeeMore rounded-pill">See More</button>
-                            </a>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+                <?php
+            }
+            ?>
+
         </div>
     </div>
 

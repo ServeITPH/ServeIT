@@ -87,8 +87,11 @@ $serviceListResult = executeQuery($serviceListQuery);
         </div>
     </div>
 
-    <div class="container mt-5">
-        <div class="row d-flex justify-content-center align-items-center">
+    <div class="container mt-3">
+        <div class="row d-flex flex-row justify-content-center align-items-center">
+            <div class="col-12 mb-3">
+                <h2 class="moreservicesTitle text-start fw-bold">MORE SERVICES</h2>
+            </div>
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
@@ -106,8 +109,8 @@ $serviceListResult = executeQuery($serviceListQuery);
                                 <span class="servicePrice">₱<?php echo $serviceListRow['price'] ?></span>
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">
-                                <p class="serviceDescription">Lorem ipsum dolor sit amet</p>
-                                <a href="serviceInfo.php?itemID=<?php echo $serviceListRow['itemID']?>">
+                                <p class="serviceDescription"><?php echo $serviceListRow['shortDescription'] ?></p>
+                                <a href="serviceInfo.php?itemID=<?php echo $serviceListRow['itemID'] ?>">
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>

@@ -121,7 +121,7 @@ $productFilterResult = executeQuery($productFilterQuery);
                                 <span class="productPrice">₱<?php echo $productListRow['price'] ?></span>
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">
-                                <p class="productDescription">Lorem ipsum dolor sit amet</p>
+                                <p class="productDescription"><?php echo $productListRow['shortDescription'] ?></p>
                                 <a href="productInfo.php?itemID=<?php echo $productListRow['itemID']?>">
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
