@@ -98,7 +98,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     with ease. Designed for clients and sellers, all in one secure and seamless platform.
                 </div>
 
-                <a href="products.php"><button class="btn btn-outline-primary my-3" type="submit">Explore
+                <a href="explore.php"><button class="btn btn-outline-primary my-3" type="submit">Explore
                         Now</button></a>
             </div>
         </div>
