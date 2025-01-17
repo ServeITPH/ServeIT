@@ -1,0 +1,142 @@
+.active5 {
+    color: #19AFA5;
+}
+body {
+    margin: 0;
+    padding: 0;
+    justify-content: center;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("assets/images/about/bg.png");
+    background-size: cover;
+    filter: blur(5px);
+    z-index: -1;
+    opacity: 0.8;
+}
+.card {
+    width: 100%;
+    max-width: 1190px;
+    height: auto;
+    max-height: auto;
+    background: black;
+    border-radius: 60px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+}
+.container{
+    margin-top: 30px;
+}
+.card-title{
+    font-family: Poppins; 
+    font-weight: bold; 
+    font-size: 70px;
+    color: #19AFA5;
+
+}
+.card-body{
+    font-family: Poppins; 
+    font-size: 14px;
+    color: #ffffff;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    text-align: justify;
+
+
+}
+.logo {
+    display: flex; 
+    justify-content: center; 
+}
+.logo-image {
+    width: 200px;
+    height: auto;
+}
+
+
+.header{
+    font-family: Poppins; 
+    font-size: 32px;
+}
+.title-question{
+    font-size: 32px; 
+    font-weight: bold;
+    font-family: Poppins; 
+    padding-top:25px;
+    padding-left:0 !important;;
+    padding-right:0 !important;;
+
+
+}
+.text {
+    font-size: 24px;
+    font-weight: 700;
+    font-family: Poppins;
+    text-align: left;
+}
+
+
+@media(max-width: 767px) {
+    .text {
+        font-size: 16px;
+    }
+}
+
+.information {
+    padding-bottom: 15px;
+}
+
+.expandbtn-img {
+    width: 30px;
+    height: 30px;
+}
+
+@media (max-width: 767px) {
+    .expandbtn-img {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .card-title {
+        font-size: 30px;
+        margin-top:20px;
+
+    }
+}
+@media (max-width: 767px) {
+    .card-body {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+}
+@media (max-width: 767px) {
+    .card-body {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
+}
+
+@media (max-width: 767px) {
+    .header {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 767px) {
+    .title-question {
+        font-size: 20px;
+    }
+}
