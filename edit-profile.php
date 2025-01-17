@@ -16,7 +16,7 @@ $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'])) {
     $username = trim($_POST['username'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $phoneNumber = trim($_POST['phoneNumber'] ?? '');
@@ -58,6 +58,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt->close();
     header("Location: edit-profile.php"); // Redirect to avoid form resubmission
+    exit();
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['currentPassword'])) {
+    $currentPassword = $_POST['currentPassword'];
+    $newPassword = $_POST['newPassword'];
+    
+    // Verify current password
+    $stmt = $conn->prepare("SELECT password FROM users WHERE userID = ?");
+    $stmt->bind_param("i", $userID);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user_data = $result->fetch_assoc();
+    $stmt->close();
+
+    if ($user_data['password'] === $currentPassword) {
+        // Update password
+        $stmt = $conn->prepare("UPDATE users SET password = ? WHERE userID = ?");
+        $stmt->bind_param("si", $newPassword, $userID);
+        
+        if ($stmt->execute()) {
+            $_SESSION['success_message'] = "Password updated successfully!";
+        } else {
+            $_SESSION['error_message'] = "Error updating password: " . $conn->error;
+        }
+        $stmt->close();
+    } else {
+        $_SESSION['error_message'] = "Current password is incorrect!";
+    }
+    
+    header("Location: edit-profile.php");
     exit();
 }
 
@@ -126,11 +157,14 @@ function safe_echo($value)
                             <?php echo date('Y', strtotime($user['accountDate'] ?? 'now')); ?>
                         </div>
                         <div class="location">📍 Philippines</div>
+                        <span class="change-pass-btn" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
+                            Change Password
+                        </span>
                     </div>
                 </div>
                 <div class="action-buttons">
                     <button class="btn" onclick="window.history.back();">Back</button>
-                    <button class="btn" onclick="window.location.href='login.php';">Log out</button>
+                    <button class="btn logout-btn" onclick="window.location.href='login.php';">Log out</button>
                 </div>
             </div>
         </div>
@@ -148,24 +182,15 @@ function safe_echo($value)
                             <label>Username</label>
                             <input type="text" name="username" value="<?php echo safe_echo($user['username']); ?>">
                         </div>
-
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" value="" disabled>
-                        </div>
-
                         <div class="form-group">
                             <label>Email</label>
                             <input type="email" name="email" value="<?php echo safe_echo($user['email']); ?>">
                         </div>
-
                         <div class="form-group">
                             <label>Phone Number</label>
                             <input type="text" name="phoneNumber"
                                 value="<?php echo safe_echo($user['phoneNumber']); ?>">
                         </div>
-
-
                         <button type="submit" class="save-btn">Save</button>
                     </div>
 
@@ -193,7 +218,33 @@ function safe_echo($value)
             </form>
         </div>
     </div>
-
+    <div id="changePasswordModal" class="modal fade" tabindex="-1" aria-labelledby="changePasswordLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="changePasswordLabel">Change Password</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="changePasswordForm" method="POST">
+                            <div class="mb-3">
+                                <label for="currentPassword" class="form-label">Current Password</label>
+                                <input type="password" name="currentPassword" id="currentPassword" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="newPassword" class="form-label">New Password</label>
+                                <input type="password" name="newPassword" id="newPassword" class="form-control" required>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+                                <button type="submit" class="btn save-btn">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div>
         <!-- smpayment -->
         <?php include("sharedAssets/smpayment.php"); ?>
@@ -201,12 +252,9 @@ function safe_echo($value)
         <?php include("sharedAssets/footer.php") ?>
 
     </div>
-
-
-
     </body>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </html>
