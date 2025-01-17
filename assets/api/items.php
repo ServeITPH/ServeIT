@@ -32,22 +32,24 @@ function handleGet($pdo)
   echo json_encode($result);
 }
 
-function handlePost($pdo, $input)
+function handlePost($pdo, $inputs)
 {
   $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryName, shortDescription ) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryName , :shortDescription )";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute([
-    'userID' => $input['userID'],
-    'title' => $input['title'],
-    'description' => $input['description'],
-    'price' => $input['price'],
-    'attachment' => $input['attachment'],
-    'type' => $input['type'],
-    'categoryName' => $input['categoryName'],
-    'shortDescription' =>$input['shortDescription']
 
+  foreach ($inputs as $input) {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+      'userID' => $input['userID'],
+      'title' => $input['title'],
+      'description' => $input['description'],
+      'price' => $input['price'],
+      'attachment' => $input['attachment'],
+      'type' => $input['type'],
+      'categoryName' => $input['categoryName'],
+      'shortDescription' => $input['shortDescription']
 
-  ]);
+    ]);
+  }
 
   echo json_encode(['message' => 'User created successfully']);
 }

@@ -212,9 +212,9 @@ $fetchProduct = executeQuery($productQuery);
 
 
         <div class="tabs">
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="showTab('services')">Services</button>
-                <button class="tab-btn" onclick="showTab('products')">Products</button>
+            <div class="tab-buttons d-flex flex-row">
+                <button class="tab-btn nav-link active" onclick="showTab('services')">Services</button>
+                <button class="tab-btn nav-link" onclick="showTab('products')">Products</button>
             </div>
 
             <div class="container mt-5">
@@ -314,9 +314,9 @@ $fetchProduct = executeQuery($productQuery);
 
 
         <!-- Show all button -->
-        <div class="d-flex justify-content-center mt-3">
+        <div class="d-flex justify-content-center">
             <a id="showAllBtn" href="products.php">
-                <button type="button" class="btn rounded-5 fs-3 fw-normal"
+                <button type="button" class="btn rounded-5 fs-5 fw-normal"
                     style="background-color:rgb(0, 0, 0); color: white;">
                     Show all
                 </button>
@@ -332,21 +332,6 @@ $fetchProduct = executeQuery($productQuery);
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-
-
-        <script>
-            function showTab(tabName) {
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    tab.style.display = 'none';
-                });
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.getElementById(tabName).style.display = 'block';
-                event.target.classList.add('active');
-            }
-        </script>
-
 
         <script>
             function showTab(tab) {
@@ -366,6 +351,19 @@ $fetchProduct = executeQuery($productQuery);
 
             if (document.querySelector('.tab-btn.active').innerText === 'Services') {
                 document.getElementById('showAllBtn').href = 'services.php';
+            }
+        </script>
+
+        <script>
+            function showTab(tabName) {
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.style.display = 'none';
+                });
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.getElementById(tabName).style.display = 'block';
+                event.target.classList.add('active');
             }
         </script>
 
