@@ -1,8 +1,11 @@
 <?php
+// if ($userID == "") {
+//     header("Location: login.php");
+// }
 
 include("sharedAssets/connect.php");
-
 include("admin/adminAssets/user.php");
+include("assets/php/help/classes.php");
 
 if ($userID == "") {
     header("Location: login.php");
@@ -30,178 +33,78 @@ if ($userID == "") {
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
-    <link rel="stylesheet" href="assets/css/help/style.css">
+    <link rel="stylesheet" href="assets/css/help/styles.css">
 
 
-    <style>
-        .active5 {
-            color: #19AFA5;
-        }
 
-        .oval {
-            width: 100%;
-            height: auto;
-            background: black;
-            border-radius: 60px;
-            justify-content: center;
-            display: flex;
-            align-items: center;
-            color: #19AFA5;
-
-        }
-
-        body {
-            background-color: #ffffff;
-            position: relative;
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("assets/images/about/bg.png");
-            background-size: cover;
-            filter: blur(5px);
-            z-index: -1;
-            opacity: 0.8;
-        }
-
-        .text {
-            font-size: 24px;
-            font-weight: 700;
-            font-family: Poppins;
-            text-align: left;
-        }
-
-        @media(max-width: 767px) {
-            .text {
-                font-size: 16px;
-            }
-        }
-
-        .information {
-            padding-bottom: 15px;
-        }
-
-        .expandbtn-img {
-            width: 30px;
-            height: 30px;
-        }
-
-        @media (max-width: 767px) {
-            .expandbtn-img {
-                width: 20px;
-                height: 20px;
-            }
-        }
-    </style>
 
 </head>
 </head>
+
+<?php
+
+
+$faqsLists = array();
+
+$faqsListsQuery = "SELECT * FROM faqs";
+$faqsListsResult = executeQuery($faqsListsQuery);
+while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
+    $question = new FAQ(
+        $faqsListsRow["question"],
+        $faqsListsRow["answer"],
+    );
+
+    array_push($faqsLists, $question);
+}
+
+?>
 
 <body>
     <?php include("sharedAssets/nav.php"); ?>
 
-    <div class="container" style="margin-top: 30px;">
-        <div class="row justify-content-center">
-            <div class="oval wow animate__animated animate__fadeIn" data-wow-delay="5s">
-                <h1 style="font-family: Poppins; font-weight: 700; font-size: 70px;">HELP CENTER</h1>
+    <div class="container px-5">
+        <div class="row d-flex justify-content-center ">
+            <div class="card rounded-5 wow animate__animated animate__fadeIn" data-wow-delay="5s">
+                <div class="card-title">HELP CENTER</div>
+                <p class="card-body">
+                    At ServeIT, our Help Center is built to provide you with the support and guidance you need, whenever
+                    you need it. Designed with accessibility and ease in mind, we’re here to answer your questions,
+                    resolve your concerns, and connect you with the right solutions. Whether you're exploring services,
+                    managing products, or seeking advice, our Help Center is your reliable partner in navigating the
+                    digital world. Backed by a commitment to exceptional service, we aim to simplify your experience,
+                    ensuring you can focus on what truly matters. Let us help you unlock your potential with seamless
+                    assistance every step of the way.
+                </p>
             </div>
+        </div>
+        <div class="container wow animate__animated animate__fadeIn">
+            <div class="row mt-5">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 d-flex align-items-center mt-3">
+                    <div class="header">
+                        Welcome to ServeIT, How can we help?
+                    </div>
+                </div>
+                <div class="col d-none d-sm-none d-md-block col-md-4 col-lg-4">
+                    <div class="logo wow animate__animated animate__fadeIn">
+                        <img src="assets/images/helpCenter/logo.png" alt="Logo" class="logo-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container wow animate__animated animate__fadeIn">
+            <div class="row">
+                <div class="title-question">Frequently asked questions</div>
+            </div>
+            <?php
+            foreach ($faqsLists as $question) {
+                echo $question->FAQContent();
+            }
+            ?>
         </div>
     </div>
 
-    <div class="container wow animate__animated animate__fadeIn">
-        <div class="row p-2 mt-5 ">
-            <p style="font-family: Poppins; font-size: 32px;">
-                Welcome to ServeIT, How can we help?
-            </p>
-        </div>
-        <div class="row justify-content-center ">
-            <div class="col-12 col-sm-12 col-md-8 col-lg-7 d-flex align-items-center mt-3 px-5">
-                <input type="search" class="form-control" id="searchbox" placeholder="Search">
-                <button class="btn p-0 border-0 mx-3" style="width:auto; height:auto;">
-                    <img src="assets/images/helpCenter/searchButton.png" alt="Search Button"
-                        style="width: 50px; height:auto; ">
-                </button>
-            </div>
-            <div class="col d-none d-sm-none d-md-block col-md-3 col-lg-3 wow animate__animated animate__fadeIn"
-                data-wow-delay="5s">
-                <img src="assets/images/helpCenter/logo.png" alt="Logo" style="width: 200px; height:auto;">
+    
 
-            </div>
-        </div>
-        <div class="row justify-content-center">
-
-            <div class="row wow animate__animated animate__fadeInUp" data-wow-duration="5s">
-                <h1 style="font-size: 32px; font-weight: bold;font-family: Poppins; padding-top:25px">Frequently asked questions
-                </h1>
-            </div>
-
-        </div>
-        <div class="faqs m-5 wow animate__animated animate__fadeInUp" data-wow-duration="5s">
-            <div class="row d-flex justify-content-start">
-                <button class="btnExpand  btn p-0 border-0 d-flex justify-content-start" onclick="expandContent(this)">
-                    <img src="assets/images/helpCenter/plus.png" alt="Expand Button" class="expandbtn-img">
-
-                    <div class="text ps-3 d-flex align-items-center ">
-                        <p>How to buy digital Product?</p>
-                    </div>
-                </button>
-                <div class="information" id="information" style="display: none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nemo magnam libero et aliquam
-                    adipisci, ullam, illo quasi rerum voluptatibus, atque est numquam doloribus ex quae? Dolore quam
-                    voluptatibus repellendus?
-                </div>
-            </div>
-            <div class="row d-flex justify-content-start">
-                <button class="btnExpand  btn p-0 border-0 d-flex justify-content-start" onclick="expandContent(this)">
-                    <img src="assets/images/helpCenter/plus.png" alt="Expand Button" class="expandbtn-img">
-
-                    <div class="text ps-3 d-flex align-items-center">
-                        <p>How to add to cart?</p>
-                    </div>
-                </button>
-                <div class="information" id="information" style="display: none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nemo magnam libero et aliquam
-                    adipisci, ullam, illo quasi rerum voluptatibus, atque est numquam doloribus ex quae? Dolore quam
-                    voluptatibus repellendus?
-                </div>
-
-            </div>
-            <div class="row d-flex justify-content-start">
-                <button class="btnExpand  btn p-0 border-0 d-flex justify-content-start" onclick="expandContent(this)">
-                    <img src="assets/images/helpCenter/plus.png" alt="Expand Button" class="expandbtn-img">
-
-                    <div class="text ps-3 d-flex align-items-center">
-                        <p>How to pay via online?</p>
-                    </div>
-                </button>
-                <div class="information" id="information" style="display: none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit nemo magnam libero et aliquam
-                    adipisci, ullam, illo quasi rerum voluptatibus, atque est numquam doloribus ex quae? Dolore quam
-                    voluptatibus repellendus?
-                </div>
-            </div>
-            <div class="row d-flex justify-content-start">
-                <button class="btnExpand  btn p-0 border-0 d-flex justify-content-start" onclick="expandContent(this)">
-                    <img src="assets/images/helpCenter/plus.png" alt="Expand Button" class="expandbtn-img">
-
-                    <div class="text ps-3 d-flex align-items-center">
-                        <p>How to download purchased products.</p>
-                    </div>
-                </button>
-                <div class="information" id="information" style="display: none">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam aspernatur minima exercitationem
-                    numquam commodi rerum id veritatis! Vitae, molestiae vel? Quasi, molestiae atque. Eos repellat error
-                    doloribus saepe laboriosam vel?
-                </div>
-            </div>
-        </div>
-    </div>
-    </div>
 
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
