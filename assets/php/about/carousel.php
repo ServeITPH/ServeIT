@@ -1,5 +1,4 @@
 <!-- Carousel Team Members -->
-
 <div id="teamCarousel" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-indicators">
         <?php

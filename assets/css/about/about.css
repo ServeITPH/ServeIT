@@ -37,7 +37,7 @@ body::before {
     border-radius: 60px;
     justify-content: center;
     display: flex;
-    border: 1px solid #19AFA5;
+    border: 1px solid #19afa5;
 }
 
 .card-title {
@@ -45,6 +45,7 @@ body::before {
     font-size: 70px;
     text-align: center;
     font-weight: bold;
+    line-height: 1;
 }
 
 .card-text {
@@ -56,7 +57,6 @@ body::before {
 }
 
 .card-textBlack {
-    color: rgb(0, 0, 0);
     font-size: 14px;
     text-align: justify;
     padding-left: 10vh;
@@ -67,14 +67,16 @@ body::before {
     font-size: 60px;
     text-align: center;
     font-weight: bold;
+    line-height: 1;
 }
 
 .story-title span {
-    color: black;
+    line-height: 1;
 }
 
 .story-title span:last-child {
     color: white;
+    line-height: 1;
 }
 
 .choose-title {
@@ -84,12 +86,22 @@ body::before {
     line-height: 1;
 }
 
-.choose-title span {
-    color: black;
-}
-
 .choose-title span:last-child {
     color: white;
+}
+
+.team-title {
+    font-size: 50px;
+    text-align: center;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 60px;
+}
+
+.team-member {
+    font-size: 14px;
+    text-align: justify;
+    line-height: 1;
 }
 
 @media (max-width: 767px) {
@@ -113,6 +125,10 @@ body::before {
         font-size: 25px;
     }
 
+    .team-title {
+        font-size: 25px;
+    }
+
     .card-text {
         font-size: 12px;
         padding-left: 5vh;
@@ -123,6 +139,10 @@ body::before {
         font-size: 12px;
         padding-left: 5vh;
         padding-right: 5vh;
+    }
+
+    .team-member {
+        font-size: 5px;
     }
 }
 
