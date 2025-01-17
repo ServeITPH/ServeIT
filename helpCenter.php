@@ -11,6 +11,19 @@ if ($userID == "") {
     header("Location: login.php");
 }
 
+$faqsLists = array();
+
+$faqsListsQuery = "SELECT * FROM faqs";
+$faqsListsResult = executeQuery($faqsListsQuery);
+while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
+    $question = new FAQ(
+        $faqsListsRow["question"],
+        $faqsListsRow["answer"],
+    );
+
+    array_push($faqsLists, $question);
+}
+
 ?>
 
 <head>
@@ -39,30 +52,11 @@ if ($userID == "") {
 
 
 </head>
-</head>
-
-<?php
-
-
-$faqsLists = array();
-
-$faqsListsQuery = "SELECT * FROM faqs";
-$faqsListsResult = executeQuery($faqsListsQuery);
-while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
-    $question = new FAQ(
-        $faqsListsRow["question"],
-        $faqsListsRow["answer"],
-    );
-
-    array_push($faqsLists, $question);
-}
-
-?>
 
 <body>
     <?php include("sharedAssets/nav.php"); ?>
 
-    <div class="container px-5">
+    <div class="container  container-section px-5">
         <div class="row d-flex justify-content-center ">
             <div class="card rounded-5 wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <div class="card-title">HELP CENTER</div>
@@ -77,7 +71,7 @@ while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
                 </p>
             </div>
         </div>
-        <div class="container wow animate__animated animate__fadeIn">
+        <div class="container  container-section wow animate__animated animate__fadeIn">
             <div class="row mt-5">
                 <div class="col-12 col-sm-12 col-md-8 col-lg-8 d-flex align-items-center mt-3">
                     <div class="header">
@@ -91,7 +85,7 @@ while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
                 </div>
             </div>
         </div>
-        <div class="container wow animate__animated animate__fadeIn">
+        <div class="container  container-section wow animate__animated animate__fadeIn">
             <div class="row">
                 <div class="title-question">Frequently asked questions</div>
             </div>
