@@ -16,6 +16,8 @@ if ($role == "admin") {
     header("Location: admin/index.php");
 }
 
+
+// counter
 $userCountQuery = "SELECT COUNT(userID) AS userCount FROM users";
 $userCountResult = executeQuery($userCountQuery);
 $userCount = 0;
@@ -37,7 +39,18 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
     $productCount = $productCountRow['productCount'];
 }
 
+//new arrival list
+$newArrivalQuery = "SELECT * FROM items WHERE type = 'product' ORDER BY type DESC LIMIT 4;";
+$newArrivalResult = executeQuery($newArrivalQuery);
 
+
+// product title list 
+$productTitleQuery = "SELECT title, description FROM items WHERE itemID IN (5, 9, 10, 20, 71, 29);";
+$productTitleResult = executeQuery($productTitleQuery);
+
+// service title list 
+$serviceTitleQuery = "SELECT title, description FROM items WHERE type ='service' LIMIT 6";
+$serviceTitleResult = executeQuery($serviceTitleQuery);
 
 ?>
 
@@ -80,15 +93,13 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
                 <div class="banner-title ">
                     YOUR GETAWAY TO MULTITALENTED <span style=" color: #19AFA5 ">SOLUTIONS</span>
                 </div>
-                <div class="banner-subtitle">
-                    Discover a world of services, connect with top experts, communicate effortlessly, and achieve your
-                    goals all
-                    in one secure and convenient platform.
+                <div class="banner-subtitle px-5">
+                    Effortlessly connect with top-tier sellers, browse a wide range of services, and achieve your goals
+                    with ease. Designed for clients and sellers, all in one secure and seamless platform.
                 </div>
-                <form class="d-flex justify-content-center align-items-center my-3" role="search">
-                    <input class="me-2 search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Search</button>
-                </form>
+
+                <a href="products.php"><button class="btn btn-outline-primary my-3" type="submit">Explore
+                        Now</button></a>
             </div>
         </div>
     </div>
@@ -168,95 +179,39 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
     </div>
 
     <div class="container wow animate__animated animate__fadeInUp ">
+        <div class="row d-flex justify-content-center align-items-center">
+            <?php
+            while ($newArrivalRow = mysqli_fetch_assoc($newArrivalResult)) {
+                ?>
 
-        <div class="row d-flex justify-content-center align-items-center mx-5">
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
+                <div class="col d-flex flex-row">
+                    <div class="productCard rounded mx-auto">
+                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                            <div class="productImage">
+                                <img src="assets/images/items/<?php echo $newArrivalRow['attachment'] ?>"
+                                    alt="<?php echo $newArrivalRow['title'] ?>">
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <span class="productTitle"><?php echo $newArrivalRow['title'] ?></span>
+                                <span class="productPrice">₱<?php echo $newArrivalRow['price'] ?></span>
+                            </div>
+                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                <p class="productDescription"><?php echo $newArrivalRow['shortDescription'] ?></p>
+                                <a href="productInfo.php?itemID=<?php echo $newArrivalRow['itemID'] ?>">
+                                    <button class="btnSeeMore rounded-pill">See More</button>
+                                </a>
+                            </div>
+                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="category">
+                                <span><?php echo $newArrivalRow['categoryName'] ?></span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 col-sm-6 col-12 d-flex flex-row">
-                <div class="productCard rounded mx-auto">
-                    <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                        <div class="productImage">
-                            <img src="" alt="Product Image">
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <span class="productTitle">Product Title</span>
-                            <span class="productPrice">₱500</span>
-                        </div>
-                        <div class="w-100 d-flex justify-content-between align-items-center">
-                            <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                            <button class="btnSeeMore rounded-pill" href="#">See More</button>
-                        </div>
-                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                        <div class="category">
-                            <span>Asset</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <?php
+            }
+            ?>
         </div>
         <!-- button -->
         <div>
@@ -298,116 +253,29 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
 
     <div class="container wow animate__animated animate__fadeInUp ">
         <div class="services-container row">
-
-            <!-- duplicate -->
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
+            <?php
+            while ($serviceTitleRow = mysqli_fetch_assoc($serviceTitleResult)) {
+                ?>
+                <div class="col-12 col-md-4 my-4">
+                    <div class="row">
+                        <div class="services-title text-center">
+                            <?php
+                         $title = $serviceTitleRow['title']; 
+                         $titleParts = explode(' ', $title); 
+                         if (count($titleParts) >= 2) {
+                             $limitedTitle = ' <span style=" color: #19AFA5;"> ' . $titleParts[0] . '</span>' . ' ' . $titleParts[1];
+                             echo $limitedTitle;
+                         } else {
+                             echo $title; 
+                         }
+                            ?>
+                        </div>
                     </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
-                    </div>
-                </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
-                    </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
+                    <div class="subtitle text-center">
+                        <?php echo $serviceTitleRow['description'] ?>
                     </div>
                 </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
-                    </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
-                    </div>
-                </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
-                    </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
-                    </div>
-                </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
-                    </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
-                    </div>
-                </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
-            <div class="col-12 col-md-4 my-4">
-                <div class="row">
-                    <div class="col-2">
-                        icon
-                    </div>
-                    <div class="col-10 services-title">
-                        LOREM IPSUM
-                    </div>
-                </div>
-                <div class="subtitle">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore
-                    magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-                    ea commodo
-                    consequat.
-                </div>
-            </div>
-
+            <?php } ?>
         </div>
     </div>
 
@@ -438,76 +306,38 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="container wow animate__animated animate__fadeInUp">
         <div class="services-container row">
-
-
             <div class="container">
                 <div class="services-container row">
 
-                    <div class="col-12 col-md-4 my-4">
-                        <div class="row">
-                            <div class="col-2">
-                                icon
+                    <?php
+                    while ($productTitleRow = mysqli_fetch_assoc($productTitleResult)) {
+                        ?>
+                        <div class="col-12 col-md-4 my-4">
+                            <div class="row">
+                                <div class="services-title text-center">
+                                    <div class="services-title text-center">
+                                        <?php
+                                        $title = $productTitleRow['title']; 
+                                        $titleParts = explode(' ', $title); 
+                                        if (count($titleParts) >= 2) {
+                                            $limitedTitle = ' <span style=" color: #19AFA5;"> ' . $titleParts[0] . '</span>' . ' ' . $titleParts[1];
+                                            echo $limitedTitle;
+                                        } else {
+                                            echo $title; 
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-10 services-title">
-                                LOREM IPSUM
-                            </div>
-                        </div>
-                        <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea
-                            commodo
-                            consequat.
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 my-4">
-                        <div class="row">
-                            <div class="col-2">
-                                icon
-                            </div>
-                            <div class="col-10 services-title">
-                                LOREM IPSUM
+                            <div class="subtitle text-center">
+                                <?php echo $productTitleRow['description'] ?>
                             </div>
                         </div>
-                        <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea
-                            commodo
-                            consequat.
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-4 my-4">
-                        <div class="row">
-                            <div class="col-2">
-                                icon
-                            </div>
-                            <div class="col-10 services-title">
-                                LOREM IPSUM
-                            </div>
-                        </div>
-                        <div class="subtitle">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et
-                            dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea
-                            commodo
-                            consequat.
-                        </div>
-                    </div>
-
+                    <?php } ?>
                 </div>
             </div>
         </div>
