@@ -50,17 +50,27 @@ if (isset($_POST['btnRegister'])) {
     $cpassword = $_POST['cpassword'];
 
     if ($password == $cpassword) {
-        $userInfoQuery = "INSERT INTO users(username, email, password) VALUES ('$username', '$email', '$password')";
-        executeQuery($userInfoQuery);
+        $checkQuery = "SELECT * FROM users WHERE username = '$username' OR email = '$email'";
+        $checkResult = executeQuery($checkQuery);
 
-        $lastInsertedId = mysqli_insert_id($conn);
+        if (mysqli_num_rows($checkResult) > 0) {
+            $error = "Username, email, or phone number already exists.";
+        } else {
+            // If no duplicates are found, insert the new user
+            $userInfoQuery = "INSERT INTO users(username, email, phoneNumber, password) VALUES ('$username', '$email', '$phoneNumber', '$password')";
+            executeQuery($userInfoQuery);
 
-        $_SESSION['userID'] = $lastInsertedId;
-        $_SESSION['userName'] = $username;
-        $_SESSION['email'] = $email;
-        $_SESSION['role'] = "";
+            $lastInsertedId = mysqli_insert_id($conn);
 
-        header("Location: index.php");
+            // Set session data
+            $_SESSION['userID'] = $lastInsertedId;
+            $_SESSION['userName'] = $username;
+            $_SESSION['email'] = $email;
+            $_SESSION['phoneNumber'] = $phoneNumber;
+            $_SESSION['role'] = "";
+
+            header("Location: index.php");
+        }
     } else {
         $error = "PASSWORD UNMATCHED";
     }
@@ -89,9 +99,8 @@ if (isset($_POST['btnRegister'])) {
 </head>
 
 <body>
-
-    <div class="container-fluid">
-        <div class="row py-5">
+    <div class="container-fluid ">
+        <div class="row pt-5 pb-3">
             <div class="col-2">
 
             </div>
@@ -103,6 +112,13 @@ if (isset($_POST['btnRegister'])) {
             </div>
         </div>
     </div>
+
+    <div class="container pb-3" style="display: <?php echo !empty($error) ? 'block' : 'none'; ?>; min-height: 50px; padding-top: 10px;background-color:transparent;box-shadow: none !important;">
+        <div class="alert alert-danger">
+            <?php echo $error; ?>
+        </div>
+    </div>
+
 
     <div class="container" id="container">
         <div class="form-container sign-up">
@@ -142,6 +158,12 @@ if (isset($_POST['btnRegister'])) {
             </div>
         </div>
     </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-QWtLqnHreEpfYRhI2zdzZyLvHbEu4BQ/bBcT7MsftkDQbdfDlOr/XR+Mh2nQ03g" crossorigin="anonymous">
+    </script>
+
 
     <script src="assets/js/login/script.js"></script>
 </body>
