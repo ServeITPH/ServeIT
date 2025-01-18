@@ -34,12 +34,11 @@ function handleGet($pdo)
 
 function handlePost($pdo, $inputs)
 {
-  $sql = "INSERT INTO items(userID, title, description, price, attachment, type, categoryName, shortDescription ) VALUES ( :userID , :title , :description , :price , :attachment , :type , :categoryName , :shortDescription )";
+  $sql = "INSERT INTO items(title, description, price, attachment, type, categoryName, shortDescription ) VALUES (:title , :description , :price , :attachment , :type , :categoryName , :shortDescription )";
 
   foreach ($inputs as $input) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-      'userID' => $input['userID'],
       'title' => $input['title'],
       'description' => $input['description'],
       'price' => $input['price'],
@@ -74,11 +73,14 @@ function handlePut($pdo, $input)
   ]);
   echo json_encode(['message' => 'User updated successfully']);
 }
-function handleDelete($pdo, $input)
+function handleDelete($pdo, $inputs)
 {
   $sql = "DELETE FROM items WHERE itemID = :itemID";
-  $stmt = $pdo->prepare($sql);
-  $stmt->execute(['itemID' => $input['itemID']]);
+
+  foreach ($inputs as $input) {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['itemID' => $input]);
+  }
   echo json_encode(['message' => 'User deleted successfully']);
 }
 ?>

@@ -6,13 +6,12 @@ if ($userID == "") {
     header("Location: login.php");
 }
 
-$creditCardFilter = isset($_GET['creditCardType']);
 
 $sql = "SELECT * 
         FROM carts 
         INNER JOIN items ON carts.itemID = items.itemID";
-$fetchCart = executeQuery($sql);
 
+$fetchCart = executeQuery($sql);
 $cartEmpty = (mysqli_num_rows($fetchCart) == 0);
 
 if (isset($_POST['deleteCartID'])) {
@@ -23,13 +22,20 @@ if (isset($_POST['deleteCartID'])) {
     exit();
 }
 
+if (isset($_POST['delCheckoutCart'])) {
+    $deleteAll = "DELETE FROM carts";
+    executeQuery($deleteAll);
+    header("Location: cart.php");
+    exit();
+}
+
 $items = "SELECT * FROM items";
 $fetchItem = executeQuery($items);
 
-$serviceQuery = "SELECT * FROM items WHERE type ='service'";
+$serviceQuery = "SELECT * FROM items WHERE type = 'service' LIMIT 4";
 $fetchService = executeQuery($serviceQuery);
 
-$productQuery = "SELECT * FROM items WHERE type ='product'";
+$productQuery = "SELECT * FROM items WHERE type = 'product' LIMIT 4";
 $fetchProduct = executeQuery($productQuery);
 
 
@@ -88,7 +94,7 @@ $fetchProduct = executeQuery($productQuery);
 
         <!-- CARTS-->
         <div class="row">
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-5">
                 <?php
                 if (mysqli_num_rows($fetchCart) > 0) {
                     while ($fetchCartRow = mysqli_fetch_assoc($fetchCart)) {
@@ -97,45 +103,51 @@ $fetchProduct = executeQuery($productQuery);
 
                         ?>
 
-                        <div class=" border-0 mt-3">
+                        <div class="border-0 mt-3">
                             <div class="card-body">
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title fw-bold fs-3"><?php echo $fetchCartRow['title']; ?></h5>
-                                    <p class="card-text mb-0 fs-4">₱<?php echo $fetchCartRow['price']; ?></p>
+                                    <h5 class="card-title fw-bold fs-5"><?php echo $fetchCartRow['title']; ?></h5>
+                                    <p class="card-text mb-0 fs-5">₱<?php echo $fetchCartRow['price']; ?></p>
                                 </div>
 
                                 <hr>
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <p class="card-text text-truncate" style="max-width: calc(65% - 100px);">
+                                    <p class="card-text text-truncate fs-6" style="max-width: calc(65% - 100px);">
                                         <?php echo $fetchCartRow['description']; ?>
                                     </p>
                                     <div class="d-flex ms-auto flex-nowrap">
                                         <form method="post">
                                             <input type="hidden" name="deleteCartID"
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
-                                            <button type="submit" class="btn btn-danger rounded-5">Remove</button>
+                                            <button type="submit" class="btn btn-danger rounded-5 fs-6">Remove</button>
                                         </form>
-                                        <button type="button" class="btn rounded-5 ms-2"
+                                        <button type="button" class="btn rounded-5 ms-2 fs-6"
                                             style="background-color: #19AFA5; color: black;">See More</button>
                                     </div>
                                 </div>
 
                             </div>
                         </div>
+                        <div class="mb-5"></div>
 
 
                         <?php
                     }
                 } else {
-                    echo "No product";
+                    ?>
+                    <div class="container text-center fs-5"><?php echo "Cart is empty" ?></div>
+                    <?php
                 }
                 ?>
             </div>
 
+            <!--GAP BETWEEN CART AND SUMMARY-->
+            <div class="col-md-2"></div>
+
             <!-- CHECK OUT PROCESS-->
-            <div class="col-12 col-md-6">
+            <div class="col-12 col-md-5">
                 <ul class="list-group rounded-5">
                     <li class="list-group-item">
                         <p class="fw-bold fs-2 text-center"> SUMMARY </p>
@@ -177,9 +189,12 @@ $fetchProduct = executeQuery($productQuery);
 
 
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
-                        data-bs-target="#myModal" <?php if ($cartEmpty)
-                            echo 'disabled'; ?>>Check Out</button>
+                    <form method="post">
+                        <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>">
+                        <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
+                            data-bs-target="#myModal" <?php if ($cartEmpty)
+                                echo 'disabled'; ?>>Check Out</button>
+                    </form>
                 </div>
 
                 <div class="modal" id="myModal" tabindex="-1">
@@ -204,17 +219,17 @@ $fetchProduct = executeQuery($productQuery);
         </div>
 
 
-        <div class="mt-5 d-flex align-items-center">
+        <div class="container mt-5">
             <p class="fs-2 fw-bold">
                 Interest
             </p>
         </div>
 
-
+        <!-- interest Content -->
         <div class="tabs">
-            <div class="tab-buttons d-flex flex-row">
-                <button class="tab-btn nav-link active" onclick="showTab('services')">Services</button>
-                <button class="tab-btn nav-link" onclick="showTab('products')">Products</button>
+            <div class="tab-buttons">
+                <button class="tab-btn active" onclick="showTab('services')">Services</button>
+                <button class="tab-btn" onclick="showTab('products')">Products</button>
             </div>
 
             <div class="container mt-5">
@@ -228,26 +243,30 @@ $fetchProduct = executeQuery($productQuery);
                                 while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
                                     ?>
                                     <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex mb-4">
-                                        <div class="productCard rounded mx-auto">
+                                        <div class="serviceCard rounded mx-auto">
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
-                                                <div class="productImage">
-                                                    <img src="" alt="Product Image">
+                                                <div class="serviceImage">
+                                                    <img src="assets/images/items/<?php echo $fetchServiceRow['attachment'] ?>"
+                                                        alt="<?php echo $fetchServiceRow['title'] ?>">
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <span class="productTitle"><?php echo $fetchServiceRow['title'] ?></span>
-                                                    <span class="productPrice">₱<?php echo $fetchServiceRow['price'] ?></span>
+                                                    <span
+                                                        class="serviceTitle text-truncate fs-5"><?php echo $fetchServiceRow['title'] ?></span>
+                                                    <span
+                                                        class="servicePrice ms-4">₱<?php echo $fetchServiceRow['price'] ?></span>
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <p class="productDescription"><?php echo $fetchServiceRow['description'] ?>
+                                                    <p class="serviceDescription">
+                                                        <?php echo $fetchServiceRow['shortDescription'] ?>
                                                     </p>
-                                                    <a href="productInfo.php">
-                                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                                    <a href="serviceInfo.php?itemID=<?php echo $fetchServiceRow['itemID'] ?>">
+                                                        <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                     </a>
                                                 </div>
                                                 <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                                 <div class="category">
-                                                    <span>Asset</span>
+                                                    <span><?php echo $fetchServiceRow['categoryName'] ?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -274,26 +293,31 @@ $fetchProduct = executeQuery($productQuery);
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
                                                 <div class="productImage">
-                                                    <img src="" alt="Product Image">
+                                                    <img src="assets/images/items/<?php echo $fetchProductRow['attachment'] ?>"
+                                                        alt="<?php echo $fetchProductRow['title'] ?>">
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <span class="productTitle"><?php echo $fetchProductRow['title'] ?></span>
-                                                    <span class="productPrice">₱<?php echo $fetchProductRow['price'] ?></span>
+                                                    <span
+                                                        class="productTitle text-truncate fs-5"><?php echo $fetchProductRow['title'] ?></span>
+                                                    <span
+                                                        class="productPrice ms-4">₱<?php echo $fetchProductRow['price'] ?></span>
                                                 </div>
                                                 <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <p class="productDescription"><?php echo $fetchProductRow['description'] ?>
+                                                    <p class="productDescription text-truncate">
+                                                        <?php echo $fetchProductRow['shortDescription'] ?>
                                                     </p>
-                                                    <a href="productInfo.php">
-                                                        <button class="btnSeeMore rounded-pill">See More</button>
+                                                    <a href="productInfo.php?itemID=<?php echo $fetchProductRow['itemID'] ?>">
+                                                        <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                     </a>
                                                 </div>
                                                 <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                                 <div class="category">
-                                                    <span>Asset</span>
+                                                    <span><?php echo $fetchProductRow['categoryName'] ?></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <?php
                                 }
                             } else {
@@ -304,19 +328,12 @@ $fetchProduct = executeQuery($productQuery);
                     </div>
                 </div>
             </div>
-
-
-
-
-
         </div>
-
-
 
         <!-- Show all button -->
         <div class="d-flex justify-content-center">
             <a id="showAllBtn" href="products.php">
-                <button type="button" class="btn rounded-5 fs-5 fw-normal"
+                <button type="button" class="btn rounded-5 fs-5 fw-normal" onclick="showAll()"
                     style="background-color:rgb(0, 0, 0); color: white;">
                     Show all
                 </button>
@@ -355,7 +372,7 @@ $fetchProduct = executeQuery($productQuery);
         </script>
 
         <script>
-            function showTab(tabName) {
+            function showTab(tabName =) {
                 document.querySelectorAll('.tab-content').forEach(tab => {
                     tab.style.display = 'none';
                 });
