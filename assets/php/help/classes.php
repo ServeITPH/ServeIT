@@ -21,7 +21,7 @@ class FAQ
                         onclick="expandContent(this)">
                         <img src="assets/images/helpCenter/plus.png" alt="Expand Button" class="expandbtn-img">
 
-                        <div class="text ps-2 d-flex align-items-center ">
+                        <div class="text ps-2 pb-1 d-flex align-items-center ">
                             <p>'.$this->question.'</p>
                         </div>
                     </button>
