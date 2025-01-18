@@ -136,7 +136,7 @@ $productGetResult = executeQuery($productGetQuery);
                                             ?>
                                                     <tr>
                                                         <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
-                                                        <td><img src="../assets/uploads/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                        <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
                                                         <td><?php echo $serviceGetRow['title']; ?></td>
                                                         <td><?php echo $serviceGetRow['shortDescription']; ?></td>
                                                         <td><?php echo $serviceGetRow['price']; ?></td>
@@ -187,7 +187,7 @@ $productGetResult = executeQuery($productGetQuery);
                                             ?>
                                                     <tr>
                                                         <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
-                                                        <td><img src="../assets/uploads/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                        <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
                                                         <td><?php echo $productGetRow['title']; ?></td>
                                                         <td><?php echo $productGetRow['shortDescription']; ?></td>
                                                         <td><?php echo $productGetRow['price']; ?></td>

@@ -22,7 +22,7 @@ if (isset($_POST['btnSubmit'])) {
         $error = "Please fill out all required fields.";
     } else {
         // Define the path to upload the file
-        $uploadDir = "../assets/uploads/";
+        $uploadDir = "../assets/images/items/";
         $uploadFile = $uploadDir . basename($attachment);
 
         // Attempt to move the uploaded file to the server
