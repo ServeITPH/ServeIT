@@ -3,6 +3,19 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+// delete user
+
+if (isset($_POST['btnDelete'])) {
+    $deleteID = $_POST['userID'];
+    $deleteQuery = "DELETE FROM users WHERE userID = '$deleteID'";
+    executeQuery($deleteQuery);
+
+}
+//User List
+$userListQuery = "SELECT * FROM users WHERE role ='user'";
+$userListResult = executeQuery($userListQuery);
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -58,35 +71,41 @@ include("adminAssets/user.php");
                         <table class="table table-secondary table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">User</th>
+                                    <th scope="col">User ID</th>
                                     <th scope="col">Username</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Role</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone Num.</th>
+                                    <th scope="col">Birthdate</th>
+                                    <th scope="col">Acoount Date</th>
+                                    <th scope="col">Acoount Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>wowuser</td>
-                                    <td>very nice</td>
-                                    <td>tutor</td>
-                                    <td>tutor</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>graphic drawing</td>
-                                    <td>tutor</td>
+                                <?php
+                                if (mysqli_num_rows($userListResult) > 0) {
+                                    while ($userListRow = mysqli_fetch_assoc($userListResult)) {
 
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>pics</td>
-                                    <td>tutor</td>
+                                        ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $userListRow['userID']; ?></th>
+                                            <td><?php echo $userListRow['username']; ?></td>
+                                            <td><?php echo $userListRow['email']; ?></td>
+                                            <td><?php echo $userListRow['phoneNumber']; ?></td>
+                                            <td><?php echo $userListRow['birthDate']; ?></td>
+                                            <td><?php echo $userListRow['accountDate']; ?></td>
+                                            <td>
+                                                <form method="POST">
+                                                    <input type="hidden" value="<?php echo $userListRow['userID']; ?>"
+                                                        name="userID">
+                                                    <button type="submit" class="btn btn-danger deletebtn" name="btnDelete">Delete</button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
 
-                                </tr>
                             </tbody>
                         </table>
                     </div>

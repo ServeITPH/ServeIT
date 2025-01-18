@@ -3,6 +3,10 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+$feedbackQuery = "SELECT * FROM ratings LEFT JOIN users ON ratings.userID = users.userID LEFT JOIN items ON ratings.itemID = items.itemID WHERE users.role ='user';
+";
+$feedbackResult = executeQuery($feedbackQuery);
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -65,27 +69,21 @@ include("adminAssets/user.php");
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>wowuser</td>
-                                    <td>very nice</td>
-                                    <td>tutor</td>
-                                    <td>tutor</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>graphic drawing</td>
-                                    <td>tutor</td>
-
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td colspan="2">Larry the Bird</td>
-                                    <td>pics</td>
-                                    <td>tutor</td>
-
-                                </tr>
+                            <?php
+                                            if (mysqli_num_rows($feedbackResult) > 0) {
+                                                while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) {
+                                                
+                                            ?>
+                                                    <tr>
+                                                        <th scope="row"><?php echo $feedbackRow['title']; ?></th>
+                                                        <td><?php echo $feedbackRow['username']; ?></td>
+                                                        <td><?php echo $feedbackRow['review']; ?></td>
+                                                        <td><?php echo $feedbackRow['ratingValue']; ?></td>
+                                                    </tr>
+                                            <?php
+                                                }
+                                            }
+                                            ?>
                             </tbody>
                         </table>
                     </div>

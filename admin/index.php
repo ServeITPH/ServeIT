@@ -71,24 +71,24 @@ if ($userID == "" || $role == "") {
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="dashboard.php">
                     <div class="card-custom">
-                        <i class="fi fi-home fi-rr-home"></i>
-                        <h3>Home</h3>
+                        <i class="fi fi-dashboard fi-rr-dashboard-monitor"></i>
+                        <h3>Dashboard</h3>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="addProducts.php">
                     <div class="card-custom">
-                        <i class="fi fi-box fi-rr-box"></i>
-                        <h3>Products</h3>
+                        <i class="fi fi-dashboard fi-rr-box-open"></i>
+                        <h3>Services/Products</h3>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="feedback.php">
                     <div class="card-custom">
-                        <i class="fi fi-comments fi-rr-comments-alt"></i>
-                        <h3>Services</h3>
+                        <i class="fi fi-dashboard fi-rr-feedback-review"></i>
+                        <h3>Client Feedbacks</h3>
                     </div>
                 </a>
             </div>
@@ -97,38 +97,29 @@ if ($userID == "" || $role == "") {
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="managePosts.php">
                     <div class="card-custom">
-                        <i class="fi fi-user fi-rr-user"></i>
-                        <h3>Account</h3>
+                        <i class="fi fi-dashboard fi-rr-blog-text"></i>
+                        <h3>Manage Posts</h3>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="manageUsers.php">
                     <div class="card-custom">
-                        <i class="fi fi-cart fi-rr-cart"></i>
-                        <h3>Cart</h3>
+                        <i class="fi fi-dashboard fi-rr-user-gear"></i>
+                        <h3>Manage Users</h3>
                     </div>
                 </a>
             </div>
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="customerChat.php">
                     <div class="card-custom">
-                        <i class="fi fi-chat fi-rr-chat"></i>
-                        <h3>Message Us</h3>
-                    </div>
-                </a>
-            </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <a href="customerChat.php">
-                    <div class="card-custom">
-                        <i class="fi fi-sign-out fi-rr-sign-out"></i>
-                        <h3>Log-out</h3>
+                        <i class="fi fi-rr-comment-alt"></i>
+                        <h3>Customer Support</h3>
                     </div>
                 </a>
             </div>
         </div>
     </div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
