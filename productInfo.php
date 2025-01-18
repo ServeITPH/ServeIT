@@ -50,7 +50,7 @@ $productListResult = executeQuery($productListQuery);
                                 <div class="row">
                                     <div class="col d-flex justify-content-center align-items-center">
                                         <div class="imageCard">
-                                            <img src="assets/images/items/<?php echo $productInfoRow['attachment'] ?>.jpg"
+                                            <img src="assets/images/items/<?php echo $productInfoRow['attachment'] ?>"
                                                 alt="<?php echo $productInfoRow['title'] ?>">
                                         </div>
                                     </div>

@@ -50,7 +50,7 @@ $serviceListResult = executeQuery($serviceListQuery);
                                 <div class="row">
                                     <div class="col d-flex justify-content-center align-items-center">
                                         <div class="imageCard">
-                                            <img src="assets/images/items/<?php echo $serviceInfoRow['attachment']?>.jpg"
+                                            <img src="assets/images/items/<?php echo $serviceInfoRow['attachment']?>"
                                                 alt="<?php echo $serviceInfoRow['title'] ?>">
                                         </div>
                                     </div>
