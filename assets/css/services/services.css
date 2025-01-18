@@ -85,6 +85,7 @@ body {
   height: 250px;
   background-color: black;
   border-radius: 23px;
+  object-fit: cover;
 }
 
 .serviceImage img {
@@ -164,7 +165,8 @@ body {
   }
 
   .serviceImage {
-    height: 200px;
+    object-fit: cover;
+    height: 100%;
   }
 
   .serviceTitle {
@@ -183,7 +185,6 @@ body {
     align-items: center;
     display: flex;
     justify-content: center;
-
   }
 
   .category {

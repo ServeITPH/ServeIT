@@ -4,12 +4,18 @@ include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
 
+$searchTerm = '';
 $categoryNameFilter = isset($_GET['category']) ? $_GET['category'] : '';
 
 $productListQuery = "SELECT * FROM items WHERE type = 'product'";
 
 if ($categoryNameFilter != '') {
     $productListQuery .= " AND categoryName = '$categoryNameFilter'";
+}
+
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    $productListQuery .= " AND (title LIKE '%$searchTerm%' OR shortDescription LIKE '%$searchTerm%' OR categoryName LIKE '%$searchTerm%')";
 }
 
 $productListResult = executeQuery($productListQuery);
@@ -78,8 +84,8 @@ $productFilterResult = executeQuery($productFilterQuery);
             <form class="row w-100 justify-content-center align-items-center">
 
                 <div class="col-lg-6 col-md-6 col-sm-10 col-8 d-flex justify-content-center align-items-center pt-3">
-                    <input class="search-bar form-control me-2" type="search" name="search" placeholder="Search"
-                        aria-label="Search">
+                    <input class="search-bar form-control me-2" type="text" name="search" placeholder="Search"
+                        value="<?php echo $searchTerm ?>" aria-label="Search">
                 </div>
 
                 <div class="col-lg-4 col-md-4 col-sm-8 col-6 d-flex justify-content-center align-items-center pt-3">
@@ -109,9 +115,9 @@ $productFilterResult = executeQuery($productFilterQuery);
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
                 ?>
 
-                <div class="col d-flex flex-row">
+                <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="productCard rounded mx-auto">
-                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <div class="productImage">
                                 <img src="assets/images/items/<?php echo $productListRow['attachment'] ?>"
                                     alt="<?php echo $productListRow['title'] ?>">
@@ -122,7 +128,7 @@ $productFilterResult = executeQuery($productFilterQuery);
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">
                                 <p class="productDescription"><?php echo $productListRow['shortDescription'] ?></p>
-                                <a href="productInfo.php?itemID=<?php echo $productListRow['itemID']?>">
+                                <a href="productInfo.php?itemID=<?php echo $productListRow['itemID'] ?>">
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>

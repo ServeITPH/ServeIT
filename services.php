@@ -4,12 +4,18 @@ include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
 
+$searchTerm = '';
 $categoryNameFilter = isset($_GET['category']) ? $_GET['category'] : '';
 
 $serviceListQuery = "SELECT * FROM items WHERE type = 'service'";
 
 if ($categoryNameFilter != '') {
     $serviceListQuery .= " AND categoryName = '$categoryNameFilter'";
+}
+
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    $serviceListQuery .= " AND (title LIKE '%$searchTerm%' OR shortDescription LIKE '%$searchTerm%' OR categoryName LIKE '%$searchTerm%')";
 }
 
 $serviceListResult = executeQuery($serviceListQuery);
@@ -77,7 +83,7 @@ $serviceListResult = executeQuery($serviceListQuery);
 
                 <div class="col-lg-10 col-md-8 col-sm-7 col-7 d-flex justify-content-center align-items-center pt-3">
                     <input class="search-bar form-control me-2" type="search" name="search" placeholder="Search"
-                        aria-label="Search">
+                        value="<?php echo $searchTerm ?>" aria-label="Search">
                 </div>
 
                 <div class="col-2 d-flex justify-content-center align-items-center pt-3">
@@ -87,19 +93,16 @@ $serviceListResult = executeQuery($serviceListQuery);
         </div>
     </div>
 
-    <div class="container mt-3">
-        <div class="row d-flex flex-row justify-content-center align-items-center">
-            <div class="col-12 mb-3">
-                <h2 class="moreservicesTitle text-start fw-bold">MORE SERVICES</h2>
-            </div>
+    <div class="container mt-5">
+        <div class="row d-flex justify-content-center align-items-center">
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
                 ?>
 
-                <div class="col-lg-3 col-6 d-flex flex-row">
+                <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
-                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                        <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <div class="serviceImage">
                                 <img src="assets/images/items/<?php echo $serviceListRow['attachment'] ?>"
                                     alt="<?php echo $serviceListRow['title'] ?>">
