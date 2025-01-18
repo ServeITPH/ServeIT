@@ -48,9 +48,9 @@ $serviceListResult = executeQuery($serviceListQuery);
                         <div class="col-lg-6">
                             <div class="imageContainer">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col d-flex justify-content-center align-items-center">
                                         <div class="imageCard">
-                                            <img src="assets/images/<?php echo $serviceInfoRow['attachment'] ?>"
+                                            <img src="assets/images/items/<?php echo $serviceInfoRow['attachment']?>.jpg"
                                                 alt="<?php echo $serviceInfoRow['title'] ?>">
                                         </div>
                                     </div>

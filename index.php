@@ -188,7 +188,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     <div class="productCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
                             <div class="productImage">
-                                <img src="assets/images/items/<?php echo $newArrivalRow['attachment'] ?>"
+                                <img src="assets/images/items/<?php echo $newArrivalRow['attachment'] ?>.jpg"
                                     alt="<?php echo $newArrivalRow['title'] ?>">
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">
@@ -216,7 +216,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <!-- button -->
         <div>
             <div class="d-flex justify-content-end">
-                <a class="btn btn-more btn-primary mx-auto mb-3" hmef="products.php"> More Products</a>
+                <a class="btn btn-more btn-primary mx-auto mb-3" href="products.php"> More Products</a>
             </div>
         </div>
     </div>

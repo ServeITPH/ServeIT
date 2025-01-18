@@ -119,7 +119,7 @@ $productFilterResult = executeQuery($productFilterQuery);
                     <div class="productCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <div class="productImage">
-                                <img src="assets/images/items/<?php echo $productListRow['attachment'] ?>"
+                                <img src="assets/images/items/<?php echo $productListRow['attachment'] ?>.jpg"
                                     alt="<?php echo $productListRow['title'] ?>">
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">

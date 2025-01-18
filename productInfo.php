@@ -48,9 +48,9 @@ $productListResult = executeQuery($productListQuery);
                         <div class="col-lg-6">
                             <div class="imageContainer">
                                 <div class="row">
-                                    <div class="col">
+                                    <div class="col d-flex justify-content-center align-items-center">
                                         <div class="imageCard">
-                                            <img src="assets/images/<?php echo $productInfoRow['attachment'] ?>"
+                                            <img src="assets/images/items/<?php echo $productInfoRow['attachment'] ?>.jpg"
                                                 alt="<?php echo $productInfoRow['title'] ?>">
                                         </div>
                                     </div>

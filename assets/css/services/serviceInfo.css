@@ -17,7 +17,14 @@ body {
     width: 100%;
     max-width: 500px;
     height: 440px;
-    background-color: #A9A9A9;
+    border-radius: 23px;
+}
+
+.imageCard img{
+text-align: center;
+    width: 100%;
+    max-width: 500px;
+    height: 440px;
     border-radius: 23px;
     margin: 0 auto;
 }

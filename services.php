@@ -104,7 +104,7 @@ $serviceListResult = executeQuery($serviceListQuery);
                     <div class="serviceCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
                             <div class="serviceImage">
-                                <img src="assets/images/items/<?php echo $serviceListRow['attachment'] ?>"
+                                <img src="assets/images/items/<?php echo $serviceListRow['attachment'] ?>.jpg"
                                     alt="<?php echo $serviceListRow['title'] ?>">
                             </div>
                             <div class="w-100 d-flex justify-content-between align-items-center">
