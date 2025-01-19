@@ -7,7 +7,7 @@
             HOW CAN WE HELP?
         </div>
         <form class="d-flex justify-content-center align-items-center m-0" role="search">
-            <input class="me-2 need-help" type="search" placeholder="need help?" aria-label="Search">
+            <input class="me-2 need-help" type="search" placeholder="Need help?" aria-label="Search">
             <button class="btn btn-outline-primary need-help-btn" type="submit">Send</button>
         </form>
     </div>

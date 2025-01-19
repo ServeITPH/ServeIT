@@ -94,14 +94,14 @@ if ($userID == "" || $role == "") {
             </div>
         </div>
         <div class="row g-5 justify-content-center mt-4">
-            <div class="col-12 col-md-6 col-lg-4">
+            <!-- <div class="col-12 col-md-6 col-lg-4">
                 <a href="managePosts.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-blog-text"></i>
                         <h3>Manage Posts</h3>
                     </div>
                 </a>
-            </div>
+            </div> -->
             <div class="col-12 col-md-6 col-lg-4">
                 <a href="manageUsers.php">
                     <div class="card-custom">

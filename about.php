@@ -42,7 +42,7 @@ if ($userID == "") {
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">ABOUT US</h5>
-                        <p class="card-text mb-3">
+                        <p class="card-text text-center mb-3">
                             <?php echo $abtUsContent; ?>
                         </p>
                     </div>

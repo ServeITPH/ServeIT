@@ -74,14 +74,13 @@ $productFilterResult = executeQuery($productFilterQuery);
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">PRODUCTS</div>
-                        <p class="card-text mb-3">Explore a carefully curated selection of digital products, designed
+                        <p class="card-text text-center mb-3">Explore curated selections of digital products, designed
                             and created by the talented minds at ServeIT. Our products combine creativity with
                             functionality, offering innovative solutions to enhance your personal projects or business
                             ventures. Whether you need tools for productivity, design, or development, each product is
                             built to meet your needs and exceed expectations. With easy accessibility and seamless
                             integration, our digital products are perfect for anyone looking to elevate their work with
-                            practical, high-quality solutions. Let ServeIT empower your next big idea with the right
-                            digital tools.
+                            practical, high-quality solutions.
                         </p>
                     </div>
                 </div>

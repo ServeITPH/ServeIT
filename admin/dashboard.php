@@ -3,6 +3,54 @@ include("../sharedAssets/connect.php");
 
 session_start();
 
+if (isset($_POST['btnDelete'])) {
+    $deleteID = $_POST['itemID'];
+    $deleteType = $_POST['type'];
+    $deleteQuery = "DELETE FROM items WHERE type = '$deleteType' AND userID = '$deleteID'";
+    executeQuery($deleteQuery);
+}
+
+if (isset($_POST['btnSave'])) {
+    $itemID = $_POST['itemID'];
+    $title = $_POST['title'];
+    $shortDescription = $_POST['shortDescription'];
+    $price = $_POST['price'];
+    $type = $_POST['type'];
+    $existingAttachment = $_POST['existingAttachment'];
+
+    if (!empty($_FILES['newAttachment']['name'])) {
+        $attachment = $_FILES['newAttachment']['name'];
+        $attachmentTemp = $_FILES['newAttachment']['tmp_name'];
+
+        $uploadDir = "../assets/images/items/";
+        $uploadFile = $uploadDir . basename($attachment);
+
+        // Move the new file to the server
+        if (move_uploaded_file($attachmentTemp, $uploadFile)) {
+            // New image uploaded, use the new attachment
+            $newAttachment = $attachment;
+        } else {
+            // Handle file upload error
+            echo "Failed to upload the new image.";
+            $newAttachment = $existingAttachment; // Fallback to the existing attachment if upload fails
+        }
+    } else {
+        // No new image uploaded, use the existing image
+        $newAttachment = $existingAttachment;
+    }
+
+    // Update query
+    $updateQuery = "UPDATE items 
+                    SET title = '$title', 
+                        shortDescription = '$shortDescription', 
+                        price = '$price',
+                        attachment = '$newAttachment'
+                    WHERE itemID = '$itemID' AND type = '$type'";
+
+    // Execute the query
+    executeQuery($updateQuery);
+}
+
 $userID = $_SESSION['userID'];
 // Service Count
 $countServiceQuery = "SELECT COUNT(itemID) AS countService FROM `items` WHERE type = 'service'";
@@ -20,6 +68,15 @@ $productCount = 0;
 
 while ($countProductRow = mysqli_fetch_assoc($countProductResult)) {
     $productCount = $countProductRow['countProduct'];
+}
+
+//User Count
+$userCountQuery = "SELECT COUNT(userID) AS userCount FROM users WHERE role ='user'";
+$userCountResult = executeQuery($userCountQuery);
+$userCount = 0;
+
+while ($userCountRow = mysqli_fetch_assoc($userCountResult)) {
+    $userCount = $userCountRow['userCount'];
 }
 
 //Service List
@@ -70,7 +127,7 @@ $productGetResult = executeQuery($productGetQuery);
                 </div>
                 <div class="container text-center mb-5">
                     <div class="row justify-content-center">
-                        <div class="col-12 col-md-4 mb-3">
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Services</p>
@@ -78,7 +135,7 @@ $productGetResult = executeQuery($productGetQuery);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 mb-3 ">
+                        <div class="col-12 col-sm-6 col-md-3 mb-3 ">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Products</p>
@@ -86,7 +143,15 @@ $productGetResult = executeQuery($productGetQuery);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-md-4 mb-3">
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                            <div class="card rounded-5">
+                                <div class="card-body rounded-5">
+                                    <p class="h2 statistics-custom">Users</p>
+                                    <p class="h3"><?php echo $userCount ?></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-md-3 mb-3">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Sales</p>
@@ -107,7 +172,7 @@ $productGetResult = executeQuery($productGetQuery);
                 <div class="col py-5 text-center">
                     <h1><b>SERVICES</b></h1>
                     <!-- table -->
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-10">
                                 <form class="d-flex py-5" role="search">
@@ -122,25 +187,52 @@ $productGetResult = executeQuery($productGetQuery);
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Image</th>
-                                                <th scope="col">Product Name</th>
+                                                <th scope="col"></th>
+                                                <th scope="col">Service Name</th>
                                                 <th scope="col">Description</th>
                                                 <th scope="col">Price</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody id="productTable">
 
                                             <?php
                                             if (mysqli_num_rows($serviceGetResult) > 0) {
                                                 while ($serviceGetRow = mysqli_fetch_assoc($serviceGetResult)) {
 
                                             ?>
-                                                    <tr>
-                                                        <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
-                                                        <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
-                                                        <td><?php echo $serviceGetRow['title']; ?></td>
-                                                        <td><?php echo $serviceGetRow['shortDescription']; ?></td>
-                                                        <td><?php echo $serviceGetRow['price']; ?></td>
-                                                    </tr>
+                                                    <form method="POST" enctype="multipart/form-data">
+                                                        <tr>
+                                                            <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
+                                                            <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                            <td>
+                                                                <input type="file" name="newAttachment" class="form-control" style="max-width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="title" value="<?php echo $serviceGetRow['title']; ?>" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="shortDescription" value="<?php echo $serviceGetRow['shortDescription']; ?>" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="price" value="<?php echo $serviceGetRow['price']; ?>" class="form-control" style="max-width: 80px;">
+                                                            </td>
+                                                            <!-- Hidden inputs -->
+                                                            <td style="display: none;">
+                                                                <input type="hidden" name="type" value="<?php echo $serviceGetRow['type']; ?>">
+                                                                <input type="hidden" name="itemID" value="<?php echo $serviceGetRow['itemID']; ?>">
+                                                                <input type="hidden" name="existingAttachment" value="<?php echo $serviceGetRow['attachment']; ?>">
+                                                            </td>
+
+                                                            <td>
+                                                                <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="submit" name="btnDeleteService" class="btn btn-danger">Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </form>
                                             <?php
                                                 }
                                             }
@@ -174,9 +266,12 @@ $productGetResult = executeQuery($productGetQuery);
                                             <tr>
                                                 <th scope="col">#</th>
                                                 <th scope="col">Image</th>
+                                                <th scope="col"></th>
                                                 <th scope="col">Product Name</th>
                                                 <th scope="col">Description</th>
                                                 <th scope="col">Price</th>
+                                                <th scope="col"></th>
+                                                <th scope="col"></th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -185,13 +280,37 @@ $productGetResult = executeQuery($productGetQuery);
                                                 while ($productGetRow = mysqli_fetch_assoc($productGetResult)) {
 
                                             ?>
-                                                    <tr>
-                                                        <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
-                                                        <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
-                                                        <td><?php echo $productGetRow['title']; ?></td>
-                                                        <td><?php echo $productGetRow['shortDescription']; ?></td>
-                                                        <td><?php echo $productGetRow['price']; ?></td>
-                                                    </tr>
+                                                    <form method="POST" enctype="multipart/form-data">
+                                                        <tr>
+                                                            <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
+                                                            <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                            <td>
+                                                                <input type="file" name="newAttachment" class="form-control" style="max-width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="title" value="<?php echo $productGetRow['title']; ?>" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="text" name="shortDescription" value="<?php echo $productGetRow['shortDescription']; ?>" class="form-control">
+                                                            </td>
+                                                            <td>
+                                                                <input type="number" name="price" value="<?php echo $productGetRow['price']; ?>" class="form-control" style="max-width: 80px;">
+                                                            </td>
+                                                            <!-- Hidden inputs -->
+                                                            <td style="display: none;">
+                                                                <input type="hidden" name="type" value="<?php echo $productGetRow['type']; ?>">
+                                                                <input type="hidden" name="itemID" value="<?php echo $productGetRow['itemID']; ?>">
+                                                                <input type="hidden" name="existingAttachment" value="<?php echo $productGetRow['attachment']; ?>">
+                                                            </td>
+
+                                                            <td>
+                                                                <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                                            </td>
+                                                            <td>
+                                                                <button type="submit" name="btnDeleteService" class="btn btn-danger">Delete</button>
+                                                            </td>
+                                                        </tr>
+                                                    </form>
                                             <?php
                                                 }
                                             }
@@ -206,7 +325,12 @@ $productGetResult = executeQuery($productGetQuery);
             </div>
         </div>
     </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Handle editable table -->
+    <script src="adminAssets/js/script.js"></script>
 </body>
 
 </html>
