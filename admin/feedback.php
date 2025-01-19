@@ -8,9 +8,10 @@ $searchTerm = '';
 $filterRating = '';
 $filterItemID = '';
 $sortOrder = '';
+$filterType = '';
 
 // Feedback Queries
-$feedbackQuery = "SELECT * FROM ratings 
+$feedbackQuery = "SELECT ratings.*, users.username, items.title, items.type FROM ratings 
 LEFT JOIN users ON ratings.userID = users.userID 
 LEFT JOIN items ON ratings.itemID = items.itemID 
 WHERE users.role = 'user'";
@@ -33,6 +34,12 @@ if (isset($_GET['filterRating']) && !empty($_GET['filterRating'])) {
 if (isset($_GET['filterItemID']) && !empty($_GET['filterItemID'])) {
     $filterItemID = $_GET['filterItemID'];
     $feedbackQuery .= " AND ratings.itemID = '$filterItemID'";
+}
+
+// Filter by Type (Product or Service)
+if (isset($_GET['filterType']) && !empty($_GET['filterType'])) {
+    $filterType = $_GET['filterType'];
+    $feedbackQuery .= " AND items.type = '$filterType'";
 }
 
 // Sort Order
@@ -129,6 +136,15 @@ $feedbackResult = executeQuery($feedbackQuery);
                 </select>
             </div>
 
+                        <!-- Filter by Type -->
+                        <div class="col-md-2">
+                            <select class="form-select" name="filterType" aria-label="Filter by Type">
+                                <option value="">All Types</option>
+                                <option value="Product" <?php echo ($filterType == 'Product') ? 'selected' : ''; ?>>Product</option>
+                                <option value="Service" <?php echo ($filterType == 'Service') ? 'selected' : ''; ?>>Service</option>
+                            </select>
+                        </div>
+
                         <!-- Sort Order -->
                         <div class="col-md-2">
                             <select class="form-select" name="sortOrder" aria-label="Sort Order">
@@ -152,6 +168,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                             <thead>
                                 <tr>
                                     <th scope="col">Item</th>
+                                    <th scope="col">Type</th> 
                                     <th scope="col">Username</th>
                                     <th scope="col">Review</th>
                                     <th scope="col">Rating Value</th>
@@ -165,6 +182,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                         ?>
                                         <tr>
                                             <th scope="row"><?php echo $feedbackRow['title']; ?></th>
+                                            <td><?php echo $feedbackRow['type']; ?></td> 
                                             <td><?php echo $feedbackRow['username']; ?></td>
                                             <td><?php echo $feedbackRow['review']; ?></td>
                                             <td><?php echo $feedbackRow['ratingValue']; ?></td>
@@ -173,7 +191,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     }
                                 } else {
                                     //If NO results found
-                                    echo "<tr><td colspan='4' class='text-center'>No feedback found.</td></tr>";
+                                    echo "<tr><td colspan='5' class='text-center'>No feedback found.</td></tr>";
                                 }
                                 ?>
                             </tbody>
