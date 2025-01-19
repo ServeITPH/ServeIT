@@ -62,7 +62,7 @@ $fetchProduct = executeQuery($productQuery);
     <link rel="stylesheet" href="assets/css/landing-page/style.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="stylesheet" href="assets/css/cart/cart.css">
-    <link rel="stylesheet" href="assets/css/profile/profile.css">
+
 
 
 </head>
@@ -123,8 +123,10 @@ $fetchProduct = executeQuery($productQuery);
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
                                             <button type="submit" class="btn btn-danger rounded-5 fs-6">Remove</button>
                                         </form>
-                                        <button type="button" class="btn rounded-5 ms-2 fs-6"
-                                            style="background-color: #19AFA5; color: black;">See More</button>
+                                        <a href="productInfo.php?itemID=<?php echo $fetchCartRow['itemID'] ?>">
+                                            <button type="button" class="btn rounded-5 ms-2 fs-6"
+                                                style="background-color: #19AFA5; color: black;">See More</button>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -242,7 +244,7 @@ $fetchProduct = executeQuery($productQuery);
                             if (mysqli_num_rows($fetchService) > 0) {
                                 while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
                                     ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex mb-4">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
                                         <div class="serviceCard rounded mx-auto">
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -288,7 +290,7 @@ $fetchProduct = executeQuery($productQuery);
                             if (mysqli_num_rows($fetchProduct) > 0) {
                                 while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
                                     ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row mb-4">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
                                         <div class="productCard rounded mx-auto">
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -340,49 +342,51 @@ $fetchProduct = executeQuery($productQuery);
             </a>
         </div>
 
+    </div>
+    <!-- SM PAYMENT-->
+    <?php include("sharedAssets/smpayment.php") ?>
 
-        <!-- SM PAYMENT-->
-        <?php include("sharedAssets/smpayment.php") ?>
-        <!-- FOOTER-->
-        <?php include("sharedAssets/footer.php") ?>
+    <!-- FOOTER-->
+    <?php include("sharedAssets/footer.php") ?>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 
-        <script>
-            function showTab(tab) {
-                document.querySelectorAll('.tab-content').forEach(content => {
-                    content.style.display = 'none';
-                });
+    <script>
+        function showTab(tabName) {
 
-                document.getElementById(tab).style.display = 'block';
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(tab => {
+                tab.style.display = 'none';
+            });
 
-                let showAllBtn = document.getElementById('showAllBtn');
-                if (tab === 'services') {
-                    showAllBtn.href = 'services.php';
-                } else if (tab === 'products') {
-                    showAllBtn.href = 'products.php';
-                }
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            tabButtons.forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(tabName).style.display = 'block';
+            const activeButton = document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`);
+            activeButton.classList.add('active');
+
+            const showAllBtn = document.getElementById('showAllBtn');
+            if (tabName === 'services') {
+                showAllBtn.href = 'services.php';
+            } else if (tabName === 'products') {
+                showAllBtn.href = 'products.php';
             }
+        }
 
-            if (document.querySelector('.tab-btn.active').innerText === 'Services') {
-                document.getElementById('showAllBtn').href = 'services.php';
+        window.addEventListener('DOMContentLoaded', () => {
+            const activeTab = document.querySelector('.tab-btn.active');
+            if (activeTab) {
+                const tabName = activeTab.getAttribute('onclick').match(/'(.+)'/)[1];
+                showTab(tabName);
             }
-        </script>
+        });
+    </script>
 
-        <script>
-            function showTab(tabName =) {
-                document.querySelectorAll('.tab-content').forEach(tab => {
-                    tab.style.display = 'none';
-                });
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
-                });
-                document.getElementById(tabName).style.display = 'block';
-                event.target.classList.add('active');
-            }
-        </script>
 
 </body>
 

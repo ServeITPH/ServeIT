@@ -50,8 +50,8 @@ if (mysqli_num_rows($userresult) > 0) {
         Product/Services</a>
       <a href="feedback.php" class="nav-link text-light"><i class="fi  fi-rr-feedback-review"></i> Client
         Feedbacks</a>
-      <a href="managePosts.php" class="nav-link text-light"><i class="fi fi-rr-blog-text"></i> Manage
-        Posts</a>
+      <!-- <a href="managePosts.php" class="nav-link text-light"><i class="fi fi-rr-blog-text"></i> Manage
+        Posts</a> -->
       <a href="manageUsers.php" class="nav-link text-light"><i class="fi fi-rr-user-gear"></i> Manage
         Users</a>
       <a href="customerChat.php" class="nav-link text-light"><i class="fi fi-rr-comment-alt"></i> Customer

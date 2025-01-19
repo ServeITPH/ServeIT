@@ -4,13 +4,40 @@ include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
 
-$productInfoID = $_GET['itemID'];
+$userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : '';
+$productInfoID = isset($_GET['itemID']) ? $_GET['itemID'] : '';
+
+// Check if user has already given feedback
+$checkFeedbackQuery = "SELECT * FROM ratings WHERE userID = '$userID' AND itemID = '$productInfoID'";
+$checkFeedbackResult = executeQuery($checkFeedbackQuery);
+
+if (isset($_POST['btnAddFeedback'])) {
+    $feedback = $_POST['feedback'];
+    $ratingValue = $_POST['ratingValue'];
+
+    if (!empty($feedback) && !empty($ratingValue)) {
+        if (mysqli_num_rows($checkFeedbackResult) == 0) {
+            $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
+                                VALUES ('$userID','$productInfoID', '$feedback', '$ratingValue', NOW())";
+            $addFeedbackResult = executeQuery($addFeedbackQuery);
+
+            header("Location: " . $_SERVER['PHP_SELF']);
+            exit();
+        }
+    }
+}
 
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
 $productInfoResult = executeQuery($productInfoQuery);
 
 $productListQuery = "SELECT * FROM items WHERE type = 'product'";
 $productListResult = executeQuery($productListQuery);
+
+$userQuery = "SELECT * FROM users";
+$userResult = executeQuery($userQuery);
+
+$feedbackQuery = "SELECT * FROM ratings LEFT JOIN users ON ratings.userID = users.userID WHERE itemID = $productInfoID";
+$feedbackResult = executeQuery($feedbackQuery);
 
 ?>
 <!doctype html>
@@ -43,7 +70,7 @@ $productListResult = executeQuery($productListQuery);
 
                     <?php
                     while ($productInfoRow = mysqli_fetch_assoc($productInfoResult)) {
-                        ?>
+                    ?>
 
                         <div class="col-lg-6">
                             <div class="imageContainer">
@@ -72,7 +99,8 @@ $productListResult = executeQuery($productListQuery);
                                     <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
                                 </p>
                                 <div class="price fw-bold">
-                                    <span style="font-size: 32px;">₱<?php echo $productInfoRow['price'] ?></span><span>.00</span>
+                                    <span
+                                        style="font-size: 32px;">₱<?php echo $productInfoRow['price'] ?></span><span>.00</span>
                                 </div>
                                 <div style="border-top: 2px solid #19AFA5; width: 100%; margin: 10px 0; "></div>
                                 <h4 class="productDescriptionTitle fw-bold" style="font-size: 16;">PRODUCT DESCRIPTION</h4>
@@ -89,7 +117,7 @@ $productListResult = executeQuery($productListQuery);
                             </div>
                         </div>
 
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -114,203 +142,76 @@ $productListResult = executeQuery($productListQuery);
                             <div class="feedbackCardContainer d-flex">
                                 <div class="row justify-content-center g-4 w-100">
                                     <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="row-6">
-                                                        <div class="profilePicture"></div>
+                                        <form method="POST">
+                                            <div class="feedbackCard">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="row-6">
+                                                            <?php while ($userRow = mysqli_fetch_assoc($userResult)) { ?>
+                                                                <div class="profilePicture">
+                                                                    <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
+                                                                        alt="<?php echo $userRow['profilePicture'] ?>">
+                                                                </div>
+                                                            <?php } ?>
+                                                        </div>
+                                                        <div class="row-6">
+                                                            <input type="text" class="feedbackInput form-control"
+                                                                name="feedback" placeholder="Share feedback..." />
+                                                        </div>
                                                     </div>
-                                                    <div class="row-6">
-                                                        <input type="text" class="feedbackInput form-control"
-                                                            placeholder="Share feedback..." value="" />
+                                                    <div class="col-6">
+                                                        <input type="hidden" name="ratingValue" id="ratingValue">
+                                                        <p class="stars" id="ratingStars">
+                                                            <i class="fa-solid fa-star" data-value="1"
+                                                                onclick="setRating(1)"></i>
+                                                            <i class="fa-solid fa-star" data-value="2"
+                                                                onclick="setRating(2)"></i>
+                                                            <i class="fa-solid fa-star" data-value="3"
+                                                                onclick="setRating(3)"></i>
+                                                            <i class="fa-solid fa-star" data-value="4"
+                                                                onclick="setRating(4)"></i>
+                                                            <i class="fa-solid fa-star" data-value="5"
+                                                                onclick="setRating(5)"></i>
+                                                        </p>
+                                                        <button class="btnAddFeedback rounded-pill" type="submit"
+                                                            name="btnAddFeedback">Add Feedback</button>
                                                     </div>
                                                 </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                        <i class="fa-solid fa-star"></i>
-                                                    </p>
-                                                    <button class="btnAddFeedback rounded-pill" type="submit">Add
-                                                        Feedback</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <?php while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) { ?>
+                                        <div class="col-lg-4 col-md-6 col-sm-8">
+                                            <div class="feedbackCard">
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <div class="profilePicture">
+                                                            <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
+                                                                alt="<?php echo $feedbackRow['profilePicture'] ?>">
+                                                        </div>
+                                                        <p class="feedbackText"><?php echo $feedbackRow['review'] ?></p>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <p class="stars">
+                                                            <?php
+                                                            $rating = $feedbackRow['ratingValue'];
+                                                            for ($i = 1; $i <= 5; $i++) {
+                                                                if ($i <= $rating) {
+                                                                    echo '<i class="fa-solid fa-star" style="color: #19AFA5;"></i>';
+                                                                } else {
+                                                                    echo '<i class="fa-solid fa-star" style="color: black;"></i>';
+                                                                }
+                                                            }
+                                                            ?>
+                                                        </p>
+                                                        <p class="feedbackDate mb-0">
+                                                            <?php echo date('m/d/y', strtotime($feedbackRow['dateTime'])); ?>
+                                                        </p>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6 d-flex flex-row">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="feedbackCardContainer d-flex">
-                                <div class="row justify-content-center g-4 w-100">
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="feedbackCardContainer d-flex">
-                                <div class="row justify-content-center g-4 w-100">
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
-                                        <div class="feedbackCard">
-                                            <div class="row">
-                                                <div class="col-6">
-                                                    <div class="profilePicture"></div>
-                                                    <p class="feedbackText">The Best!</p>
-                                                </div>
-                                                <div class="col-6">
-                                                    <p class="stars">
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                        <i class="fa-solid fa-star" style="color: #ffd700;"></i>
-                                                    </p>
-                                                    <p class="feedbackDate mb-0">09/09/24</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +244,7 @@ $productListResult = executeQuery($productListQuery);
 
             <?php
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
-                ?>
+            ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -370,7 +271,7 @@ $productListResult = executeQuery($productListQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
 
@@ -384,6 +285,25 @@ $productListResult = executeQuery($productListQuery);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
+
+    <script>
+        function setRating(rating) {
+            var ratingInput = document.getElementById('ratingValue');
+            var currentRating = parseInt(ratingInput.value);
+
+            var newRating = currentRating === rating ? 0 : rating;
+            ratingInput.value = newRating;
+
+            var stars = document.querySelectorAll('#ratingStars i');
+            for (var i = 0; i < stars.length; i++) {
+                if (parseInt(stars[i].dataset.value) <= newRating) {
+                    stars[i].style.color = '#19AFA5';
+                } else {
+                    stars[i].style.color = 'black';
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>

@@ -139,7 +139,6 @@ if (isset($_POST['btnRegister'])) {
                 <input type="text" id="uname" class="form-control" name="uname" placeholder="Username">
                 <label class="mt-3" for="password" class="form-label">Password</label>
                 <input type="password" id="password" class="form-control" name="password" placeholder="Password" required>
-                <a href="#">Forget Your Password?</a>
                 <button name="btnLogin">Sign In</button>
             </form>
         </div>

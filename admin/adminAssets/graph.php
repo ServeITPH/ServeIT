@@ -1,41 +1,77 @@
-<!DOCTYPE HTML>
-<html>
-<head>  
-<script>
-window.onload = function () {
+<?php
+//Page Visits
+$pagesQuery = "SELECT page, COUNT(visitID) AS visitCount FROM visits GROUP BY page";
+$pagesResult = executeQuery($pagesQuery);
 
-var chart = new CanvasJS.Chart("chartContainer", {
-	animationEnabled: true,
-	theme: "light2",
-	title:{
-		text: "Site Activity"
-	},
-	data: [{        
-		type: "line",
-      	indexLabelFontSize: 16,
-		dataPoints: [
-			{ y: 450 },
-			{ y: 414},
-			{ y: 520, indexLabel: "\u2191 highest",markerColor: "red", markerType: "triangle" },
-			{ y: 460 },
-			{ y: 450 },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 480 },
-			{ y: 410 , indexLabel: "\u2193 lowest",markerColor: "DarkSlateGrey", markerType: "cross" },
-			{ y: 500 },
-			{ y: 480 },
-			{ y: 510 }
-		]
-	}]
-});
-chart.render();
+$chartLabels = array();
+$chartData = array();
 
-}
-</script>
+while ($pagesRow = mysqli_fetch_assoc($pagesResult)) {
+
+	array_push($chartLabels, $pagesRow['page']);
+	array_push($chartData, $pagesRow['visitCount']);
+} ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Visits per Page Bar Chart</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
-<div id="chartContainer" style="height: 370px; width: 100%;"></div>
-<script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+	<div style="width: 100%; margin: 0 auto;">
+		<canvas id="visitsChart"></canvas>
+	</div>
+
+	<script>
+		// Create chart
+		var ctx = document.getElementById('visitsChart').getContext('2d');
+		var visitsChart = new Chart(ctx, {
+			type: 'bar',
+			data: {
+				labels: [<?php echo '"' . implode('","', $chartLabels) . '"' ?>], // Pages as labels for the x-axis
+				datasets: [{
+					label: 'Number of Visits',
+					data: [<?php echo implode(',', $chartData) ?>],
+					backgroundColor: 'rgba(75, 192, 192, 0.5)',
+					borderColor: 'rgba(75, 192, 192, 1)',
+					borderWidth: 1
+				}]
+			},
+			options: {
+				responsive: true,
+				plugins: {
+					legend: {
+						display: false, // Hide the legend as it's not necessary
+					},
+					tooltip: {
+						mode: 'index',
+						intersect: false,
+					}
+				},
+				scales: {
+					x: {
+						title: {
+							display: true,
+							text: 'Pages'
+						}
+					},
+					y: {
+						beginAtZero: true,
+						title: {
+							display: true,
+							text: 'Number of Visits'
+						}
+					}
+				}
+			}
+		});
+	</script>
 </body>
+
 </html>
