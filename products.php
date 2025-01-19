@@ -6,6 +6,8 @@ include("admin/adminAssets/user.php");
 
 $searchTerm = '';
 $categoryNameFilter = isset($_GET['category']) ? $_GET['category'] : '';
+$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
+$order = isset($_GET['order']) ? $_GET['order'] : '';
 
 $productListQuery = "SELECT * FROM items WHERE type = 'product'";
 
@@ -16,6 +18,14 @@ if ($categoryNameFilter != '') {
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $searchTerm = $_GET['search'];
     $productListQuery .= " AND (title LIKE '%$searchTerm%' OR shortDescription LIKE '%$searchTerm%' OR categoryName LIKE '%$searchTerm%')";
+}
+
+if ($sort != '') {
+    $productListQuery = $productListQuery . " ORDER BY $sort";
+
+    if ($order != '') {
+        $productListQuery = $productListQuery . " $order";
+    }
 }
 
 $productListResult = executeQuery($productListQuery);
@@ -83,12 +93,12 @@ $productFilterResult = executeQuery($productFilterQuery);
         <div class="row justify-content-center align-items-center">
             <form class="row w-100 justify-content-center align-items-center">
 
-                <div class="col-lg-6 col-md-6 col-sm-10 col-8 d-flex justify-content-center align-items-center pt-3">
+                <div class="col-lg-6 col-md-6 col-sm-10 col-12 d-flex justify-content-center align-items-center pt-3">
                     <input class="search-bar form-control me-2" type="text" name="search" placeholder="Search"
                         value="<?php echo $searchTerm ?>" aria-label="Search">
                 </div>
 
-                <div class="col-lg-4 col-md-4 col-sm-8 col-6 d-flex justify-content-center align-items-center pt-3">
+                <div class="col-lg-2 col-md-4 col-sm-8 col-4 d-flex justify-content-center align-items-center pt-3">
                     <select class="filter form-control" name="category">
                         <option value="">All</option>
                         <?php while ($productFilterRow = mysqli_fetch_assoc($productFilterResult)) { ?>
@@ -101,7 +111,21 @@ $productFilterResult = executeQuery($productFilterQuery);
                     </select>
                 </div>
 
-                <div class="col-lg-2 col-md-2 col-sm-4 col-2 d-flex justify-content-center align-items-center pt-3">
+                <div class="col-lg-2 col-md-4 col-sm-8 col-4 d-flex justify-content-center align-items-center pt-3">
+                    <select id="sort" name="sort" class="sort form-control">
+                        <option value="">None</option>
+                        <option <?php if ($sort == "title") echo "selected"; ?> value="title">Title</option>
+                        <option <?php if ($sort == "price") echo "selected"; ?> value="price">Price</option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-4 col-sm-8 col-4 d-flex justify-content-center align-items-center pt-3">
+                    <select id="order" name="order" class="order form-control">
+                        <option <?php if ($order == "ASC") echo "selected"; ?> value="ASC">Ascending</option>
+                        <option <?php if ($order == "DESC") echo "selected"; ?> value="DESC">Descending</option>
+                    </select>
+                </div>
+
+                <div class="col-lg-6 col-md-2 col-sm-4 col-12 d-flex justify-content-center pt-3">
                     <button type="submit" class="btnApply btn btn-primary w-100">Apply</button>
                 </div>
             </form>

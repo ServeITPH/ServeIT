@@ -48,7 +48,6 @@ body {
     color: black;
     background-color: #D2D3D3;
     border-color: black;
-    width: 625px;
     max-width: 100%;
 }
 
@@ -57,7 +56,20 @@ body {
     background-color: #D2D3D3;
     border-color: black;
     width: 100%;
-    max-width: 300px;
+}
+
+.sort {
+    color: black; 
+    background-color: #D2D3D3; 
+    border-color: black; 
+    width: 100%;
+}
+
+.order {
+    color: black; 
+    background-color: #D2D3D3; 
+    border-color: black;
+    width: 100%;
 }
 
 .btnApply {
