@@ -3,18 +3,26 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+$searchTerm = '';
 // delete user
-
-if (isset($_POST['btnDelete'])) {
-    $deleteID = $_POST['userID'];
+if (isset($_POST['btnDelete']) && isset($_POST['userID'])) {
+    $deleteID = $_POST['userID']; 
     $deleteQuery = "DELETE FROM users WHERE userID = '$deleteID'";
     executeQuery($deleteQuery);
-
 }
+
 //User List
 $userListQuery = "SELECT * FROM users WHERE role ='user'";
-$userListResult = executeQuery($userListQuery);
 
+// search users
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    // clean injection
+    $searchTerm = str_replace('\'', '', $searchTerm);
+    $userListQuery .= " AND (username LIKE '%$searchTerm%' OR email LIKE '%$searchTerm%' OR phoneNumber LIKE '%$searchTerm%')";
+}
+
+$userListResult = executeQuery($userListQuery);
 
 ?>
 <!doctype html>
@@ -63,7 +71,8 @@ $userListResult = executeQuery($userListQuery);
             <div class="row p-5">
                 <div class="col ">
                     <form class="d-flex py-5" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="search-bar form-control me-2" type="text" name="search" placeholder="Search"
+                            value="<?php echo $searchTerm ?>" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
 
@@ -94,27 +103,52 @@ $userListResult = executeQuery($userListQuery);
                                             <td><?php echo $userListRow['birthDate']; ?></td>
                                             <td><?php echo $userListRow['accountDate']; ?></td>
                                             <td>
-                                                <form method="POST">
-                                                    <input type="hidden" value="<?php echo $userListRow['userID']; ?>"
-                                                        name="userID">
-                                                    <button type="submit" class="btn btn-danger deletebtn" name="btnDelete">Delete</button>
-                                                </form>
+                                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                    data-bs-target="#deleteModal"
+                                                    onclick="setDeleteUserID(<?php echo $userListRow['userID']; ?>)">
+                                                    Delete
+                                                </button>
                                             </td>
                                         </tr>
                                         <?php
                                     }
                                 }
                                 ?>
-
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
+        <!-- Bootstrap Modal -->
+        <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you want to delete this user?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <form method="POST" action="">
+                            <input type="hidden" name="userID" id="deleteUserID">
+                            <button type="submit" class="btn btn-danger" name="btnDelete">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
-
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            function setDeleteUserID(userID) {
+                document.getElementById('deleteUserID').value = userID;
+            }
+        </script>
 </body>
 
 </html>

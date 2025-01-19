@@ -3,8 +3,19 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
-$feedbackQuery = "SELECT * FROM ratings LEFT JOIN users ON ratings.userID = users.userID LEFT JOIN items ON ratings.itemID = items.itemID WHERE users.role ='user';
-";
+$searchTerm = '';
+// ratings list
+$feedbackQuery = "SELECT * FROM ratings LEFT JOIN users ON ratings.userID = users.userID LEFT JOIN items ON ratings.itemID = items.itemID WHERE users.role = 'user'";
+
+// search rating
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    // clean injection
+    $searchTerm = str_replace('\'', '', $searchTerm);
+    $feedbackQuery .= " AND (users.username LIKE '%$searchTerm%' OR items.title LIKE '%$searchTerm%')";
+}
+
+// execute query
 $feedbackResult = executeQuery($feedbackQuery);
 
 ?>
@@ -54,7 +65,8 @@ $feedbackResult = executeQuery($feedbackQuery);
             <div class="row p-5">
                 <div class="col ">
                     <form class="d-flex py-5" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <input class="search-bar form-control me-2" type="text" name="search" placeholder="Search"
+                            value="<?php echo $searchTerm ?>" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <div class="table-responsive">
@@ -69,21 +81,21 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                                            if (mysqli_num_rows($feedbackResult) > 0) {
-                                                while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) {
-                                                
-                                            ?>
-                                                    <tr>
-                                                        <th scope="row"><?php echo $feedbackRow['title']; ?></th>
-                                                        <td><?php echo $feedbackRow['username']; ?></td>
-                                                        <td><?php echo $feedbackRow['review']; ?></td>
-                                                        <td><?php echo $feedbackRow['ratingValue']; ?></td>
-                                                    </tr>
-                                            <?php
-                                                }
-                                            }
-                                            ?>
+                                <?php
+                                if (mysqli_num_rows($feedbackResult) > 0) {
+                                    while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) {
+
+                                        ?>
+                                        <tr>
+                                            <th scope="row"><?php echo $feedbackRow['title']; ?></th>
+                                            <td><?php echo $feedbackRow['username']; ?></td>
+                                            <td><?php echo $feedbackRow['review']; ?></td>
+                                            <td><?php echo $feedbackRow['ratingValue']; ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
