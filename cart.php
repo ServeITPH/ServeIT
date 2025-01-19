@@ -62,7 +62,7 @@ $fetchProduct = executeQuery($productQuery);
     <link rel="stylesheet" href="assets/css/landing-page/style.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="stylesheet" href="assets/css/cart/cart.css">
-    <link rel="stylesheet" href="assets/css/profile/profile.css">
+    <!-- <link rel="stylesheet" href="assets/css/profile/profile.css"> -->
 
 
 </head>
@@ -123,8 +123,10 @@ $fetchProduct = executeQuery($productQuery);
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
                                             <button type="submit" class="btn btn-danger rounded-5 fs-6">Remove</button>
                                         </form>
-                                        <button type="button" class="btn rounded-5 ms-2 fs-6"
-                                            style="background-color: #19AFA5; color: black;">See More</button>
+                                        <a href="productInfo.php?itemID=<?php echo $fetchCartRow['itemID'] ?>">
+                                            <button type="button" class="btn rounded-5 ms-2 fs-6"
+                                                style="background-color: #19AFA5; color: black;">See More</button>
+                                        </a>
                                     </div>
                                 </div>
 
@@ -242,7 +244,7 @@ $fetchProduct = executeQuery($productQuery);
                             if (mysqli_num_rows($fetchService) > 0) {
                                 while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
                                     ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex mb-4">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
                                         <div class="serviceCard rounded mx-auto">
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -288,7 +290,7 @@ $fetchProduct = executeQuery($productQuery);
                             if (mysqli_num_rows($fetchProduct) > 0) {
                                 while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
                                     ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row mb-4">
+                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
                                         <div class="productCard rounded mx-auto">
                                             <div
                                                 class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -372,17 +374,23 @@ $fetchProduct = executeQuery($productQuery);
         </script>
 
         <script>
-            function showTab(tabName =) {
-                document.querySelectorAll('.tab-content').forEach(tab => {
+            function showTab(tabName) {
+                const tabContents = document.querySelectorAll('.tab-content');
+                tabContents.forEach(tab => {
                     tab.style.display = 'none';
                 });
-                document.querySelectorAll('.tab-btn').forEach(btn => {
-                    btn.classList.remove('active');
+
+                const tabButtons = document.querySelectorAll('.tab-btn');
+                tabButtons.forEach(button => {
+                    button.classList.remove('active');
                 });
+
                 document.getElementById(tabName).style.display = 'block';
-                event.target.classList.add('active');
+                const activeButton = document.querySelector(`.tab-btn[onclick="showTab('${tabName}')"]`);
+                activeButton.classList.add('active');
             }
         </script>
+
 
 </body>
 
