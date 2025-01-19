@@ -4,22 +4,32 @@ include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
 $searchTerm = '';
-// delete user
+$sortOrder = '';
+$filterField = '';
+
+// Delete user function
 if (isset($_POST['btnDelete']) && isset($_POST['userID'])) {
-    $deleteID = $_POST['userID']; 
+    $deleteID = $_POST['userID'];
     $deleteQuery = "DELETE FROM users WHERE userID = '$deleteID'";
     executeQuery($deleteQuery);
 }
 
-//User List
+// User List Query
 $userListQuery = "SELECT * FROM users WHERE role ='user'";
 
-// search users
+// Search users
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $searchTerm = $_GET['search'];
-    // clean injection
+    // Clean injection
     $searchTerm = str_replace('\'', '', $searchTerm);
     $userListQuery .= " AND (username LIKE '%$searchTerm%' OR email LIKE '%$searchTerm%' OR phoneNumber LIKE '%$searchTerm%')";
+}
+
+// Sort functionality
+if (isset($_GET['filterField']) && !empty($_GET['filterField']) && isset($_GET['sortOrder']) && !empty($_GET['sortOrder'])) {
+    $filterField = $_GET['filterField'];
+    $sortOrder = $_GET['sortOrder'];
+    $userListQuery .= " ORDER BY $filterField $sortOrder";
 }
 
 $userListResult = executeQuery($userListQuery);
@@ -65,17 +75,45 @@ $userListResult = executeQuery($userListQuery);
             <h1><b>MANAGE USERS</b></h1>
         </div>
 
-
-
         <div class="container">
             <div class="row p-5">
-                <div class="col ">
-                    <form class="d-flex py-5" role="search">
-                        <input class="search-bar form-control me-2" type="text" name="search" placeholder="Search"
-                            value="<?php echo $searchTerm ?>" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                <div class="col">
+                    <!-- Search and Filter Form -->
+                    <form class="row g-3 py-5" role="search" method="GET" action="">
+                        <!-- Search Bar -->
+                        <div class="col-md-6">
+                            <input class="form-control" type="text" name="search" placeholder="Search by Username, Email, Phone"
+                                value="<?php echo $searchTerm ?>" aria-label="Search">
+                        </div>
+
+                        <!-- Sort Field -->
+                        <div class="col-md-3">
+                            <select class="form-select" name="filterField" aria-label="Sort By">
+                                <option value="">Sort By</option>
+                                <option value="username" <?php echo ($filterField == 'username') ? 'selected' : ''; ?>>Username</option>
+                                <option value="email" <?php echo ($filterField == 'email') ? 'selected' : ''; ?>>Email</option>
+                                <option value="accountDate" <?php echo ($filterField == 'accountDate') ? 'selected' : ''; ?>>Account Creation</option>
+                                <option value="birthDate" <?php echo ($filterField == 'birthDate') ? 'selected' : ''; ?>>Birthdate</option>
+                                <option value="phoneNumber" <?php echo ($filterField == 'phoneNumber') ? 'selected' : ''; ?>>Phone Number</option>
+                            </select>
+                        </div>
+
+                        <!-- Sort Order -->
+                        <div class="col-md-2">
+                            <select class="form-select" name="sortOrder" aria-label="Sort Order">
+                                <option value="">Order</option>
+                                <option value="ASC" <?php echo ($sortOrder == 'ASC') ? 'selected' : ''; ?>>Ascending</option>
+                                <option value="DESC" <?php echo ($sortOrder == 'DESC') ? 'selected' : ''; ?>>Descending</option>
+                            </select>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="col-md-1 text-end">
+                            <button class="btn btn-outline-success" type="submit">Apply</button>
+                        </div>
                     </form>
 
+                    <!-- Users Table -->
                     <div class="table-responsive">
                         <table class="table table-secondary table-striped">
                             <thead>
@@ -93,7 +131,6 @@ $userListResult = executeQuery($userListQuery);
                                 <?php
                                 if (mysqli_num_rows($userListResult) > 0) {
                                     while ($userListRow = mysqli_fetch_assoc($userListResult)) {
-
                                         ?>
                                         <tr>
                                             <th scope="row"><?php echo $userListRow['userID']; ?></th>
@@ -112,6 +149,9 @@ $userListResult = executeQuery($userListQuery);
                                         </tr>
                                         <?php
                                     }
+                                } else {
+                                    //If NO results found
+                                    echo "<tr><td colspan='7' class='text-center'>No users found.</td></tr>";
                                 }
                                 ?>
                             </tbody>
@@ -120,6 +160,7 @@ $userListResult = executeQuery($userListQuery);
                 </div>
             </div>
         </div>
+
         <!-- Bootstrap Modal -->
         <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -141,7 +182,7 @@ $userListResult = executeQuery($userListQuery);
                 </div>
             </div>
         </div>
->
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 
         <script>

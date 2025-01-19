@@ -11,7 +11,7 @@ $sortOrder = '';
 $filterType = '';
 
 // Feedback Queries
-$feedbackQuery = "SELECT ratings.*, users.username, items.title, items.type FROM ratings 
+$feedbackQuery = "SELECT * FROM ratings 
 LEFT JOIN users ON ratings.userID = users.userID 
 LEFT JOIN items ON ratings.itemID = items.itemID 
 WHERE users.role = 'user'";
