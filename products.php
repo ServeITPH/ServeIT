@@ -113,14 +113,18 @@ $productFilterResult = executeQuery($productFilterQuery);
                 <div class="col-lg-2 col-md-4 col-sm-8 col-4 d-flex justify-content-center align-items-center pt-3">
                     <select id="sort" name="sort" class="sort form-control">
                         <option value="">None</option>
-                        <option <?php if ($sort == "title") echo "selected"; ?> value="title">Title</option>
-                        <option <?php if ($sort == "price") echo "selected"; ?> value="price">Price</option>
+                        <option <?php if ($sort == "title")
+                            echo "selected"; ?> value="title">Title</option>
+                        <option <?php if ($sort == "price")
+                            echo "selected"; ?> value="price">Price</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-sm-8 col-4 d-flex justify-content-center align-items-center pt-3">
                     <select id="order" name="order" class="order form-control">
-                        <option <?php if ($order == "ASC") echo "selected"; ?> value="ASC">Ascending</option>
-                        <option <?php if ($order == "DESC") echo "selected"; ?> value="DESC">Descending</option>
+                        <option <?php if ($order == "ASC")
+                            echo "selected"; ?> value="ASC">Ascending</option>
+                        <option <?php if ($order == "DESC")
+                            echo "selected"; ?> value="DESC">Descending</option>
                     </select>
                 </div>
 
@@ -175,18 +179,37 @@ $productFilterResult = executeQuery($productFilterQuery);
             <div class="col">
                 <nav aria-label="pageNavigation">
                     <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="" aria-label="Previous">
+                        <li class="page-item" onclick="previousPage()">
+                            <a class="page-link" href="#" aria-label="Previous">
                                 <img src="assets/images/about/prev.png" alt="Previous">
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">5</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="" aria-label="Next">
+                        <li class="page-item" onclick="goToPage(1)">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(2)">
+                            <a class="page-link" href="#">2</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(3)">
+                            <a class="page-link" href="#">3</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(4)">
+                            <a class="page-link" href="#">4</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(5)">
+                            <a class="page-link" href="#">5</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(6)">
+                            <a class="page-link" href="#">6</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(7)">
+                            <a class="page-link" href="#">7</a>
+                        </li>
+                        <li class="page-item" onclick="goToPage(8)">
+                            <a class="page-link" href="#">8</a>
+                        </li>
+                        <li class="page-item" onclick="nextPage()">
+                            <a class="page-link" href="#" aria-label="Next">
                                 <img src="assets/images/about/next.png" alt="Next">
                             </a>
                         </li>
@@ -198,6 +221,7 @@ $productFilterResult = executeQuery($productFilterQuery);
 
     <!-- smpayment -->
     <?php include("sharedAssets/smpayment.php"); ?>
+
     <!-- footer -->
     <?php include("sharedAssets/footer.php") ?>
 
@@ -214,6 +238,67 @@ $productFilterResult = executeQuery($productFilterQuery);
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <script>
+        var page = 1;
+        var cardsPerPage = 12;
+        var totalProductCards = document.getElementsByClassName('productCard').length;
+        var totalPages = Math.ceil(totalProductCards / cardsPerPage);
+
+        function goToPage(pageNumber) {
+            if (pageNumber >= 1 && pageNumber <= totalPages) {
+                page = pageNumber;
+                updatePage();
+            }
+        }
+
+        function nextPage() {
+            if (page < totalPages) {
+                page += 1;
+                updatePage();
+            }
+        }
+
+        function previousPage() {
+            if (page > 1) {
+                page -= 1;
+                updatePage();
+            }
+        }
+
+        function updatePage() {
+            var allProductCards = document.getElementsByClassName('productCard');
+            var startIndex = (page - 1) * cardsPerPage;
+            var endIndex = page * cardsPerPage;
+
+            for (var i = 0; i < allProductCards.length; i++) {
+                allProductCards[i].style.display = 'none';
+            }
+
+            for (var i = startIndex; i < endIndex && i < allProductCards.length; i++) {
+                allProductCards[i].style.display = 'block';
+            }
+
+            updatePagination();
+        }
+
+        function updatePagination() {
+            var paginationItems = document.getElementById('pagination').getElementsByClassName('page-item');
+
+            for (var i = 0; i < paginationItems.length - 2; i++) {
+                var pageNum = i + 1;
+                if (pageNum === page) {
+                    paginationItems[i + 1].classList.add('active');
+                } else {
+                    paginationItems[i + 1].classList.remove('active');
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            updatePage();
+        });
+    </script>
+    
 </body>
 
 </html>
