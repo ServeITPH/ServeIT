@@ -3,6 +3,8 @@
 include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
+$page = "Services";
+include("sharedAssets/counter.php");
 
 $searchTerm = '';
 $categoryNameFilter = isset($_GET['category']) ? $_GET['category'] : '';
@@ -97,7 +99,7 @@ $serviceListResult = executeQuery($serviceListQuery);
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
-                ?>
+            ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
@@ -124,7 +126,7 @@ $serviceListResult = executeQuery($serviceListQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
 
@@ -250,7 +252,7 @@ $serviceListResult = executeQuery($serviceListQuery);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             updatePage();
         });
     </script>

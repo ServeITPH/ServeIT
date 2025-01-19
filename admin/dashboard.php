@@ -6,7 +6,7 @@ session_start();
 if (isset($_POST['btnDelete'])) {
     $deleteID = $_POST['itemID'];
     $deleteType = $_POST['type'];
-    $deleteQuery = "DELETE FROM items WHERE type = '$deleteType' AND userID = '$deleteID'";
+    $deleteQuery = "DELETE FROM items WHERE type = '$deleteType' AND itemID = '$deleteID'";
     executeQuery($deleteQuery);
 }
 
@@ -79,6 +79,15 @@ while ($userCountRow = mysqli_fetch_assoc($userCountResult)) {
     $userCount = $userCountRow['userCount'];
 }
 
+// Sales Count
+$salesCountQuery = "SELECT COUNT(transactionID) AS salesCount FROM transactions WHERE paymentStatus ='PAID'";
+$salesCountResult = executeQuery($salesCountQuery);
+$salesCount = 0;
+
+while ($salesCountRow = mysqli_fetch_assoc($salesCountResult)) {
+    $salesCount = $salesCountRow['salesCount'];
+}
+
 //Service List
 $serviceGetQuery = "SELECT * FROM items WHERE type ='service'";
 $serviceGetResult = executeQuery($serviceGetQuery);
@@ -86,6 +95,9 @@ $serviceGetResult = executeQuery($serviceGetQuery);
 //Product List
 $productGetQuery = "SELECT * FROM items WHERE type ='product'";
 $productGetResult = executeQuery($productGetQuery);
+
+
+
 
 ?>
 <!doctype html>
@@ -127,7 +139,7 @@ $productGetResult = executeQuery($productGetQuery);
                 </div>
                 <div class="container text-center mb-5">
                     <div class="row justify-content-center">
-                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Services</p>
@@ -135,7 +147,7 @@ $productGetResult = executeQuery($productGetQuery);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 mb-3 ">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3 ">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Products</p>
@@ -143,7 +155,7 @@ $productGetResult = executeQuery($productGetQuery);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Users</p>
@@ -151,23 +163,29 @@ $productGetResult = executeQuery($productGetQuery);
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-sm-6 col-md-3 mb-3">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mb-3">
                             <div class="card rounded-5">
                                 <div class="card-body rounded-5">
                                     <p class="h2 statistics-custom">Sales</p>
-                                    <p class="h3">#</p>
+                                    <p class="h3"><?php echo $salesCount ?></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- graph -->
-                <div class="container">
+                <div class="col">
+                    <div class="py-2 text-center">
+                        <h1><b>VISITS</b></h1>
+                    </div>
+                </div>
+                <div class="container pt-2">
                     <div class="col">
                         <?php include("adminAssets/graph.php") ?>
                     </div>
                 </div>
                 <br>
+
 
                 <div class="col py-5 text-center">
                     <h1><b>SERVICES</b></h1>
@@ -207,16 +225,16 @@ $productGetResult = executeQuery($productGetQuery);
                                                             <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
                                                             <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
                                                             <td>
-                                                                <input type="file" name="newAttachment" class="form-control" style="max-width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                                <input type="file" name="newAttachment" class="form-control" style="width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title" value="<?php echo $serviceGetRow['title']; ?>" class="form-control">
+                                                                <input type="text" name="title" value="<?php echo $serviceGetRow['title']; ?>" class="form-control" style="width:280px">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="shortDescription" value="<?php echo $serviceGetRow['shortDescription']; ?>" class="form-control">
+                                                                <input type="text" name="shortDescription" value="<?php echo $serviceGetRow['shortDescription']; ?>" class="form-control" style="width:280px">
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="price" value="<?php echo $serviceGetRow['price']; ?>" class="form-control" style="max-width: 80px;">
+                                                                <input type="number" name="price" value="<?php echo $serviceGetRow['price']; ?>" class="form-control" style="width: 80px;">
                                                             </td>
                                                             <!-- Hidden inputs -->
                                                             <td style="display: none;">
@@ -229,7 +247,7 @@ $productGetResult = executeQuery($productGetQuery);
                                                                 <button type="submit" name="btnSave" class="btn btn-success">Save</button>
                                                             </td>
                                                             <td>
-                                                                <button type="submit" name="btnDeleteService" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" name="btnDelete" class="btn btn-danger">Delete</button>
                                                             </td>
                                                         </tr>
                                                     </form>
@@ -251,7 +269,7 @@ $productGetResult = executeQuery($productGetQuery);
                 <div class="col py-5 text-center">
                     <h1><b style="color: #000000;">PRODUCTS</b></h1>
                     <!-- table -->
-                    <div class="container">
+                    <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-10">
                                 <form class="d-flex py-5" role="search">
@@ -285,19 +303,19 @@ $productGetResult = executeQuery($productGetQuery);
                                                             <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
                                                             <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
                                                             <td>
-                                                                <input type="file" name="newAttachment" class="form-control" style="max-width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                                <input type="file" name="newAttachment" class="form-control" style="width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title" value="<?php echo $productGetRow['title']; ?>" class="form-control">
+                                                                <input type="text" name="title" value="<?php echo $productGetRow['title']; ?>" class="form-control" style="width: 300px;">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="shortDescription" value="<?php echo $productGetRow['shortDescription']; ?>" class="form-control">
+                                                                <input type="text" name="shortDescription" value="<?php echo $productGetRow['shortDescription']; ?>" class="form-control" style="width: 280px;">
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="price" value="<?php echo $productGetRow['price']; ?>" class="form-control" style="max-width: 80px;">
+                                                                <input type="number" name="price" value="<?php echo $productGetRow['price']; ?>" class="form-control" style="width: 80px;">
                                                             </td>
                                                             <!-- Hidden inputs -->
-                                                            <td style="display: none;">
+                                                            <td style=" display: none;">
                                                                 <input type="hidden" name="type" value="<?php echo $productGetRow['type']; ?>">
                                                                 <input type="hidden" name="itemID" value="<?php echo $productGetRow['itemID']; ?>">
                                                                 <input type="hidden" name="existingAttachment" value="<?php echo $productGetRow['attachment']; ?>">
@@ -307,7 +325,7 @@ $productGetResult = executeQuery($productGetQuery);
                                                                 <button type="submit" name="btnSave" class="btn btn-success">Save</button>
                                                             </td>
                                                             <td>
-                                                                <button type="submit" name="btnDeleteService" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" name="btnDelete" class="btn btn-danger">Delete</button>
                                                             </td>
                                                         </tr>
                                                     </form>
@@ -329,8 +347,6 @@ $productGetResult = executeQuery($productGetQuery);
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Handle editable table -->
-    <script src="adminAssets/js/script.js"></script>
 </body>
 
 </html>

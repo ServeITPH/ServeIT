@@ -1,15 +1,22 @@
 <?php
 
 include("sharedAssets/connect.php");
+
 include("assets/php/about/aboutContent.php");
+
 
 session_start();
 
 $userID = $_SESSION['userID'];
 $role = $_SESSION['role'];
+$page = "HOME";
 
 if ($userID == "") {
     header("Location: login.php");
+}
+
+if ($role == "user") {
+    include("sharedAssets/counter.php");
 }
 
 if ($role == "admin") {
@@ -182,7 +189,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="row d-flex justify-content-center align-items-center">
             <?php
             while ($newArrivalRow = mysqli_fetch_assoc($newArrivalResult)) {
-                ?>
+            ?>
 
                 <div class="col d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -209,7 +216,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -255,19 +262,19 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="services-container row">
             <?php
             while ($serviceTitleRow = mysqli_fetch_assoc($serviceTitleResult)) {
-                ?>
+            ?>
                 <div class="col-12 col-md-4 my-4">
                     <div class="row">
                         <div class="services-title text-center">
                             <?php
-                         $title = $serviceTitleRow['title']; 
-                         $titleParts = explode(' ', $title); 
-                         if (count($titleParts) >= 2) {
-                             $limitedTitle = ' <span style=" color: #19AFA5;"> ' . $titleParts[0] . '</span>' . ' ' . $titleParts[1];
-                             echo $limitedTitle;
-                         } else {
-                             echo $title; 
-                         }
+                            $title = $serviceTitleRow['title'];
+                            $titleParts = explode(' ', $title);
+                            if (count($titleParts) >= 2) {
+                                $limitedTitle = ' <span style=" color: #19AFA5;"> ' . $titleParts[0] . '</span>' . ' ' . $titleParts[1];
+                                echo $limitedTitle;
+                            } else {
+                                echo $title;
+                            }
                             ?>
                         </div>
                     </div>
@@ -315,19 +322,19 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
 
                     <?php
                     while ($productTitleRow = mysqli_fetch_assoc($productTitleResult)) {
-                        ?>
+                    ?>
                         <div class="col-12 col-md-4 my-4">
                             <div class="row">
                                 <div class="services-title text-center">
                                     <div class="services-title text-center">
                                         <?php
-                                        $title = $productTitleRow['title']; 
-                                        $titleParts = explode(' ', $title); 
+                                        $title = $productTitleRow['title'];
+                                        $titleParts = explode(' ', $title);
                                         if (count($titleParts) >= 2) {
                                             $limitedTitle = ' <span style=" color: #19AFA5;"> ' . $titleParts[0] . '</span>' . ' ' . $titleParts[1];
                                             echo $limitedTitle;
                                         } else {
-                                            echo $title; 
+                                            echo $title;
                                         }
                                         ?>
                                     </div>
