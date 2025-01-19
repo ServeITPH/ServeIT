@@ -57,7 +57,7 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
         <div class="row d-flex justify-content-center ">
             <div class="card rounded-5 wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <div class="card-title">HELP CENTER</div>
-                <p class="card-body">
+                <p class="card-body text-center">
                     At ServeIT, our Help Center is built to provide you with the support and guidance you need, whenever
                     you need it. Designed with accessibility and ease in mind, we’re here to answer your questions,
                     resolve your concerns, and connect you with the right solutions. Whether you're exploring services,

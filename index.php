@@ -94,7 +94,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     YOUR GETAWAY TO MULTITALENTED <span style=" color: #19AFA5 ">SOLUTIONS</span>
                 </div>
                 <div class="banner-subtitle px-5">
-                    Effortlessly connect with top-tier sellers, browse a wide range of services, and achieve your goals
+                    Effortlessly browse a wide range of services, and achieve your goals
                     with ease. Designed for clients and sellers, all in one secure and seamless platform.
                 </div>
 
@@ -143,7 +143,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                         AVAILABLE PRODUCT</span>
                     </div>
                     <div class="subtitle">
-                        Total inventory of products currently listed and in stock on the website.
+                        Total count of products currently listed and in stock on the website.
                     </div>
                 </div>
 
@@ -169,7 +169,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     <span style=" color: #19AFA5 ">New </span>Arrivals
                 </div>
                 <div class="subtitle text-center">
-                    Get ready to be amazed by our latest arrivals! Fresh styles, innovative products, and exclusive
+                    Get ready to be amazed by our latest arrivals! Fresh styles, exciting products, and exclusive
                     deals all waiting for you. Discover the perfect addition to your collection today and stay ahead of
                     the trends. Your next favorite item is just a click away!
                 </div>

@@ -74,10 +74,10 @@ $userListResult = executeQuery($userListQuery);
                                     <th scope="col">User ID</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Email</th>
-                                    <th scope="col">Phone Num.</th>
+                                    <th scope="col">Phone Number</th>
                                     <th scope="col">Birthdate</th>
-                                    <th scope="col">Acoount Date</th>
-                                    <th scope="col">Acoount Date</th>
+                                    <th scope="col">Account Date</th>
+                                    <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody>

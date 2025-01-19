@@ -64,7 +64,7 @@ include("adminAssets/user.php");
             <div class="col-12 col-md-3 mb-3">
                 <div class="card rounded-5 chatBox">
                     <div class="row p-2" style="background-color: black;">
-                        <div class="ps-3">
+                        <div class="ps-4">
                             <span class="h4" style="color: #19afa5;">Chats</span>
                         </div>
                     </div>
@@ -89,7 +89,7 @@ include("adminAssets/user.php");
             <div class="col-12 col-md-9 mb-3">
                 <div class="card rounded-5 chatBox">
                     <div class="row p-2" style="background-color: black;">
-                        <div class="ps-3">
+                        <div class="ps-4">
                             <span class="h4" style="color: #19afa5;">Full Name</span>
                         </div>
                     </div>
