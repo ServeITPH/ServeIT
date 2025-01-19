@@ -1,66 +1,133 @@
 .mainRow {
-    height: 50vh;
-    background-color: #ffffff;
+  height: 50vh;
+  background-color: #ffffff;
 }
-
 
 .card {
-    height: 100%;
-    border: 1px solid black;
-    border-radius: 5px;
+  height: 100%;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 .chatBox {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .mainContainer {
-    height: 100%;
+  height: 100%;
 }
 
 .chatInput {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .chatTextBox {
-    border-radius: 100px 0px 0px 100px;
+  border-radius: 100px 0px 0px 100px;
 }
 
 .send-btn-img,
 .attachment-btn-img {
-    width: 45px;
-    height: 45px;
-    cursor: pointer;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
 }
 
-
 .search-box {
-    margin-bottom: 15px;
-    border-radius: 40px;
+  margin-bottom: 15px;
+  border-radius: 40px;
 }
 
 .input-group .form-control {
-    border-radius: 40px 0 0 40px; 
-    border: 1px solid black;
+  border-radius: 40px 0 0 40px;
+  border: 1px solid black;
 }
 
 .input-group .input-group-text {
-    border-radius: 0 40px 40px 0;
-    background:black; 
-    color:#ffffff;
-    border: 1px solid black;
+  border-radius: 0 40px 40px 0;
+  background: black;
+  color: #ffffff;
+  border: 1px solid black;
 }
 .see-more-btn-img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .see-more-btn-link {
-    float: right;
-    margin-left: 15px; 
+  float: right;
+  margin-left: 15px;
+}
+
+.mainRow {
+  height: 100vh;
+}
+
+.card {
+  height: 100%;
+}
+
+.chatBox {
+  overflow: hidden;
+}
+
+.mainContainer {
+  height: 100%;
+}
+
+.chatInput {
+  width: 100%;
+  height: auto;
+}
+
+.chatTextBox {
+  border-radius: 100px 0px 0px 100px;
+}
+
+.btnSendChat {
+  border-radius: 0px 100px 100px 0px;
+}
+
+.chatbubble-own-container {
+  width: 100%;
+}
+
+.chatbubble-own {
+  background-color: #19afa5;
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  margin: 3px 10px 3px 10px;
+  width: fit-content;
+  margin-left: auto;
+  max-width: 50%;
+  color: #222222;
+}
+
+.chatbubble-other {
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  margin: 3px 10px 3px 10px;
+  width: fit-content;
+  max-width: 50%;
+  border: 1px solid #222222;
+  background-color: white;
+  color: #222222;
+}
+
+.information {
+  font-size: 8px;
+  color: #d0d0d0;
+  margin: 0px 10px 5px 10px;
+}
+
+.information-own {
+  font-size: 8px;
+  color: #d0d0d0;
+  margin: 0px 10px 5px 10px;
+  margin-left: auto;
+  width: fit-content;
 }

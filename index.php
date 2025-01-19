@@ -9,7 +9,7 @@ session_start();
 
 $userID = $_SESSION['userID'];
 $role = $_SESSION['role'];
-$page = "HOME";
+$page = "Home";
 
 if ($userID == "") {
     header("Location: login.php");

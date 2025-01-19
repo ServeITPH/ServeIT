@@ -7,7 +7,7 @@ include("admin/adminAssets/user.php");
 $userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : '';
 $productInfoID = isset($_GET['itemID']) ? $_GET['itemID'] : '';
 
-// Check if user has already given feedback for this product
+// Check if user has already given feedback
 $checkFeedbackQuery = "SELECT * FROM ratings WHERE userID = '$userID' AND itemID = '$productInfoID'";
 $checkFeedbackResult = executeQuery($checkFeedbackQuery);
 
