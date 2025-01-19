@@ -86,44 +86,46 @@ if ($userID == "") {
     </div>
 
     <!-- Meet the Team -->
-    <div class="container wow animate__animated animate__fadeInUp" style=" justify-content: center;  display: flex;">
-        <div class="row">
-            <div class="col">
-                <h5 class="team-title">Meet the Team</h5>
+    <div class="team text-center py-5 wow animate__animated animate__fadeInUp">
+        <div class="container">
+            <div class="team-title">Meet the Team</div>
+            <div style="margin-top: 30px;">
                 <?php
                 include("assets/php/about/carousel.php");
                 ?>
             </div>
-
-            <!-- Connect with team -->
-            <div class="links text-center py-5">
-                <div class="container wow animate__animated animate__fadeInUp">
-                    <div class="line mb-4"></div>
-                    <h2 class="team-title">More Ways to Connect With Our Team</h2>
-                    <p class="card-textBlack" style="display: flex; justify-content: center; text-align: center;">
-                        <?php echo $connect; ?>
-                    </p>
-                    <?php include("assets/php/about/links.php"); ?>
-                </div>
-            </div>
         </div>
+    </div>
 
-        <!-- smpayment -->
-        <?php
-        include("sharedAssets/smpayment.php"); ?>
+    <!-- Connect with team -->
+    <div class="links text-center py-5">
+        <div class="container wow animate__animated animate__fadeInUp">
+            <div class="line mb-4"></div>
+            <h2 class="team-title">More Ways to Connect With Our Team</h2>
+            <p class="card-textBlack" style="display: flex; justify-content: center; text-align: center;">
+                <?php echo $connect; ?>
+            </p>
+            <?php include("assets/php/about/links.php"); ?>
+        </div>
+    </div>
+    </div>
 
-        <!-- footer -->
-        <?php include("sharedAssets/footer.php") ?>
+    <!-- smpayment -->
+    <?php
+    include("sharedAssets/smpayment.php"); ?>
 
-        <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-        <script>
-            new WOW({
-                offset: 200,
-                mobile: true,
-            }).init();
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-            crossorigin="anonymous"></script>
+    <!-- footer -->
+    <?php include("sharedAssets/footer.php") ?>
+
+    <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW({
+            offset: 200,
+            mobile: true,
+        }).init();
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
 </body>

@@ -43,7 +43,7 @@ $teamMembers = [
     ["Barqueros, Scharizze Ann", "assets/images/about/dev3.png", "https://scharizzeannbarqueros.github.io/"],
     ["Endaya, Allen Benedict", "assets/images/about/dev4.jpg", "https://onlyteyl.github.io/"],
     ["Idanan, Mark Tristan", "assets/images/about/dev5.png", "https://marktristan25.github.io/"],
-    ["Malabag Zielco Cloei", "assets/images/about/dev6.png", "https://zielcocloei.github.io"],
+    ["Malabag, Zielco Cloei", "assets/images/about/dev6.png", "https://zielcocloei.github.io"],
     ["Mauricio, Brandon Areej", "assets/images/about/dev7.png", "https://brandon-adm.github.io/"],
     ["Melitante, Daniel", "assets/images/about/dev8.jpg", "https://le1nad-prog.github.io"],
     ["Milorin, Ken Aeron", "assets/images/about/dev9.png", "https://karmken.github.io/"]
