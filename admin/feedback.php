@@ -45,6 +45,10 @@ if (isset($_GET['sortOrder']) && !empty($_GET['sortOrder'])) {
     }
 }
 
+// Ascending arrangement title items option
+$itemQuery = "SELECT DISTINCT itemID, title FROM items ORDER BY title ASC";
+$itemResult = executeQuery($itemQuery);
+
 $feedbackResult = executeQuery($feedbackQuery);
 
 ?>
@@ -58,10 +62,14 @@ $feedbackResult = executeQuery($feedbackQuery);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 
+    <!-- css -->
     <link rel="stylesheet" href="adminAssets/css/nav/nav.css">
+    <!-- tab icon -->
     <link rel="icon" href="../assets/images/nav/logo-nav.png">
+    <!-- font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <!-- icons -->
     <link rel='stylesheet'
         href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
@@ -110,18 +118,16 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                         <!-- Filter by Items -->
                         <div class="col-md-2">
-                            <select class="form-select" name="filterItemID" aria-label="Filter by ItemID">
+                            <select class="form-select" name="filterItemID" aria-label="Filter by Item">
                                 <option value="">All Items</option>
-                                <?php
-                                $itemQuery = "SELECT DISTINCT itemID, title FROM items";
-                                $itemResult = executeQuery($itemQuery);
-                                while ($itemRow = mysqli_fetch_assoc($itemResult)) {
-                                    $selected = ($filterItemID == $itemRow['itemID']) ? 'selected' : '';
-                                    echo "<option value='" . ($itemRow['itemID']) . "' $selected>" . ($itemRow['title']) . "</option>";
-                                }
-                                ?>
-                            </select>
-                        </div>
+                                <?php while ($itemRow = mysqli_fetch_assoc($itemResult)) : ?>
+                                <option value="<?php echo $itemRow['itemID']; ?>" 
+                           <?php echo ($filterItemID == $itemRow['itemID']) ? 'selected' : ''; ?>>
+                        <?php echo $itemRow['title']; ?>
+                     </option>
+                   <?php endwhile; ?>
+                </select>
+            </div>
 
                         <!-- Sort Order -->
                         <div class="col-md-2">
@@ -158,10 +164,10 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) {
                                         ?>
                                         <tr>
-                                            <th scope="row"><?php echo ($feedbackRow['title']); ?></th>
-                                            <td><?php echo ($feedbackRow['username']); ?></td>
-                                            <td><?php echo ($feedbackRow['review']); ?></td>
-                                            <td><?php echo ($feedbackRow['ratingValue']); ?></td>
+                                            <th scope="row"><?php echo $feedbackRow['title']; ?></th>
+                                            <td><?php echo $feedbackRow['username']; ?></td>
+                                            <td><?php echo $feedbackRow['review']; ?></td>
+                                            <td><?php echo $feedbackRow['ratingValue']; ?></td>
                                         </tr>
                                         <?php
                                     }
