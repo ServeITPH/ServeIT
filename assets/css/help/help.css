@@ -15,7 +15,7 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("assets/images/about/bg.png");
+    background-image: url("assets/images/helpCenter/bg.png");
     background-size: cover;
     filter: blur(5px);
     z-index: -1;
@@ -121,13 +121,7 @@ body::before {
         padding-right: 5vh;
     }
 }
-@media (max-width: 767px) {
-    .card-body {
-        font-size: 12px;
-        padding-left: 5vh;
-        padding-right: 5vh;
-    }
-}
+
 
 @media (max-width: 767px) {
     .header {

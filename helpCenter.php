@@ -1,7 +1,5 @@
 <?php
-// if ($userID == "") {
-//     header("Location: login.php");
-// }
+
 
 include("sharedAssets/connect.php");
 include("admin/adminAssets/user.php");
@@ -10,20 +8,19 @@ include("assets/php/help/classes.php");
 if ($userID == "") {
     header("Location: login.php");
 }
+$categories = ['Products', 'Account', 'Payment', 'Customer Support', 'Services'];
+$categoriesList = "'" . implode("','", $categories) . "'";
 
-$faqsLists = array();
-
-$faqsListsQuery = "SELECT * FROM faqs";
+// Fetch FAQ data
+$faqsListsQuery = "SELECT * FROM faqs WHERE category IN ($categoriesList)";
 $faqsListsResult = executeQuery($faqsListsQuery);
-while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
-    $question = new FAQ(
-        $faqsListsRow["question"],
-        $faqsListsRow["answer"],
-    );
-
-    array_push($faqsLists, $question);
+$faqsRows = [];
+while ($row = mysqli_fetch_array($faqsListsResult)) {
+    $faqsRows[] = $row;
 }
 
+// Group FAQs by category using the FAQ class
+$faqsByCategory = FAQ::groupByCategory($faqsRows);
 ?>
 
 <head>
@@ -46,7 +43,7 @@ while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
     <link rel="stylesheet" href="assets/css/nav/nav.css">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="icon" href="assets/images/nav/logo-nav.png">
-    <link rel="stylesheet" href="assets/css/help/styles.css">
+    <link rel="stylesheet" href="assets/css/help/help.css">
 
 
 
@@ -89,15 +86,13 @@ while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
             <div class="row">
                 <div class="title-question">Frequently asked questions</div>
             </div>
-            <?php
-            foreach ($faqsLists as $question) {
-                echo $question->FAQContent();
-            }
-            ?>
+            <?php foreach ($faqsByCategory as $category => $faqs): ?>
+                <?= FAQ::renderCategory($category, $faqs) ?>
+            <?php endforeach; ?>
         </div>
     </div>
 
-    
+
 
 
     <!-- footer -->
@@ -111,8 +106,6 @@ while ($faqsListsRow = mysqli_fetch_array($faqsListsResult)) {
     <script src="js/wow.min.js"></script>
 
     <script>
-        var display = "none";
-
         function expandContent(button) {
             const information = button.nextElementSibling;
             const img = button.querySelector('img');
