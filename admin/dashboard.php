@@ -3,6 +3,9 @@ include("../sharedAssets/connect.php");
 
 session_start();
 
+$searchProductTerm = '';
+$searchServiceTerm = '';
+
 if (isset($_POST['btnDelete'])) {
     $deleteID = $_POST['itemID'];
     $deleteType = $_POST['type'];
@@ -90,14 +93,29 @@ while ($salesCountRow = mysqli_fetch_assoc($salesCountResult)) {
 
 //Service List
 $serviceGetQuery = "SELECT * FROM items WHERE type ='service'";
-$serviceGetResult = executeQuery($serviceGetQuery);
+
+
+
+
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchServiceTerm = $_GET['search'];
+    $searchServiceTerm = str_replace('\'', '', $searchServiceTerm);
+    $serviceGetQuery .= " AND (title LIKE '%$searchServiceTerm%' OR shortDescription LIKE '%$searchServiceTerm%' OR categoryName LIKE '%$searchServiceTerm%')";
+}
+
 
 //Product List
 $productGetQuery = "SELECT * FROM items WHERE type ='product'";
+
+
+if (isset($_GET['searchProduct']) && !empty($_GET['searchProduct'])) {
+    $searchProductTerm = $_GET['searchProduct'];
+    $searchProductTerm = str_replace('\'', '', $searchProductTerm);
+    $productGetQuery .= " AND (title LIKE '%$searchProductTerm%' OR shortDescription LIKE '%$searchProductTerm%' OR categoryName LIKE '%$searchProductTerm%')";
+}
+
+$serviceGetResult = executeQuery($serviceGetQuery);
 $productGetResult = executeQuery($productGetQuery);
-
-
-
 
 ?>
 <!doctype html>
@@ -193,10 +211,12 @@ $productGetResult = executeQuery($productGetQuery);
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-10">
-                                <form class="d-flex py-5" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
+                                <form method="GET" class="d-flex py-5" role="search">
+
+                                    <input class="form-control" type="text" name="search"
+                                        placeholder="Search Service" value="<?php echo $searchServiceTerm ?>"
                                         aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                        <button class="btn btn-outline-success" type="submit" name="btnSearchService">Search</button>
                                 </form>
 
                                 <div class="table-responsive">
@@ -219,39 +239,53 @@ $productGetResult = executeQuery($productGetQuery);
                                             if (mysqli_num_rows($serviceGetResult) > 0) {
                                                 while ($serviceGetRow = mysqli_fetch_assoc($serviceGetResult)) {
 
-                                            ?>
+                                                    ?>
                                                     <form method="POST" enctype="multipart/form-data">
                                                         <tr>
                                                             <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
-                                                            <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                            <td><img src="../assets/images/items/<?php echo $serviceGetRow['attachment']; ?>"
+                                                                    alt="Product Image" style="width:100px"></td>
                                                             <td>
-                                                                <input type="file" name="newAttachment" class="form-control" style="width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                                <input type="file" name="newAttachment" class="form-control"
+                                                                    style="width: 100px; min-height: 30px; padding: 3px;">
+                                                                <!-- File input for new image -->
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title" value="<?php echo $serviceGetRow['title']; ?>" class="form-control" style="width:280px">
+                                                                <input type="text" name="title"
+                                                                    value="<?php echo $serviceGetRow['title']; ?>"
+                                                                    class="form-control" style="width:280px">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="shortDescription" value="<?php echo $serviceGetRow['shortDescription']; ?>" class="form-control" style="width:280px">
+                                                                <input type="text" name="shortDescription"
+                                                                    value="<?php echo $serviceGetRow['shortDescription']; ?>"
+                                                                    class="form-control" style="width:280px">
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="price" value="<?php echo $serviceGetRow['price']; ?>" class="form-control" style="width: 80px;">
+                                                                <input type="number" name="price"
+                                                                    value="<?php echo $serviceGetRow['price']; ?>"
+                                                                    class="form-control" style="width: 80px;">
                                                             </td>
                                                             <!-- Hidden inputs -->
                                                             <td style="display: none;">
-                                                                <input type="hidden" name="type" value="<?php echo $serviceGetRow['type']; ?>">
-                                                                <input type="hidden" name="itemID" value="<?php echo $serviceGetRow['itemID']; ?>">
-                                                                <input type="hidden" name="existingAttachment" value="<?php echo $serviceGetRow['attachment']; ?>">
+                                                                <input type="hidden" name="type"
+                                                                    value="<?php echo $serviceGetRow['type']; ?>">
+                                                                <input type="hidden" name="itemID"
+                                                                    value="<?php echo $serviceGetRow['itemID']; ?>">
+                                                                <input type="hidden" name="existingAttachment"
+                                                                    value="<?php echo $serviceGetRow['attachment']; ?>">
                                                             </td>
 
                                                             <td>
-                                                                <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                                                <button type="submit" name="btnSave"
+                                                                    class="btn btn-success">Save</button>
                                                             </td>
                                                             <td>
-                                                                <button type="submit" name="btnDelete" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" name="btnDelete"
+                                                                    class="btn btn-danger">Delete</button>
                                                             </td>
                                                         </tr>
                                                     </form>
-                                            <?php
+                                                    <?php
                                                 }
                                             }
                                             ?>
@@ -272,10 +306,10 @@ $productGetResult = executeQuery($productGetQuery);
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-10">
-                                <form class="d-flex py-5" role="search">
-                                    <input class="form-control me-2" type="search" placeholder="Search"
-                                        aria-label="Search">
-                                    <button class="btn btn-outline-success" type="submit">Search</button>
+                                <form  method="GET" class="d-flex py-5" role="search">
+                                <input class="form-control" type="text" name="searchProduct" placeholder="Search Product"
+                                value="<?php echo $searchProductTerm ?>" aria-label="Search">
+                                <button class="btn btn-outline-success" type="submit" name="btnSearchProduct">Search</button>
                                 </form>
 
                                 <div class="table-responsive">
@@ -297,39 +331,53 @@ $productGetResult = executeQuery($productGetQuery);
                                             if (mysqli_num_rows($productGetResult) > 0) {
                                                 while ($productGetRow = mysqli_fetch_assoc($productGetResult)) {
 
-                                            ?>
+                                                    ?>
                                                     <form method="POST" enctype="multipart/form-data">
                                                         <tr>
                                                             <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
-                                                            <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>" alt="Product Image" style="width:100px"></td>
+                                                            <td><img src="../assets/images/items/<?php echo $productGetRow['attachment']; ?>"
+                                                                    alt="Product Image" style="width:100px"></td>
                                                             <td>
-                                                                <input type="file" name="newAttachment" class="form-control" style="width: 100px; min-height: 30px; padding: 3px;"> <!-- File input for new image -->
+                                                                <input type="file" name="newAttachment" class="form-control"
+                                                                    style="width: 100px; min-height: 30px; padding: 3px;">
+                                                                <!-- File input for new image -->
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="title" value="<?php echo $productGetRow['title']; ?>" class="form-control" style="width: 300px;">
+                                                                <input type="text" name="title"
+                                                                    value="<?php echo $productGetRow['title']; ?>"
+                                                                    class="form-control" style="width: 300px;">
                                                             </td>
                                                             <td>
-                                                                <input type="text" name="shortDescription" value="<?php echo $productGetRow['shortDescription']; ?>" class="form-control" style="width: 280px;">
+                                                                <input type="text" name="shortDescription"
+                                                                    value="<?php echo $productGetRow['shortDescription']; ?>"
+                                                                    class="form-control" style="width: 280px;">
                                                             </td>
                                                             <td>
-                                                                <input type="number" name="price" value="<?php echo $productGetRow['price']; ?>" class="form-control" style="width: 80px;">
+                                                                <input type="number" name="price"
+                                                                    value="<?php echo $productGetRow['price']; ?>"
+                                                                    class="form-control" style="width: 80px;">
                                                             </td>
                                                             <!-- Hidden inputs -->
                                                             <td style=" display: none;">
-                                                                <input type="hidden" name="type" value="<?php echo $productGetRow['type']; ?>">
-                                                                <input type="hidden" name="itemID" value="<?php echo $productGetRow['itemID']; ?>">
-                                                                <input type="hidden" name="existingAttachment" value="<?php echo $productGetRow['attachment']; ?>">
+                                                                <input type="hidden" name="type"
+                                                                    value="<?php echo $productGetRow['type']; ?>">
+                                                                <input type="hidden" name="itemID"
+                                                                    value="<?php echo $productGetRow['itemID']; ?>">
+                                                                <input type="hidden" name="existingAttachment"
+                                                                    value="<?php echo $productGetRow['attachment']; ?>">
                                                             </td>
 
                                                             <td>
-                                                                <button type="submit" name="btnSave" class="btn btn-success">Save</button>
+                                                                <button type="submit" name="btnSave"
+                                                                    class="btn btn-success">Save</button>
                                                             </td>
                                                             <td>
-                                                                <button type="submit" name="btnDelete" class="btn btn-danger">Delete</button>
+                                                                <button type="submit" name="btnDelete"
+                                                                    class="btn btn-danger">Delete</button>
                                                             </td>
                                                         </tr>
                                                     </form>
-                                            <?php
+                                                    <?php
                                                 }
                                             }
                                             ?>

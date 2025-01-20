@@ -24,16 +24,25 @@ if (isset($_POST['btnAddFeedback'])) {
     }
 }
 
-if (isset($_POST['btnAddCart'])) {
+// Check if user has already added the item to cart
+$checkCartQuery = "SELECT * FROM carts WHERE userID = '$userID' AND itemID = '$productInfoID'";
+$checkCartResult = executeQuery($checkCartQuery);
 
-    $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
-    executeQuery($addCartQuery);
+if (isset($_POST['btnAddCart'])) {
+    if (mysqli_num_rows($checkCartResult) == 0) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+        executeQuery($addCartQuery);
+    }
 }
 
 if (isset($_POST['btnBuyNow'])) {
+    header("Location: cart.php");
 
-    $buyNowQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
-    executeQuery($buyNowQuery);
+    if (mysqli_num_rows($checkCartResult) == 0) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+        executeQuery($addCartQuery);
+    }
+
 }
 
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
@@ -79,7 +88,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                     <?php
                     while ($productInfoRow = mysqli_fetch_assoc($productInfoResult)) {
-                    ?>
+                        ?>
 
                         <div class="col-lg-6">
                             <div class="imageContainer">
@@ -119,18 +128,20 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 <form method="POST">
                                     <div class="productButtons">
                                         <input type="hidden" value="Product Item" name="addCart">
-                                        <button name="btnAddCart" class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                        <button name="btnAddCart" class="btnAddCart rounded-pill" style="font-size: 14px;"
+                                            <?php if (mysqli_num_rows($checkCartResult) == 1) {
+                                                echo 'disabled';
+                                            } ?>>ADD TO
                                             CART</button>
-                                        <a href="cart.php?itemID=<?php echo $productInfoRow['itemID'] ?>">
-                                            <input type="hidden" value="Product Item" name="">
-                                            <button class="btnBuyNow rounded-pill" name="" style="font-size: 14px;">BUY NOW</button>
-                                        </a>
+                                        <input type="hidden" value="Product Item" name="buyNow">
+                                        <button type="submit" class="btnBuyNow rounded-pill" name="btnBuyNow"
+                                            style="font-size: 14px;">BUY NOW</button>
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
@@ -257,7 +268,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
             <?php
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
-            ?>
+                ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -284,7 +295,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                     </div>
                 </div>
 
-            <?php
+                <?php
             }
             ?>
 

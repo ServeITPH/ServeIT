@@ -21,6 +21,7 @@ if ($categoryNameFilter != '') {
 
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $searchTerm = $_GET['search'];
+    $searchTerm = str_replace('\'', '', $searchTerm);
     $productListQuery .= " AND (title LIKE '%$searchTerm%' OR shortDescription LIKE '%$searchTerm%' OR categoryName LIKE '%$searchTerm%')";
 }
 
