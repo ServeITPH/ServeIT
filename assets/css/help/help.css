@@ -4,8 +4,6 @@
 body {
     margin: 0;
     padding: 0;
-    justify-content: center;
-    position: relative;
 }
 
 body::before {
@@ -29,8 +27,7 @@ body::before {
     background: black;
     border-radius: 60px;
     justify-content: center;
-    display: flex;
-    align-items: center;
+    padding:16px;
 
 }
 .container-section{
@@ -40,6 +37,8 @@ body::before {
     font-family: Poppins; 
     font-weight: bold; 
     font-size: 70px;
+    line-height: 1;
+    text-align: center;
     color: #19AFA5;
 
 }
@@ -66,14 +65,16 @@ body::before {
 .header{
     font-family: Poppins; 
     font-size: 32px;
+    
 }
 .title-question{
     font-size: 32px; 
     font-weight: bold;
     font-family: Poppins; 
     padding-top:25px;
-    padding-left:0 !important;;
-    padding-right:0 !important;;
+    padding-bottom:25px;
+    padding-left:0 !important;
+    padding-right:0 !important;
 
 
 }

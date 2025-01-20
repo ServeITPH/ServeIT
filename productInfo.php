@@ -7,7 +7,7 @@ include("admin/adminAssets/user.php");
 $userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : '';
 $productInfoID = isset($_GET['itemID']) ? $_GET['itemID'] : '';
 
-// Check if user has already given feedback
+// Check if user has already given feedback for this product
 $checkFeedbackQuery = "SELECT * FROM ratings WHERE userID = '$userID' AND itemID = '$productInfoID'";
 $checkFeedbackResult = executeQuery($checkFeedbackQuery);
 
@@ -19,12 +19,30 @@ if (isset($_POST['btnAddFeedback'])) {
         if (mysqli_num_rows($checkFeedbackResult) == 0) {
             $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
                                 VALUES ('$userID','$productInfoID', '$feedback', '$ratingValue', NOW())";
-            $addFeedbackResult = executeQuery($addFeedbackQuery);
-
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
+            executeQuery($addFeedbackQuery);
         }
     }
+}
+
+// Check if user has already added the item to cart
+$checkCartQuery = "SELECT * FROM carts WHERE userID = '$userID' AND itemID = '$productInfoID'";
+$checkCartResult = executeQuery($checkCartQuery);
+
+if (isset($_POST['btnAddCart'])) {
+    if (mysqli_num_rows($checkCartResult) == 0) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+        executeQuery($addCartQuery);
+    }
+}
+
+if (isset($_POST['btnBuyNow'])) {
+    header("Location: cart.php");
+
+    if (mysqli_num_rows($checkCartResult) == 0) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+        executeQuery($addCartQuery);
+    }
+
 }
 
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
@@ -70,7 +88,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                     <?php
                     while ($productInfoRow = mysqli_fetch_assoc($productInfoResult)) {
-                    ?>
+                        ?>
 
                         <div class="col-lg-6">
                             <div class="imageContainer">
@@ -107,17 +125,23 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 <p class="productDescriptionInfo" style="font-size: 14px;">
                                     <?php echo $productInfoRow['description'] ?>
                                 </p>
-                                <div class="productButtons">
-                                    <a href="cart.php">
-                                        <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                <form method="POST">
+                                    <div class="productButtons">
+                                        <input type="hidden" value="Product Item" name="addCart">
+                                        <button name="btnAddCart" class="btnAddCart rounded-pill" style="font-size: 14px;"
+                                            <?php if (mysqli_num_rows($checkCartResult) == 1) {
+                                                echo 'disabled';
+                                            } ?>>ADD TO
                                             CART</button>
-                                    </a>
-                                    <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
-                                </div>
+                                        <input type="hidden" value="Product Item" name="buyNow">
+                                        <button type="submit" class="btnBuyNow rounded-pill" name="btnBuyNow"
+                                            style="font-size: 14px;">BUY NOW</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
-                    <?php
+                        <?php
                     }
                     ?>
                 </div>
@@ -244,7 +268,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
             <?php
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
-            ?>
+                ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -271,7 +295,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                     </div>
                 </div>
 
-            <?php
+                <?php
             }
             ?>
 

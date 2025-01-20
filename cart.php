@@ -9,7 +9,7 @@ if ($userID == "") {
 
 $sql = "SELECT * 
         FROM carts 
-        INNER JOIN items ON carts.itemID = items.itemID";
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID";
 
 $fetchCart = executeQuery($sql);
 $cartEmpty = (mysqli_num_rows($fetchCart) == 0);

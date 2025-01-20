@@ -7,17 +7,42 @@ include("admin/adminAssets/user.php");
 $userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : '';
 $serviceInfoID = isset($_GET['itemID']) ? $_GET['itemID'] : '';
 
+// Check if user has already given feedback for this product
+$checkFeedbackQuery = "SELECT * FROM ratings WHERE userID = '$userID' AND itemID = '$serviceInfoID'";
+$checkFeedbackResult = executeQuery($checkFeedbackQuery);
+
 if (isset($_POST['btnAddFeedback'])) {
     $feedback = $_POST['feedback'];
     $ratingValue = $_POST['ratingValue'];
 
     if (!empty($feedback) && !empty($ratingValue)) {
-        $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) VALUES ('$userID','$serviceInfoID', '$feedback', '$ratingValue', NOW())";
-        $addFeedbackResult = executeQuery($addFeedbackQuery);
-
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
+        if (mysqli_num_rows($checkFeedbackResult) == 0) {
+            $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
+                                VALUES ('$userID','$serviceInfoID', '$feedback', '$ratingValue', NOW())";
+            executeQuery($addFeedbackQuery);
+        }
     }
+}
+
+// Check if user has already added the item to cart
+$checkCartQuery = "SELECT * FROM carts WHERE userID = '$userID' AND itemID = '$serviceInfoID'";
+$checkCartResult = executeQuery($checkCartQuery);
+
+if (isset($_POST['btnAddCart'])) {
+    if (mysqli_num_rows($checkCartResult) == 0  ) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$serviceInfoID')";
+        executeQuery($addCartQuery);
+    }
+}
+
+if (isset($_POST['btnBuyNow'])) {
+    header("Location: cart.php");
+
+    if (mysqli_num_rows($checkCartResult) == 0) {
+        $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$serviceInfoID')";
+        executeQuery($addCartQuery);
+    }
+
 }
 
 $serviceInfoQuery = "SELECT * FROM items WHERE itemID = $serviceInfoID";
@@ -100,13 +125,21 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 <p class="productDescriptionInfo" style="font-size: 14px;">
                                     <?php echo $serviceInfoRow['description'] ?>
                                 </p>
-                                <div class="productButtons">
-                                    <a href="cart.php">
-                                        <button class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                <form method="POST">
+                                    <div class="productButtons">
+                                        <input type="hidden" value="Product Item" name="addCart">
+                                        <button name="btnAddCart" class="btnAddCart rounded-pill" style="font-size: 14px;"
+                                            <?php if (mysqli_num_rows($checkCartResult) == 1) {
+                                                echo 'disabled';
+                                            } ?>>ADD TO
                                             CART</button>
-                                    </a>
-                                    <button class="btnBuyNow rounded-pill" style="font-size: 14px;">BUY NOW</button>
-                                </div>
+                                    
+                                            <input type="hidden" value="Product Item" name="buyNow">
+                                            <button type="submit" class="btnBuyNow rounded-pill" name="btnBuyNow"
+                                                style="font-size: 14px;">BUY NOW</button>
+                                       
+                                    </div>
+                                </form>
                             </div>
                         </div>
 
@@ -131,9 +164,11 @@ $feedbackResult = executeQuery($feedbackQuery);
             <div class="col-12">
                 <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner">
+
                         <div class="carousel-item active">
                             <div class="feedbackCardContainer d-flex">
                                 <div class="row justify-content-center g-4 w-100">
+                                    
                                     <div class="col-lg-4 col-md-6 col-sm-8">
                                         <form method="POST">
                                             <div class="feedbackCard">
