@@ -10,7 +10,7 @@ if (!isset($_SESSION['userID'])) {
 
 $userID = $_SESSION['userID'];
 
-$stmt = $conn->prepare("SELECT username FROM users WHERE userID = ?");
+$stmt = $conn->prepare("SELECT username,profilePicture FROM users WHERE userID = ?");
 $stmt->bind_param("i", $userID);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -59,7 +59,12 @@ function safe_echo($value)
         <div>
             <div class="profile-header">
                 <div class="profile-info">
-                    <div class="profile-pic"></div>
+                    <?php if ($user['profilePicture']): ?>
+                        <img src="uploads/<?php echo safe_echo($user['profilePicture']); ?>" alt="Profile"
+                            class="profile-pic">
+                    <?php else: ?>
+                        <div class="profile-pic"></div>
+                    <?php endif; ?>
                     <div>
                         <div class="profile-name"><?php echo safe_echo(ucfirst($user['username'])); ?></div>
                         <div class="since">Member Since 2025</div>
