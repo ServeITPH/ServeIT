@@ -19,12 +19,21 @@ if (isset($_POST['btnAddFeedback'])) {
         if (mysqli_num_rows($checkFeedbackResult) == 0) {
             $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
                                 VALUES ('$userID','$productInfoID', '$feedback', '$ratingValue', NOW())";
-            $addFeedbackResult = executeQuery($addFeedbackQuery);
-
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
+            executeQuery($addFeedbackQuery);
         }
     }
+}
+
+if (isset($_POST['btnAddCart'])) {
+
+    $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+    executeQuery($addCartQuery);
+}
+
+if (isset($_POST['btnBuyNow'])) {
+
+    $buyNowQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
+    executeQuery($buyNowQuery);
 }
 
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
@@ -110,11 +119,11 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 <form method="POST">
                                     <div class="productButtons">
                                         <input type="hidden" value="Product Item" name="addCart">
-                                        <button name="addCart" class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
+                                        <button name="btnAddCart" class="btnAddCart rounded-pill" style="font-size: 14px;">ADD TO
                                             CART</button>
                                         <a href="cart.php?itemID=<?php echo $productInfoRow['itemID'] ?>">
-                                            <input type="hidden" value="Product Item" name="buyNow">
-                                            <button class="btnBuyNow rounded-pill" name="buyNow" style="font-size: 14px;">BUY NOW</button>
+                                            <input type="hidden" value="Product Item" name="">
+                                            <button class="btnBuyNow rounded-pill" name="" style="font-size: 14px;">BUY NOW</button>
                                         </a>
                                     </div>
                                 </form>
