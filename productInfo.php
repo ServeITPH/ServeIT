@@ -16,14 +16,13 @@ if (isset($_POST['btnAddFeedback'])) {
     $ratingValue = $_POST['ratingValue'];
 
     if (!empty($feedback) && !empty($ratingValue)) {
-        if (mysqli_num_rows($checkFeedbackResult) == 0) {
-            $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
-                                VALUES ('$userID','$productInfoID', '$feedback', '$ratingValue', NOW())";
-            $addFeedbackResult = executeQuery($addFeedbackQuery);
 
-            header("Location: " . $_SERVER['PHP_SELF']);
-            exit();
-        }
+        $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
+                                VALUES ('$userID','$productInfoID', '$feedback', '$ratingValue', NOW())";
+        $addFeedbackResult = executeQuery($addFeedbackQuery);
+
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
     }
 }
 
