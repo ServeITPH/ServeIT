@@ -3,6 +3,8 @@
 include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
+
+// Count Visit
 $page = "Services";
 include("sharedAssets/counter.php");
 

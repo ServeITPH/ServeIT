@@ -8,7 +8,7 @@ include("assets/php/help/classes.php");
 if ($userID == "") {
     header("Location: login.php");
 }
-$categories = ['Products', 'Account', 'Payment', 'Customer Support', 'Services'];
+$categories = ['Products', 'Accounts', 'Payments', 'Services'];
 $categoriesList = "'" . implode("','", $categories) . "'";
 
 // Fetch FAQ data
@@ -55,7 +55,7 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
 
     <div class="container  container-section px-5">
         <div class="row d-flex justify-content-center ">
-            <div class="card rounded-5 wow animate__animated animate__fadeIn" data-wow-delay="5s">
+            <div class="card wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <div class="card-title">HELP CENTER</div>
                 <p class="card-body text-center">
                     At ServeIT, our Help Center is built to provide you with the support and guidance you need, whenever
