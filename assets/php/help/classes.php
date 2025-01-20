@@ -32,11 +32,11 @@ class FAQ
             <button class='btnExpand btn p-0 border-0 d-flex justify-content-start' onclick='expandContent(this)'>
                 <img src='assets/images/helpCenter/plus.png' alt='Expand Button' class='expandbtn-img'>
                 <div class='text ps-2 pb-1 d-flex align-items-center'>
-                    <p>{$this->question}</p>
+                    <p>'.$this->question.'</p>
                 </div>
             </button>
             <div class='information ps-5' style='display: none;'>
-                {$this->answer}
+                '.$this->answer.'
             </div>
         ";
     }

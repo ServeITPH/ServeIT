@@ -86,9 +86,12 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
             <div class="row">
                 <div class="title-question">Frequently asked questions</div>
             </div>
+            <div class="container container-section mb-5">
             <?php foreach ($faqsByCategory as $category => $faqs): ?>
                 <?= FAQ::renderCategory($category, $faqs) ?>
             <?php endforeach; ?>
+            </div>
+            
         </div>
     </div>
 
