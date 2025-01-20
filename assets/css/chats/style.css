@@ -56,13 +56,42 @@ body {
     color:#ffffff;
     border: 1px solid black;
 }
-.see-more-btn-img {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
+
+ 
+.chatbubble-own-container{
+    width: 100%;
 }
 
-.see-more-btn-link {
-    float: right;
-    margin-left: 15px; 
+.chatbubble-own {
+background-color: #19afa5;
+padding: 10px 20px 10px 20px;
+border-radius: 20px;
+margin: 3px 10px 3px 10px;
+width: fit-content;
+margin-left: auto;
+max-width: 50%;
+color: #222222;
+}
+
+.chatbubble-other {
+padding: 10px 20px 10px 20px;
+border-radius: 20px;
+margin: 3px 10px 3px 10px;
+width: fit-content;
+max-width: 50%;
+border: 1px solid #222222;
+background-color: white;
+color: #222222;
+}
+
+.information-own {
+    font-size: 12px;
+    text-align: right;
+    color: gray;
+}
+
+.information {
+    font-size: 12px;
+    text-align: left;
+    color: gray;
 }
