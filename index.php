@@ -7,22 +7,32 @@ include("assets/php/about/aboutContent.php");
 
 session_start();
 
-$userID = $_SESSION['userID'];
-$role = $_SESSION['role'];
-$page = "Home";
-
-if ($userID == "") {
-    header("Location: login.php");
+// Initialize session variables if not set
+if (!isset($_SESSION['userID'])) {
+    $_SESSION['userID'] = "";
 }
 
+if (!isset($_SESSION['role'])) {
+    $_SESSION['role'] = "";
+}
+
+// Assign session values to variables
+$userID = $_SESSION['userID'];
+$role = $_SESSION['role'];
+
+// Define the current page name
+$page = "Home";
+
+// Redirect admin users to the admin dashboard
+if ($role == "admin") {
+    header("Location: admin/index.php");
+    exit();
+}
+
+// Include counter logic for users only
 if ($role == "user") {
     include("sharedAssets/counter.php");
 }
-
-if ($role == "admin") {
-    header("Location: admin/index.php");
-}
-
 
 // counter
 $userCountQuery = "SELECT COUNT(userID) AS userCount FROM users";
@@ -90,7 +100,12 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
 
 <body>
     <!-- nav-bar -->
-    <?php include("sharedAssets/nav.php"); ?>
+    <?php
+    if ($userID == "") {
+        include("sharedAssets/navRegister.php");
+    } else {
+        include("sharedAssets/nav.php");
+    } ?>
 
     <!-- home-page banner -->
 
@@ -189,7 +204,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="row d-flex justify-content-center align-items-center">
             <?php
             while ($newArrivalRow = mysqli_fetch_assoc($newArrivalResult)) {
-            ?>
+                ?>
 
                 <div class="col d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -216,7 +231,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     </div>
                 </div>
 
-            <?php
+                <?php
             }
             ?>
         </div>
@@ -262,7 +277,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="services-container row">
             <?php
             while ($serviceTitleRow = mysqli_fetch_assoc($serviceTitleResult)) {
-            ?>
+                ?>
                 <div class="col-12 col-md-4 my-4">
                     <div class="row">
                         <div class="services-title text-center">
@@ -322,7 +337,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
 
                     <?php
                     while ($productTitleRow = mysqli_fetch_assoc($productTitleResult)) {
-                    ?>
+                        ?>
                         <div class="col-12 col-md-4 my-4">
                             <div class="row">
                                 <div class="services-title text-center">

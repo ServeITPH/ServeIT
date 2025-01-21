@@ -8,6 +8,9 @@ include("admin/adminAssets/user.php");
 $page = "Services";
 include("sharedAssets/counter.php");
 
+if ($userID == "") {
+    header("Location: login.php");
+}
 
 // counter
 $count = 0;

@@ -64,12 +64,13 @@ body {
 
 .log-in-btn {
     background: #000000;
-    width: 114px;
-    height: 30px;
+    width: 125px;
+    height: 35px;
     font-size: 12px;
     border: none !important;
     color: white;
     transition: background 0.3s ease, transform 0.2s ease;
+
 }
 
 

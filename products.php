@@ -8,6 +8,9 @@ include("admin/adminAssets/user.php");
 $page = "Products";
 include("sharedAssets/counter.php");
 
+if ($userID == "") {
+    header("Location: login.php");
+}
 
 // product count
 $count = 0;

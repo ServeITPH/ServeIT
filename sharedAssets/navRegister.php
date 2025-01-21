@@ -25,7 +25,7 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto mx-5">
-        <a href="login.php"><button class="btn btn-primary log-in-btn mx-2 mb-2">
+        <a href="login.php"><button class="btn btn-primary log-in-btn mx-2 my-2">
             Log-in / Sign-in
           </button></a>
    
