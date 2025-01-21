@@ -6,14 +6,31 @@ if ($userID == "") {
     header("Location: login.php");
 }
 
+// LIMIT 3 CODE FOR THE CARTS
+$counter = 0;
+$showLimit = 3; // Default limit to show 3 items
+if (isset($_POST['showMoreBtn']) && $_POST['showMoreBtn'] === 'showMore') {
+    $showLimit = PHP_INT_MAX; // Show all items
+}
+
 
 $sql = "SELECT * 
         FROM carts 
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID LIMIT $showLimit";
+$fetchCart = executeQuery($sql);
+
+// FOR THE ITEMS AND GRAND TOTAL THAT LOOPS ALL DATA IN THE CART TABLE
+$sqlSummary = "SELECT * 
+        FROM carts 
         INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID";
 
-$fetchCart = executeQuery($sql);
+$fetchCartSummary = executeQuery($sqlSummary);
+$itemCount = mysqli_num_rows($fetchCartSummary);
+
+// FOR THE CHECKOUT BUTTON - CHECKS IF IT'S EMPTY TO BE DISABLED
 $cartEmpty = (mysqli_num_rows($fetchCart) == 0);
 
+// INDIVIDUAL REMOVEMENT FOR THE CART
 if (isset($_POST['deleteCartID'])) {
     $deleteID = $_POST['deleteCartID'];
     $deleteQuery = "DELETE FROM carts WHERE cartID = '$deleteID'";
@@ -22,6 +39,7 @@ if (isset($_POST['deleteCartID'])) {
     exit();
 }
 
+// DELETION OF ITEMS AFTER CHECKOUT
 if (isset($_POST['delCheckoutCart'])) {
     $deleteAll = "DELETE FROM carts";
     executeQuery($deleteAll);
@@ -29,6 +47,7 @@ if (isset($_POST['delCheckoutCart'])) {
     exit();
 }
 
+// THIS IF FOR THE INTEREST SECTION - PRODUCTS AND SERVICES
 $items = "SELECT * FROM items";
 $fetchItem = executeQuery($items);
 
@@ -80,35 +99,48 @@ $fetchProduct = executeQuery($productQuery);
             </p>
         </div>
 
-        <div class="ms-3 mt-5 d-flex align-items-center">
-            <img src="assets/images/cart/cart.png" alt="Back Button">
-            <p class="fs-2 fw-bold mb-0 ms-3">
-                CART
-            </p>
+        <div class="row">
+            <div class="col-12 col-md-5">
+                <div class="ms-3 mt-5 d-flex align-items-center">
+                    <img src="assets/images/cart/cart.png" alt="...">
+                    <p class="fs-2 fw-bold mb-0 ms-3">
+                        CART
+                    </p>
+                    <div class="ms-auto">
+                        <form method="POST"> <input type="hidden" name="delCheckoutCart"
+                                value="<?php echo $fetchCartRow['cartID']; ?>">
+                            <button type="submit" class="btn p-0">
+                                <img src="assets/images/cart/trashBin.png" alt="Delete Cart" class="img-fluid">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <?php
-        $grandTotal = 0;
-        $itemsList = "";
-        ?>
+
+        <div class="col-12 col-md-2"></div>
+
+        <div class="col-12 col-md-5"></div>
 
         <!-- CARTS-->
         <div class="row">
             <div class="col-12 col-md-5">
                 <?php
+                // CART LOOP THAT IS ONLY LIMITED TO 3 LOOPS
                 if (mysqli_num_rows($fetchCart) > 0) {
                     while ($fetchCartRow = mysqli_fetch_assoc($fetchCart)) {
-                        $grandTotal += $fetchCartRow['price'];
-                        $itemsList .= "* " . $fetchCartRow['title'] . "<br>";
-
+                        if ($counter >= $showLimit)
+                            break; // Stop loop after limit
+                        $counter++;
                         ?>
 
                         <div class="border-0 mt-3">
                             <div class="card-body">
 
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="card-title fw-bold fs-5"><?php echo $fetchCartRow['title']; ?></h5>
-                                    <p class="card-text mb-0 fs-5">₱<?php echo $fetchCartRow['price']; ?></p>
+                                    <h5 class="card-title fw-bold fs-6"><?php echo $fetchCartRow['title']; ?></h5>
+                                    <p class="card-text mb-0 fs-6">₱<?php echo $fetchCartRow['price']; ?></p>
                                 </div>
 
                                 <hr>
@@ -117,14 +149,17 @@ $fetchProduct = executeQuery($productQuery);
                                     <p class="card-text text-truncate fs-6" style="max-width: calc(65% - 100px);">
                                         <?php echo $fetchCartRow['description']; ?>
                                     </p>
+                                    <!--REMOVE AND SEE MORE-->
                                     <div class="d-flex ms-auto flex-nowrap">
+                                    <!--REMOVE-->
                                         <form method="post">
                                             <input type="hidden" name="deleteCartID"
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
-                                            <button type="submit" class="btn btn-danger rounded-5 fs-6">Remove</button>
+                                            <button type="submit" class="btn btn-danger rounded-5 fs-6 p-1">Remove</button>
                                         </form>
+                                        <!--SEE MORE-->
                                         <a href="productInfo.php?itemID=<?php echo $fetchCartRow['itemID'] ?>">
-                                            <button type="button" class="btn rounded-5 ms-2 fs-6"
+                                            <button type="button" class="btn rounded-5 ms-2 fs-6 p-1"
                                                 style="background-color: #19AFA5; color: black;">See More</button>
                                         </a>
                                     </div>
@@ -143,14 +178,39 @@ $fetchProduct = executeQuery($productQuery);
                     <?php
                 }
                 ?>
+
+                 <!--SHOW MORE SHOW LESS FUNCTION-->
+                <?php if ($itemCount > 3): ?>
+                    <div class="d-flex justify-content-center mt-3">
+                        <form method="post">
+                            <button type="submit" name="showMoreBtn"
+                                value="<?php echo $showLimit === PHP_INT_MAX ? 'showLess' : 'showMore'; ?>"
+                                class="btn btn-more btn-primary mx-auto mb-3">
+                                <?php echo $showLimit === PHP_INT_MAX ? 'Show Less' : 'Show More'; ?>
+                            </button>
+                        </form>
+                    </div>
+                <?php endif; ?>
+
             </div>
 
             <!--GAP BETWEEN CART AND SUMMARY-->
             <div class="col-md-2"></div>
 
+            <!-- SEPARATE LOOP FOR ITEMS AND TOTAL FOR SUMMARY COLUMN-->
+            <?php
+            $itemsList = "";
+            $grandTotal = 0;
+
+            while ($fetchCartSummaryRow = mysqli_fetch_assoc($fetchCartSummary)) {
+                $grandTotal += $fetchCartSummaryRow['price'];
+                $itemsList .= "* " . $fetchCartSummaryRow['title'] . "<br>";
+            }
+            ?>
+
             <!-- CHECK OUT PROCESS-->
             <div class="col-12 col-md-5">
-                <ul class="list-group rounded-5">
+                <ul class="list-group mt-3 rounded-5">
                     <li class="list-group-item">
                         <p class="fw-bold fs-2 text-center"> SUMMARY </p>
                         <p class="fw-lighter fs-6 text-start ms-5"> Items:</p>
@@ -163,25 +223,23 @@ $fetchProduct = executeQuery($productQuery);
                     </li>
                     <li class="list-group-item">
                         <p class="fw-lighter fs-6 text-start ms-5"> Mode Of Payment:</p>
+                        <!-- Radio for Cash On Delivery -->
                         <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Cash On Delivery
-                            </label>
+                            <input class="form-check-input" type="radio" name="paymentMode" id="cod" value="cash"
+                                checked>
+                            <label class="form-check-label" for="cod">Cash On Delivery</label>
                         </div>
 
+                        <!-- Radio for Gcash -->
                         <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                            <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1"
-                                value="option1" checked>
-                            <label class="form-check-label" for="exampleRadios1">
-                                Gcash
-                            </label>
+                            <input class="form-check-input" type="radio" name="paymentMode" id="gcash" value="gcash">
+                            <label class="form-check-label" for="gcash">Gcash</label>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <p class="fw-lighter fs-6 text-start ms-5"> VAT: ₱0.00 </p>
                     </li>
+                    <!-- TOTAL-->
                     <li class="list-group-item mb-0">
                         <p class="fw-bolder fs-5 text-start ms-5 text-center">Total:
                             ₱<span><?php echo $grandTotal ?></span>
@@ -189,29 +247,58 @@ $fetchProduct = executeQuery($productQuery);
                     </li>
                 </ul>
 
-
-                <div class="d-flex justify-content-center mt-3">
-                    <form method="post">
-                        <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>">
-                        <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
-                            data-bs-target="#myModal" <?php if ($cartEmpty)
-                                echo 'disabled'; ?>>Check Out</button>
-                    </form>
-                </div>
-
-                <div class="modal" id="myModal" tabindex="-1">
+                <!-- MODAL FOR GCASH -->
+                <div class="modal fade" id="myQR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title">Transaction Succesful!</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Please pay the total amount:
+                                    ₱<?php echo $grandTotal ?></h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>Items and Receipt will be sent to your email. <br> Thank you.</p>
+                                <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
+                                <p class="text-center fw-bolder mt-3">
+                                    Pay via QR or send to 09123456789
+                                </p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-center mt-3">
+                    <!-- <form method="post">
+                        <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>"> -->
+                    <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
+                        data-bs-target="#myModal" <?php if ($cartEmpty)
+                            echo 'disabled'; ?>>Check Out</button>
+                    <!-- </form> -->
+                </div>
+
+                <!-- MODAL FOR CHECK-OUT -->
+                <div class="modal" id="myModal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Confirm Checkout</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure you want to checkout?</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                <form method="post">
+                                    <input type="hidden" name="delCheckoutCart"
+                                        value="<?php echo $fetchCartRow['cartID']; ?>">
+                                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -384,6 +471,19 @@ $fetchProduct = executeQuery($productQuery);
                 const tabName = activeTab.getAttribute('onclick').match(/'(.+)'/)[1];
                 showTab(tabName);
             }
+        });
+    </script>
+
+    <script>
+        // Listen for changes in the radio buttons
+        document.querySelectorAll('input[name="paymentMode"]').forEach((radio) => {
+            radio.addEventListener('change', function () {
+                if (this.value === 'gcash') {
+                    // Show the modal when Gcash is selected
+                    const modal = new bootstrap.Modal(document.getElementById('myQR'));
+                    modal.show();
+                }
+            });
         });
     </script>
 
