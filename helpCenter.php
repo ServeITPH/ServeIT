@@ -5,6 +5,10 @@ include("sharedAssets/connect.php");
 include("admin/adminAssets/user.php");
 include("assets/php/help/classes.php");
 
+// Count Visit
+$page = "Help Center";
+include("sharedAssets/counter.php");
+
 if ($userID == "") {
     header("Location: login.php");
 }

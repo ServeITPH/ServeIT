@@ -136,7 +136,7 @@
                                         <div class="row shadow-sm ps-3 p-3">
                                             <div class="col-auto">
                                                 <!-- Profile Picture -->
-                                                <img src="uploads/<?php echo $chatsRow['profilePicture'] ?>" alt="Profile Picture" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <img src="../uploads/<?php echo $chatsRow['profilePicture'] ?>" alt="Profile Picture" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
                                             </div>
                                             <div class="col">
                                                 <!-- Username -->

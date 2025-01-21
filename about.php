@@ -6,6 +6,10 @@ include("admin/adminAssets/user.php");
 if ($userID == "") {
     header("Location: login.php");
 }
+
+// Count Visit
+$page = "About";
+include("sharedAssets/counter.php");
 ?>
 
 <head>
