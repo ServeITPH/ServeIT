@@ -1,7 +1,7 @@
 <!-- Contents of About -->
 <?php
 
-$abtUsContent = "ServeIT is more than just a platform it's a team committed to bringing people together through exceptional digital services, innovative products, and meaningful conversations. We create an environment that fosters collaboration and growth, ensuring that you can access the tools and resources you need for success. By blending advanced digital solutions with seamless engagement, ServeIT provides you with the ability to find the services and products you need with ease, build meaningful connections that drive your success, and access affordable, top-quality digital services and products. Our platform offers on-demand solutions, available whenever you need them, and provides verified service providers to ensure reliability and trust.";
+$aboutUsContent = "ServeIT is more than just a platform it's a team committed to bringing people together through exceptional digital services, innovative products, and meaningful conversations. We create an environment that fosters collaboration and growth, ensuring that you can access the tools and resources you need for success. By blending advanced digital solutions with seamless engagement, ServeIT provides you with the ability to find the services and products you need with ease, build meaningful connections that drive your success, and access affordable, top-quality digital services and products. Our platform offers on-demand solutions, available whenever you need them, and provides verified service providers to ensure reliability and trust.";
 
 
 $chooseContent = "

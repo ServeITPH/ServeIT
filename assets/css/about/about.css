@@ -1,3 +1,5 @@
+/* Css for About Page */
+
 body {
     background-color: white;
     position: relative;
@@ -30,7 +32,7 @@ body::before {
 
 }
 
-.storyCard {
+.story-card {
     width: 100%;
     max-width: 1500px !important;
     height: auto;
@@ -57,7 +59,7 @@ body::before {
     padding-right: 10vh;
 }
 
-.card-textBlack {
+.card-text-black {
     font-size: 14px;
     text-align: justify;
     padding-left: 10vh;
@@ -130,7 +132,7 @@ body::before {
         padding-right: 5vh;
     }
 
-    .card-textBlack {
+    .card-text-black {
         font-size: 12px;
         padding-left: 5vh;
         padding-right: 5vh;

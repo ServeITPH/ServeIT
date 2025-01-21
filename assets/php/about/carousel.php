@@ -17,7 +17,7 @@
         foreach ($teamMembers as $index => $dev) {
             $nameParts = explode(' ', $dev[0]);
             $firstName = $nameParts[1];
-            $surname = isset($nameParts[1]) ? $nameParts[0] : '';
+            $lastName = isset($nameParts[1]) ? $nameParts[0] : '';
 
             if ($counter % 3 == 0) {
                 echo '<div class="carousel-item ' . ($counter == 0 ? 'active' : '') . '"><div class="row justify-content-center">';
@@ -27,7 +27,7 @@
                             <div class='team-member'>
                                 <a href='{$dev[2]}'><img src='{$dev[1]}' class='img-fluid rounded-circle' alt='{$dev[0]}'></a>
                                 <h5 class='dev-name'>
-                                    <span class='surname'>$surname</span><br>
+                                    <span class='last-name'>$lastName</span><br>
                                     <span class='first-name'>$firstName</span>
                                 </h5>
                             </div>
@@ -57,7 +57,7 @@
         text-align: center;
     }
 
-    .dev-name .surname {
+    .dev-name .last-name {
         font-weight: bold;
         font-size: 24px;
     }
@@ -73,7 +73,7 @@
             text-align: center;
         }
 
-        .dev-name .surname {
+        .dev-name .last-name {
             font-size: 14px;
             font-weight: bold;
         }

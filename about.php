@@ -1,3 +1,5 @@
+<!--About Page showing information about ServeIT and the Teams.-->
+
 <?php
 include("sharedAssets/connect.php");
 include("assets/php/about/aboutContent.php");
@@ -39,6 +41,7 @@ include("sharedAssets/counter.php");
 
 <body>
     <?php include("sharedAssets/nav.php"); ?>
+
     <!-- About title and desc -->
     <div class="container wow animate__animated animate__fadeIn" style="justify-content: center;  display: flex;">
         <div class="row">
@@ -47,7 +50,7 @@ include("sharedAssets/counter.php");
                     <div class="card-body">
                         <h5 class="card-title">ABOUT US</h5>
                         <p class="card-text text-center mb-3">
-                            <?php echo $abtUsContent; ?>
+                            <?php echo $aboutUsContent; ?>
                         </p>
                     </div>
                 </div>
@@ -59,11 +62,11 @@ include("sharedAssets/counter.php");
     <div class="container wow animate__animated animate__fadeInUp" style=" justify-content: center;  display: flex;">
         <div class="row">
             <div class="col">
-                <div class="card storyCard">
+                <div class="card story-card">
                     <div class="card-body">
                         <h5 class="story-title"><span>Why choose
                             </span> <span>ServeIT?</span></h5>
-                        <p class="card-textBlack mb-3">
+                        <p class="card-text-black mb-3">
                             <?php echo $chooseContent; ?>
                         </p>
                     </div>
@@ -76,11 +79,11 @@ include("sharedAssets/counter.php");
     <div class="container wow animate__animated animate__fadeInUp" style=" justify-content: center;  display: flex;">
         <div class="row">
             <div class="col">
-                <div class="card storyCard">
+                <div class="card story-card">
                     <div class="card-body">
                         <h5 class="story-title"><span>Our
                             </span> <span>Story</span></h5>
-                        <p class="card-textBlack mb-3" style="text-indent: 50px;">
+                        <p class="card-text-black mb-3" style="text-indent: 50px;">
                             <?php echo $storyContent; ?>
                         </p>
                     </div>
@@ -106,7 +109,7 @@ include("sharedAssets/counter.php");
         <div class="container wow animate__animated animate__fadeInUp">
             <div class="line mb-4"></div>
             <h2 class="team-title">More Ways to Connect With Our Team</h2>
-            <p class="card-textBlack" style="display: flex; justify-content: center; text-align: center;">
+            <p class="card-text-black" style="display: flex; justify-content: center; text-align: center;">
                 <?php echo $connect; ?>
             </p>
             <?php include("assets/php/about/links.php"); ?>
@@ -114,11 +117,11 @@ include("sharedAssets/counter.php");
     </div>
     </div>
 
-    <!-- smpayment -->
+    <!-- Simplified Payment -->
     <?php
     include("sharedAssets/smpayment.php"); ?>
 
-    <!-- footer -->
+    <!-- Footer -->
     <?php include("sharedAssets/footer.php") ?>
 
     <script src="https://kit.fontawesome.com/d3ed67e674.js" crossorigin="anonymous"></script>

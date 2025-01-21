@@ -1,3 +1,5 @@
+<!-- Manage Feedback in the Admin Page -->
+
 <?php
 
 include("../sharedAssets/connect.php");
@@ -6,7 +8,7 @@ include("adminAssets/user.php");
 // Store of filters
 $searchTerm = '';
 $filterRating = '';
-$filterItemID = '';
+$filterItem = '';
 $sortOrder = '';
 $filterType = '';
 
@@ -31,9 +33,9 @@ if (isset($_GET['filterRating']) && !empty($_GET['filterRating'])) {
 }
 
 // Items
-if (isset($_GET['filterItemID']) && !empty($_GET['filterItemID'])) {
-    $filterItemID = $_GET['filterItemID'];
-    $feedbackQuery .= " AND ratings.itemID = '$filterItemID'";
+if (isset($_GET['filterItem']) && !empty($_GET['filterItem'])) {
+    $filterItem = $_GET['filterItem'];
+    $feedbackQuery .= " AND ratings.itemID = '$filterItem'";
 }
 
 // Filter by Type (Product or Service)
@@ -125,11 +127,11 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                         <!-- Filter by Items -->
                         <div class="col-md-2">
-                            <select class="form-select" name="filterItemID" aria-label="Filter by Item">
+                            <select class="form-select" name="filterItem" aria-label="Filter by Item">
                                 <option value="">All Items</option>
                                 <?php while ($itemRow = mysqli_fetch_assoc($itemResult)) : ?>
                                 <option value="<?php echo $itemRow['itemID']; ?>" 
-                           <?php echo ($filterItemID == $itemRow['itemID']) ? 'selected' : ''; ?>>
+                           <?php echo ($filterItem == $itemRow['itemID']) ? 'selected' : ''; ?>>
                         <?php echo $itemRow['title']; ?>
                      </option>
                    <?php endwhile; ?>

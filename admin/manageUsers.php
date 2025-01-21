@@ -1,3 +1,5 @@
+<!-- Manage Users in the Admin Page -->
+
 <?php
 
 include("../sharedAssets/connect.php");
