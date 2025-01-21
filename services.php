@@ -102,7 +102,7 @@ $serviceListResult = executeQuery($serviceListQuery);
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
-            ?>
+                ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
@@ -129,7 +129,7 @@ $serviceListResult = executeQuery($serviceListQuery);
                     </div>
                 </div>
 
-            <?php
+                <?php
             }
             ?>
 
@@ -138,9 +138,9 @@ $serviceListResult = executeQuery($serviceListQuery);
 
     <div class="container py-5">
         <div class="row">
-            <div class="col">
+            <div class="col text-center">
                 <nav aria-label="pageNavigation">
-                    <ul class="pagination">
+                    <ul class="pagination justify-content-center flex-wrap">
                         <li class="page-item" onclick="previousPage()">
                             <a class="page-link" href="#" aria-label="Previous">
                                 <img src="assets/images/about/prev.png" alt="Previous">
@@ -163,12 +163,6 @@ $serviceListResult = executeQuery($serviceListQuery);
                         </li>
                         <li class="page-item" onclick="goToPage(6)">
                             <a class="page-link" href="#">6</a>
-                        </li>
-                        <li class="page-item" onclick="goToPage(7)">
-                            <a class="page-link" href="#">7</a>
-                        </li>
-                        <li class="page-item" onclick="goToPage(8)">
-                            <a class="page-link" href="#">8</a>
                         </li>
                         <li class="page-item" onclick="nextPage()">
                             <a class="page-link" href="#" aria-label="Next">
@@ -201,7 +195,7 @@ $serviceListResult = executeQuery($serviceListQuery);
 
     <script>
         var page = 1;
-        var cardsPerPage = 12;
+        var cardsPerPage = 16;
         var totalServiceCards = document.getElementsByClassName('productCard').length;
         var totalPages = Math.ceil(totalServiceCards / cardsPerPage);
 
@@ -255,7 +249,7 @@ $serviceListResult = executeQuery($serviceListQuery);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updatePage();
         });
     </script>

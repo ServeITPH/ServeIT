@@ -37,6 +37,7 @@ $productListResult = executeQuery($productListQuery);
 
 $productFilterQuery = "SELECT DISTINCT categoryName FROM items WHERE type = 'product'";
 $productFilterResult = executeQuery($productFilterQuery);
+
 ?>
 
 <!doctype html>
@@ -203,12 +204,6 @@ $productFilterResult = executeQuery($productFilterQuery);
                         <li class="page-item" onclick="goToPage(6)">
                             <a class="page-link" href="#">6</a>
                         </li>
-                        <li class="page-item" onclick="goToPage(7)">
-                            <a class="page-link" href="#">7</a>
-                        </li>
-                        <li class="page-item" onclick="goToPage(8)">
-                            <a class="page-link" href="#">8</a>
-                        </li>
                         <li class="page-item" onclick="nextPage()">
                             <a class="page-link" href="#" aria-label="Next">
                                 <img src="assets/images/about/next.png" alt="Next">
@@ -241,7 +236,7 @@ $productFilterResult = executeQuery($productFilterQuery);
 
     <script>
         var page = 1;
-        var cardsPerPage = 12;
+        var cardsPerPage = 16;
         var totalProductCards = document.getElementsByClassName('productCard').length;
         var totalPages = Math.ceil(totalProductCards / cardsPerPage);
 

@@ -51,8 +51,11 @@ $productInfoResult = executeQuery($productInfoQuery);
 $productListQuery = "SELECT * FROM items WHERE type = 'product'";
 $productListResult = executeQuery($productListQuery);
 
-$userQuery = "SELECT * FROM users";
+$userQuery = "SELECT * FROM users WHERE userID = $userID";
 $userResult = executeQuery($userQuery);
+
+$averageRatingQuery = "SELECT AVG(ratingValue) FROM ratings WHERE itemID = $productInfoID;";
+$averageRatingResult = executeQuery($averageRatingQuery);
 
 $feedbackQuery = "SELECT * FROM ratings LEFT JOIN users ON ratings.userID = users.userID WHERE itemID = $productInfoID";
 $feedbackResult = executeQuery($feedbackQuery);
@@ -109,13 +112,27 @@ $feedbackResult = executeQuery($feedbackQuery);
                                 </h1>
                                 <p style="font-size: 14px;"><?php echo $productInfoRow['shortDescription'] ?></p>
                                 <p class="reviewStars">
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
-                                    <i class="fa-regular fa-star"></i>
+                                    <?php
+                                    $averageRatingRow = mysqli_fetch_assoc($averageRatingResult);
+                                    $averageRating = round($averageRatingRow['AVG(ratingValue)'], 1);
+                                    $filledStars = floor($averageRating);
+                                    $halfStar = ($averageRating - $filledStars) >= 0.5;
+                                    $totalStars = 5;
+
+                                    for ($i = 1; $i <= $totalStars; $i++) {
+                                        if ($i <= $filledStars) {
+                                            echo '<i class="fa-solid fa-star" style="color: #19AFA5;"></i>';
+                                        } elseif ($halfStar && $i === $filledStars + 1) {
+                                            echo '<i class="fa-solid fa-star-half-stroke" style="color: #19AFA5;"></i>';
+                                        } else {
+                                            echo '<i class="fa-regular fa-star"></i>';
+                                        }
+                                    }
+                                    ?>
                                     <span class="rating-value ms-2" style="font-size: 14px;">Reviews</span>
                                 </p>
+
+
                                 <div class="price fw-bold">
                                     <span
                                         style="font-size: 32px;">₱<?php echo $productInfoRow['price'] ?></span><span>.00</span>
@@ -156,7 +173,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
     <div class="container mb-5">
         <div class="row">
-            <div class="col-12 mb-4 text-start">
+            <div class="col-12 mb-4">
                 <h2 class="productFeedbackTitle fw-bold">PRODUCT FEEDBACK</h2>
             </div>
             <div class="col-12">
@@ -165,7 +182,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                         <div class="carousel-item active">
                             <div class="feedbackCardContainer d-flex">
                                 <div class="row justify-content-center g-4 w-100">
-                                    <div class="col-lg-4 col-md-6 col-sm-8">
+                                    <div class="col-lg-4 col-md-6 col-12">
                                         <form method="POST">
                                             <div class="feedbackCard">
                                                 <div class="row">
@@ -176,7 +193,8 @@ $feedbackResult = executeQuery($feedbackQuery);
                                                                     <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
                                                                         alt="<?php echo $userRow['profilePicture'] ?>">
                                                                 </div>
-                                                            <?php } ?>
+                                                                <div class="username"><?php echo $userRow['username'] ?></div>
+                                                            <?php } ?>     
                                                         </div>
                                                         <div class="row-6">
                                                             <input type="text" class="feedbackInput form-control"
@@ -205,7 +223,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                         </form>
                                     </div>
                                     <?php while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) { ?>
-                                        <div class="col-lg-4 col-md-6 col-sm-8">
+                                        <div class="col-lg-4 col-md-6 col-12">
                                             <div class="feedbackCard">
                                                 <div class="row">
                                                     <div class="col-6">
@@ -213,6 +231,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                                             <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
                                                                 alt="<?php echo $feedbackRow['profilePicture'] ?>">
                                                         </div>
+                                                        <div class="username"><?php echo $feedbackRow['username'] ?></div>
                                                         <p class="feedbackText"><?php echo $feedbackRow['review'] ?></p>
                                                     </div>
                                                     <div class="col-6">
@@ -270,7 +289,7 @@ $feedbackResult = executeQuery($feedbackQuery);
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
                 ?>
 
-                <div class="col-lg-3 col-6 d-flex flex-row">
+                <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="productCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
                             <div class="productImage">

@@ -17,20 +17,15 @@ body {
     width: 100%;
     max-width: 500px;
     height: 440px;
-    background-color: #A9A9A9;
     border-radius: 23px;
-    margin: 0 auto;
+    overflow: hidden;
 }
 
 .imageCard img {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
-    max-width: 500px;
     height: 100%;
+    object-fit: contain;
     border-radius: 23px;
-    margin: 0 auto;
 }
 
 .productTitleInfo {
@@ -68,15 +63,13 @@ body {
     align-items: center;
     border-radius: 30px;
     margin: auto;
-    padding: 20px;
-    padding-left: 40px;
-    padding-right: 20px;
+    padding: 20px 40px;
 }
 
 .feedbackCard {
     background-color: #ffffff;
     max-width: 100%;
-    width: 300px;
+    width: 100%;
     height: 130px;
     text-align: center;
     border-radius: 18px;
@@ -100,6 +93,14 @@ body {
     border-radius: 50%;
 }
 
+.username {
+    font-size: 14px;
+    color: black;
+    position: absolute;
+    top: 25px;
+    left: 70px;
+}
+
 .feedbackInput {
     width: 100%;
     height: 50px;
@@ -114,7 +115,7 @@ body {
 
 .feedbackText {
     font-size: 14px;
-    color: #333;
+    color: black;
     position: absolute;
     top: 75px;
     left: 10px;
@@ -169,7 +170,7 @@ body {
     width: 100%;
     height: 250px;
     background-color: black;
-    border-radius: 23px;
+    border-radius: 20px;
     object-fit: cover;
 }
 
@@ -177,6 +178,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 20px;
 }
 
 .productTitle {
@@ -195,6 +197,10 @@ body {
 
 .productDescription {
     font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 150px;
 }
 
 .btnSeeMore {
@@ -220,4 +226,53 @@ body {
 
 button:disabled {
     background-color: #a5b8b9;
+}
+
+@media(max-width: 767px) {
+    .productCard {
+        width: 220px;
+        height: 358px;
+        background-color: #fff;
+        border-radius: 20px;
+        margin-bottom: 30px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .productImage {
+        width: 100%;
+        height: 250px;
+        background-color: black;
+        border-radius: 20px;
+        object-fit: cover;
+    }
+
+    .productImage img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+
+    .productTitle {
+        font-size: 16px;
+    }
+
+    .productDescription {
+        display: none;
+    }
+
+    .productPrice {
+        font-size: 20px;
+    }
+
+    .btnSeeMore {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+
+    .category {
+        font-size: 12px;
+    }
 }
