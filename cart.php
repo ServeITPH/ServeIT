@@ -16,13 +16,13 @@ if (isset($_POST['showMoreBtn']) && $_POST['showMoreBtn'] === 'showMore') {
 
 $sql = "SELECT * 
         FROM carts 
-        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID LIMIT $showLimit";
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID  AND isBili = 'NO' LIMIT $showLimit";
 $fetchCart = executeQuery($sql);
 
 // FOR THE ITEMS AND GRAND TOTAL THAT LOOPS ALL DATA IN THE CART TABLE
 $sqlSummary = "SELECT * 
         FROM carts 
-        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID";
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID AND isBili = 'NO' ";
 
 $fetchCartSummary = executeQuery($sqlSummary);
 $itemCount = mysqli_num_rows($fetchCartSummary);
@@ -38,6 +38,23 @@ if (isset($_POST['deleteCartID'])) {
     header("Location: cart.php");
     exit();
 }
+
+// insert into transaction
+if (isset($_POST['insertToTransaction'])) {
+    $paymentMode = $_POST['paymentMode'];
+    $addToTransationQuery = "INSERT INTO transactions (consumerID, paymentMethod, transactionDate) VALUES ('$userID','$paymentMode', NOW())";
+    executeQuery($addToTransationQuery);
+}
+
+// UPDATE isBought = "NO" INTO isBought = "Yes"
+if (isset($_POST['updateCartID'])) {
+    $updateID = $_POST['updateCartID'];
+    $updateQuery = "UPDATE carts SET isBili = 'YES'";
+    executeQuery($updateQuery);
+    header("Location: cart.php");
+    exit();
+}
+
 
 // DELETION OF ITEMS AFTER CHECKOUT
 if (isset($_POST['delCheckoutCart'])) {
@@ -215,225 +232,227 @@ $fetchProduct = executeQuery($productQuery);
             ?>
 
             <!-- CHECK OUT PROCESS-->
+
             <div class="col-12 col-md-5">
-                <ul class="list-group mt-3 rounded-5">
-                    <li class="list-group-item">
-                        <p class="fw-bold fs-2 text-center"> SUMMARY </p>
-                        <p class="fw-lighter fs-6 text-start ms-5"> Items:</p>
-                        <p class="fw-medium fs-6 ms-5 ms-5"><?php echo $itemsList; ?></p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="fw-lighter fs-6 text-start ms-5"> Subtotal:
-                            ₱<span><?php echo $grandTotal ?></span>
-                        </p>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="fw-lighter fs-6 text-start ms-5"> Mode Of Payment:</p>
-                        <!-- Radio for Cash On Delivery -->
-                        <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                            <input class="form-check-input" type="radio" name="paymentMode" id="cod" value="cash"
-                                checked>
-                            <label class="form-check-label" for="cod">Cash On Delivery</label>
-                        </div>
+                <form method="post">
+                    <ul class="list-group mt-3 rounded-5">
+                        <li class="list-group-item">
+                            <p class="fw-bold fs-2 text-center"> SUMMARY </p>
+                            <p class="fw-lighter fs-6 text-start ms-5"> Items:</p>
+                            <p class="fw-medium fs-6 ms-5 ms-5"><?php echo $itemsList; ?></p>
+                        </li>
+                        <li class="list-group-item">
+                            <p class="fw-lighter fs-6 text-start ms-5"> Subtotal:
+                                ₱<span><?php echo $grandTotal ?></span>
+                            </p>
+                        </li>
 
-                        <!-- Radio for Gcash -->
-                        <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                            <input class="form-check-input" type="radio" name="paymentMode" id="gcash" value="gcash">
-                            <label class="form-check-label" for="gcash">Gcash</label>
-                        </div>
-                    </li>
-                    <li class="list-group-item">
-                        <p class="fw-lighter fs-6 text-start ms-5"> VAT: ₱0.00 </p>
-                    </li>
-                    <!-- TOTAL-->
-                    <li class="list-group-item mb-0">
-                        <p class="fw-bolder fs-5 text-start ms-5 text-center">Total:
-                            ₱<span><?php echo $grandTotal ?></span>
-                        </p>
-                    </li>
-                </ul>
+                        <li class="list-group-item">
+                            <p class="fw-lighter fs-6 text-start ms-5"> Mode Of Payment:</p>
+                            <!-- Radio for Cash On Delivery -->
+                            <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
+                                <input class="form-check-input" type="radio" name="paymentMode" id="cod"
+                                    value="Cash On Delivery" checked>
+                                <label class="form-check-label" for="cod">Cash On Delivery</label>
+                            </div>
 
-                <!-- MODAL FOR GCASH -->
-                <div class="modal fade" id="myQR" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Please pay the total amount:
-                                    ₱<?php echo $grandTotal ?></h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                            <!-- Radio for Gcash -->
+                            <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
+                                <input class="form-check-input" type="radio" name="paymentMode" id="gcash"
+                                    value="gcash">
+                                <label class="form-check-label" for="gcash">Gcash</label>
                             </div>
-                            <div class="modal-body">
-                                <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
-                                <p class="text-center fw-bolder mt-3">
-                                    Pay via QR or send to 09123456789
-                                </p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
+
+                        </li>
+                        <li class="list-group-item">
+                            <p class="fw-lighter fs-6 text-start ms-5"> VAT: ₱0.00 </p>
+                        </li>
+                        <!-- TOTAL-->
+                        <li class="list-group-item mb-0">
+                            <p class="fw-bolder fs-5 text-start ms-5 text-center">Total:
+                                ₱<span><?php echo $grandTotal ?></span>
+                            </p>
+                        </li>
+                    </ul>
+
+                    <!-- MODAL FOR GCASH -->
+                    <div class="modal fade" id="myQR" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Please pay the total amount:
+                                        ₱<?php echo $grandTotal ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
+                                    <p class="text-center fw-bolder mt-3">
+                                        Pay via QR or send to 09123456789
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
 
-                <div class="d-flex justify-content-center mt-3">
-                    <!-- <form method="post">
+                    <div class="d-flex justify-content-center mt-3">
+                        <!-- <form method="post">
                         <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>"> -->
-                    <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
-                        data-bs-target="#myModal" <?php if ($cartEmpty)
-                            echo 'disabled'; ?>>Check Out</button>
-                    <!-- </form> -->
-                </div>
+                        <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
+                            data-bs-target="#myModal" <?php if ($cartEmpty)
+                                echo 'disabled'; ?>>Check Out</button>
+                        <!-- </form> -->
+                    </div>
 
-                <!-- MODAL FOR CHECK-OUT -->
-                <div class="modal" id="myModal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Confirm Checkout</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Are you sure you want to checkout?</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
-                                <form method="post">
-                                    <input type="hidden" name="delCheckoutCart"
+                    <!-- MODAL FOR CHECK-OUT -->
+                    <div class="modal" id="myModal" tabindex="-1">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Confirm Checkout</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Are you sure you want to checkout?</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">No</button>
+                                    <input type="hidden" name="insertToTransaction">
+                                    <input type="hidden" name="updateCartID"
                                         value="<?php echo $fetchCartRow['cartID']; ?>">
                                     <button type="submit" class="btn btn-success" data-bs-dismiss="modal">Yes</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                </form>
             </div>
         </div>
+    </div>
+    </div>
 
+    </div>
+    </div>
+
+
+    <div class="container mt-5">
+        <p class="fs-2 fw-bold">
+            Interest
+        </p>
+    </div>
+
+    <!-- interest Content -->
+    <div class="tabs">
+        <div class="tab-buttons">
+            <button class="tab-btn active" onclick="showTab('services')">Services</button>
+            <button class="tab-btn" onclick="showTab('products')">Products</button>
+        </div>
 
         <div class="container mt-5">
-            <p class="fs-2 fw-bold">
-                Interest
-            </p>
-        </div>
+            <div class="row d-flex flex-row justify-content-center align-items-center">
 
-        <!-- interest Content -->
-        <div class="tabs">
-            <div class="tab-buttons">
-                <button class="tab-btn active" onclick="showTab('services')">Services</button>
-                <button class="tab-btn" onclick="showTab('products')">Products</button>
-            </div>
-
-            <div class="container mt-5">
-                <div class="row d-flex flex-row justify-content-center align-items-center">
-
-                    <!-- Services Tab Content -->
-                    <div id="services" class="tab-content" style="display: block;">
-                        <div class="row">
-                            <?php
-                            if (mysqli_num_rows($fetchService) > 0) {
-                                while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
-                                    ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
-                                        <div class="serviceCard rounded mx-auto">
-                                            <div
-                                                class="card-body d-flex flex-column justify-content-between align-items-center">
-                                                <div class="serviceImage">
-                                                    <img src="assets/images/items/<?php echo $fetchServiceRow['attachment'] ?>"
-                                                        alt="<?php echo $fetchServiceRow['title'] ?>">
-                                                </div>
-                                                <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <span
-                                                        class="serviceTitle text-truncate fs-5"><?php echo $fetchServiceRow['title'] ?></span>
-                                                    <span
-                                                        class="servicePrice ms-4">₱<?php echo $fetchServiceRow['price'] ?></span>
-                                                </div>
-                                                <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <p class="serviceDescription">
-                                                        <?php echo $fetchServiceRow['shortDescription'] ?>
-                                                    </p>
-                                                    <a href="serviceInfo.php?itemID=<?php echo $fetchServiceRow['itemID'] ?>">
-                                                        <button class="btnSeeMore rounded-pill ms-2">See More</button>
-                                                    </a>
-                                                </div>
-                                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                                <div class="category">
-                                                    <span><?php echo $fetchServiceRow['categoryName'] ?></span>
-                                                </div>
+                <!-- Services Tab Content -->
+                <div id="services" class="tab-content" style="display: block;">
+                    <div class="row">
+                        <?php
+                        if (mysqli_num_rows($fetchService) > 0) {
+                            while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
+                                ?>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
+                                    <div class="serviceCard rounded mx-auto">
+                                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                            <div class="serviceImage">
+                                                <img src="assets/images/items/<?php echo $fetchServiceRow['attachment'] ?>"
+                                                    alt="<?php echo $fetchServiceRow['title'] ?>">
+                                            </div>
+                                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                                <span
+                                                    class="serviceTitle text-truncate fs-5"><?php echo $fetchServiceRow['title'] ?></span>
+                                                <span class="servicePrice ms-4">₱<?php echo $fetchServiceRow['price'] ?></span>
+                                            </div>
+                                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                                <p class="serviceDescription">
+                                                    <?php echo $fetchServiceRow['shortDescription'] ?>
+                                                </p>
+                                                <a href="serviceInfo.php?itemID=<?php echo $fetchServiceRow['itemID'] ?>">
+                                                    <button class="btnSeeMore rounded-pill ms-2">See More</button>
+                                                </a>
+                                            </div>
+                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div class="category">
+                                                <span><?php echo $fetchServiceRow['categoryName'] ?></span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <?php
-                                }
-                            } else {
-                                echo "No service available";
+                                <?php
                             }
-                            ?>
-                        </div>
+                        } else {
+                            echo "No service available";
+                        }
+                        ?>
                     </div>
+                </div>
 
-                    <!-- Products Tab Content -->
-                    <div id="products" class="tab-content" style="display: none;">
-                        <div class="row">
-                            <?php
-                            if (mysqli_num_rows($fetchProduct) > 0) {
-                                while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
-                                    ?>
-                                    <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
-                                        <div class="productCard rounded mx-auto">
-                                            <div
-                                                class="card-body d-flex flex-column justify-content-between align-items-center">
-                                                <div class="productImage">
-                                                    <img src="assets/images/items/<?php echo $fetchProductRow['attachment'] ?>"
-                                                        alt="<?php echo $fetchProductRow['title'] ?>">
-                                                </div>
-                                                <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <span
-                                                        class="productTitle text-truncate fs-5"><?php echo $fetchProductRow['title'] ?></span>
-                                                    <span
-                                                        class="productPrice ms-4">₱<?php echo $fetchProductRow['price'] ?></span>
-                                                </div>
-                                                <div class="w-100 d-flex justify-content-between align-items-center">
-                                                    <p class="productDescription text-truncate">
-                                                        <?php echo $fetchProductRow['shortDescription'] ?>
-                                                    </p>
-                                                    <a href="productInfo.php?itemID=<?php echo $fetchProductRow['itemID'] ?>">
-                                                        <button class="btnSeeMore rounded-pill ms-2">See More</button>
-                                                    </a>
-                                                </div>
-                                                <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                                <div class="category">
-                                                    <span><?php echo $fetchProductRow['categoryName'] ?></span>
-                                                </div>
+                <!-- Products Tab Content -->
+                <div id="products" class="tab-content" style="display: none;">
+                    <div class="row">
+                        <?php
+                        if (mysqli_num_rows($fetchProduct) > 0) {
+                            while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
+                                ?>
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
+                                    <div class="productCard rounded mx-auto">
+                                        <div class="card-body d-flex flex-column justify-content-between align-items-center">
+                                            <div class="productImage">
+                                                <img src="assets/images/items/<?php echo $fetchProductRow['attachment'] ?>"
+                                                    alt="<?php echo $fetchProductRow['title'] ?>">
+                                            </div>
+                                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                                <span
+                                                    class="productTitle text-truncate fs-5"><?php echo $fetchProductRow['title'] ?></span>
+                                                <span class="productPrice ms-4">₱<?php echo $fetchProductRow['price'] ?></span>
+                                            </div>
+                                            <div class="w-100 d-flex justify-content-between align-items-center">
+                                                <p class="productDescription text-truncate">
+                                                    <?php echo $fetchProductRow['shortDescription'] ?>
+                                                </p>
+                                                <a href="productInfo.php?itemID=<?php echo $fetchProductRow['itemID'] ?>">
+                                                    <button class="btnSeeMore rounded-pill ms-2">See More</button>
+                                                </a>
+                                            </div>
+                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div class="category">
+                                                <span><?php echo $fetchProductRow['categoryName'] ?></span>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
 
-                                    <?php
-                                }
-                            } else {
-                                echo "No product available";
+                                <?php
                             }
-                            ?>
-                        </div>
+                        } else {
+                            echo "No product available";
+                        }
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Show all button -->
-        <div class="d-flex justify-content-center">
-            <a id="showAllBtn" href="products.php">
-                <button type="button" class="btn rounded-5 fs-5 fw-normal" onclick="showAll()"
-                    style="background-color:rgb(0, 0, 0); color: white;">
-                    Show all
-                </button>
-            </a>
-        </div>
+    <!-- Show all button -->
+    <div class="d-flex justify-content-center">
+        <a id="showAllBtn" href="products.php">
+            <button type="button" class="btn rounded-5 fs-5 fw-normal" onclick="showAll()"
+                style="background-color:rgb(0, 0, 0); color: white;">
+                Show all
+            </button>
+        </a>
+    </div>
 
     </div>
     <!-- SM PAYMENT-->
