@@ -28,9 +28,9 @@ if (isset($_POST['btnSubmit'])) {
         // Attempt to move the uploaded file to the server
         if (move_uploaded_file($attachmentTemp, $uploadFile)) {
             // File uploaded successfully, now insert the data into the database
-            $stmt = $conn->prepare("INSERT INTO items (title, description, price, attachment, type, categoryID, shortDescription) 
+            $stmt = $conn->prepare("INSERT INTO items (title, description, price, attachment, type, categoryName, shortDescription) 
                                     VALUES (?, ?, ?, ?, ?, ?, ?)");
-            $stmt->bind_param("sssssis", $title, $description, $price, $attachment, $type, $category, $shortDescription);
+            $stmt->bind_param("sssssss", $title, $description, $price, $attachment, $type, $category, $shortDescription);
 
             // Execute the statement
             if ($stmt->execute()) {

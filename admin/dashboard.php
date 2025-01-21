@@ -216,7 +216,7 @@ $productGetResult = executeQuery($productGetQuery);
                                     <input class="form-control" type="text" name="search"
                                         placeholder="Search Service" value="<?php echo $searchServiceTerm ?>"
                                         aria-label="Search">
-                                        <button class="btn btn-outline-success" type="submit" name="btnSearchService">Search</button>
+                                    <button class="btn btn-outline-success" type="submit" name="btnSearchService">Search</button>
                                 </form>
 
                                 <div class="table-responsive">
@@ -239,7 +239,7 @@ $productGetResult = executeQuery($productGetQuery);
                                             if (mysqli_num_rows($serviceGetResult) > 0) {
                                                 while ($serviceGetRow = mysqli_fetch_assoc($serviceGetResult)) {
 
-                                                    ?>
+                                            ?>
                                                     <form method="POST" enctype="multipart/form-data">
                                                         <tr>
                                                             <th scope="row"><?php echo $serviceGetRow['itemID']; ?></th>
@@ -285,7 +285,7 @@ $productGetResult = executeQuery($productGetQuery);
                                                             </td>
                                                         </tr>
                                                     </form>
-                                                    <?php
+                                            <?php
                                                 }
                                             }
                                             ?>
@@ -306,10 +306,10 @@ $productGetResult = executeQuery($productGetQuery);
                     <div class="container-fluid">
                         <div class="row justify-content-center">
                             <div class="col-12 col-md-10">
-                                <form  method="GET" class="d-flex py-5" role="search">
-                                <input class="form-control" type="text" name="searchProduct" placeholder="Search Product"
-                                value="<?php echo $searchProductTerm ?>" aria-label="Search">
-                                <button class="btn btn-outline-success" type="submit" name="btnSearchProduct">Search</button>
+                                <form method="GET" class="d-flex py-5" role="search">
+                                    <input class="form-control" type="text" name="searchProduct" placeholder="Search Product"
+                                        value="<?php echo $searchProductTerm ?>" aria-label="Search">
+                                    <button class="btn btn-outline-success" type="submit" name="btnSearchProduct">Search</button>
                                 </form>
 
                                 <div class="table-responsive">
@@ -331,7 +331,7 @@ $productGetResult = executeQuery($productGetQuery);
                                             if (mysqli_num_rows($productGetResult) > 0) {
                                                 while ($productGetRow = mysqli_fetch_assoc($productGetResult)) {
 
-                                                    ?>
+                                            ?>
                                                     <form method="POST" enctype="multipart/form-data">
                                                         <tr>
                                                             <th scope="row"><?php echo $productGetRow['itemID']; ?></th>
@@ -377,7 +377,7 @@ $productGetResult = executeQuery($productGetQuery);
                                                             </td>
                                                         </tr>
                                                     </form>
-                                                    <?php
+                                            <?php
                                                 }
                                             }
                                             ?>
