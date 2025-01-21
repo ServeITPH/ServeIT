@@ -9,6 +9,7 @@ if (!isset($_SESSION['userID'])) {
 
 $userID = $_SESSION['userID'];
 
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
     $receiverID = 1; // palitan nalang
@@ -188,11 +189,6 @@ $result = $conn->query($query);
             </div>
         </div>
     </div>
-
-    <!-- smpayment -->
-    <?php include("sharedAssets/smpayment.php"); ?>
-    <!-- footer -->
-    <?php include("sharedAssets/footer.php"); ?>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 

@@ -16,13 +16,13 @@ if (isset($_POST['showMoreBtn']) && $_POST['showMoreBtn'] === 'showMore') {
 
 $sql = "SELECT * 
         FROM carts 
-        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID  AND isBili = 'NO' LIMIT $showLimit";
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID  AND isCheckOut = 'NO' LIMIT $showLimit";
 $fetchCart = executeQuery($sql);
 
 // FOR THE ITEMS AND GRAND TOTAL THAT LOOPS ALL DATA IN THE CART TABLE
 $sqlSummary = "SELECT * 
         FROM carts 
-        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID AND isBili = 'NO' ";
+        INNER JOIN items ON carts.itemID = items.itemID WHERE userID = $userID AND isCheckOut = 'NO' ";
 
 $fetchCartSummary = executeQuery($sqlSummary);
 $itemCount = mysqli_num_rows($fetchCartSummary);
@@ -46,10 +46,10 @@ if (isset($_POST['insertToTransaction'])) {
     executeQuery($addToTransationQuery);
 }
 
-// UPDATE isBought = "NO" INTO isBought = "Yes"
+// UPDATE isCheckOut = "NO" INTO isCheckOut = "Yes"
 if (isset($_POST['updateCartID'])) {
     $updateID = $_POST['updateCartID'];
-    $updateQuery = "UPDATE carts SET isBili = 'YES'";
+    $updateQuery = "UPDATE carts SET isCheckOut = 'YES'";
     executeQuery($updateQuery);
     header("Location: cart.php");
     exit();

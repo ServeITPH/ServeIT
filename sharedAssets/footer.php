@@ -4,8 +4,8 @@
 
 $userID = $_SESSION['userID'];
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['message'])) {
-    $message = mysqli_real_escape_string($conn, $_POST['message']);
-    $sendMessageQuery = "INSERT INTO chats(senderID, receiverID, message, isRead) VALUES ('$userID', '$receiverID', '$message', 'yes')";
+    $messageFooter = mysqli_real_escape_string($conn, $_POST['message']);
+    $sendMessageQuery = "INSERT INTO chats(senderID, receiverID, message, isRead) VALUES ('$userID', '$receiverID', '$messageFooter', 'yes')";
     executeQuery($sendMessageQuery);
 
     header("Location: chats.php?id=$receiverID&username=$username");
