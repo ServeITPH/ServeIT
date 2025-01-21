@@ -8,6 +8,10 @@ include("admin/adminAssets/user.php");
 $page = "Services";
 include("sharedAssets/counter.php");
 
+
+// counter
+$count = 0;
+
 $searchTerm = '';
 $categoryNameFilter = isset($_GET['category']) ? $_GET['category'] : '';
 
@@ -102,8 +106,8 @@ $serviceListResult = executeQuery($serviceListQuery);
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
+                $count++;
                 ?>
-
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -128,10 +132,16 @@ $serviceListResult = executeQuery($serviceListQuery);
                         </div>
                     </div>
                 </div>
-
                 <?php
             }
-            ?>
+            // eto yung counter na mag ffill ng gap kapag dalawa lang lumabas or isa
+            while ($count % 4 !== 0) {
+                $count++;
+                ?>
+                <div class="col-lg-3 col-6 d-flex flex-row justify-content-center invisible">
+                    <div class="serviceCard rounded mx-5"></div>
+                </div>
+            <?php } ?>
 
         </div>
     </div>

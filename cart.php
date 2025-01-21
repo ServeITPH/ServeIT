@@ -102,21 +102,27 @@ $fetchProduct = executeQuery($productQuery);
         <div class="row">
             <div class="col-12 col-md-5">
                 <div class="ms-3 mt-5 d-flex align-items-center">
-                    <img src="assets/images/cart/cart.png" alt="...">
-                    <p class="fs-2 fw-bold mb-0 ms-3">
+                    <img src="assets/images/cart/cart.png" alt="Cart Icon" class="img-fluid me-3">
+                    <p class="fs-2 fw-bold mb-0">
                         CART
                     </p>
-                    <div class="ms-auto">
-                        <form method="POST"> <input type="hidden" name="delCheckoutCart"
-                                value="<?php echo $fetchCartRow['cartID']; ?>">
-                            <button type="submit" class="btn p-0">
+                    <div class="ms-auto d-flex align-items-center">
+                        <form method="POST" class="d-flex align-items-center">
+                            <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>">
+
+
+                            <button type="submit" class="btn p-0 me-2">
                                 <img src="assets/images/cart/trashBin.png" alt="Delete Cart" class="img-fluid">
                             </button>
                         </form>
+                        <div class="text-center pt-4" style="font-size: 12px">
+                            <p>Clear Cart</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
 
         <div class="col-12 col-md-2"></div>
@@ -151,7 +157,7 @@ $fetchProduct = executeQuery($productQuery);
                                     </p>
                                     <!--REMOVE AND SEE MORE-->
                                     <div class="d-flex ms-auto flex-nowrap">
-                                    <!--REMOVE-->
+                                        <!--REMOVE-->
                                         <form method="post">
                                             <input type="hidden" name="deleteCartID"
                                                 value="<?php echo $fetchCartRow['cartID']; ?>">
@@ -179,7 +185,7 @@ $fetchProduct = executeQuery($productQuery);
                 }
                 ?>
 
-                 <!--SHOW MORE SHOW LESS FUNCTION-->
+                <!--SHOW MORE SHOW LESS FUNCTION-->
                 <?php if ($itemCount > 3): ?>
                     <div class="d-flex justify-content-center mt-3">
                         <form method="post">

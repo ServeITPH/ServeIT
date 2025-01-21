@@ -47,7 +47,7 @@ while ($productCountRow = mysqli_fetch_assoc($productCountResult)) {
 }
 
 //new arrival list
-$newArrivalQuery = "SELECT * FROM items WHERE type = 'product' ORDER BY type DESC LIMIT 4;";
+$newArrivalQuery = "SELECT * FROM items WHERE type = 'product' ORDER BY itemID DESC LIMIT 4;";
 $newArrivalResult = executeQuery($newArrivalQuery);
 
 

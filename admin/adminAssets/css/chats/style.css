@@ -1,5 +1,5 @@
 .mainRow {
-  height: 50vh;
+  height: 85vh;
   background-color: #ffffff;
 }
 
@@ -63,9 +63,9 @@ body {
   margin-left: 15px;
 }
 
-.mainRow {
+/* .mainRow {
   height: 100vh;
-}
+} */
 
 .card {
   height: 100%;

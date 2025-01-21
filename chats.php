@@ -130,7 +130,7 @@ $result = $conn->query($query);
                         <span class="h4" style="color: #19afa5;">ServeIT</span>
                     </div>
                 </div>
-                <div id="chat-container" class="d-flex align-items-end flex-column" style="height: 68vh; overflow-y: scroll;">
+                <div id="chat-container" class="d-flex align-items-end flex-column px-3" style="height: 68vh; overflow-y: scroll;">
                     <?php
                     if ($result->num_rows > 0) {
                         while ($row = $result->fetch_assoc()) {
@@ -138,7 +138,7 @@ $result = $conn->query($query);
                             $chatClass = $isOwnMessage ? "chatbubble-own" : "chatbubble-other";
                             $infoClass = $isOwnMessage ? "information-own" : "information";
                     ?>
-                            <div class="chatbubble-own-container">
+                            <div class="chatbubble-own-container my-3 ">
                                 <div class="<?= $chatClass; ?>">
                                     <?= htmlspecialchars($row['message']); ?>
                                     <?php if ($row['attachment']) { ?>

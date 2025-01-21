@@ -102,7 +102,7 @@
         <?php include("adminAssets/nav.php"); ?>
 
         <div class="container-fluid">
-            <div class="row mainRow p-2">
+            <div class="row mainRow p-4">
                 <!-- Chat List -->
                 <div class="col-12 col-md-3 mb-3">
                     <div class="card rounded-5 chatBox">
@@ -136,15 +136,15 @@
                                         <div class="row shadow-sm ps-3 p-3">
                                             <div class="col-auto">
                                                 <!-- Profile Picture -->
-                                                <img src="<?php echo $chatsRow['profilePicture'] ?>" alt="Profile Picture" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
+                                                <img src="uploads/<?php echo $chatsRow['profilePicture'] ?>" alt="Profile Picture" class="rounded-circle" style="width: 50px; height: 50px; object-fit: cover;">
                                             </div>
                                             <div class="col">
                                                 <!-- Username -->
-                                                <div class="fw-bold">
+                                                <div class="fw-bold text-start">
                                                     <?php echo $chatsRow['username'] ?>
                                                 </div>
                                                 <!-- Recent Chat -->
-                                                <div class="text-muted" style="font-size: 14px;">
+                                                <div class="text-muted text-start" style="font-size: 14px;">
                                                     <?php echo strlen($chatsRow['recentChat']) > 30 ? substr($chatsRow['recentChat'], 0, 30) . '...' : $chatsRow['recentChat']; ?>
                                                 </div>
                                             </div>
