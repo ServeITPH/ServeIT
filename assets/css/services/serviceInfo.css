@@ -218,6 +218,18 @@ body {
     margin-bottom: 50px;
 }
 
+button:disabled {
+    background-color: #a5b8b9;
+}
+
+.btnMoreServices {
+    background-color: #19AFA5;
+    width: 150px;
+    height: 40px;
+    border: none;
+    font-size: 15px;
+}
+
 @media(max-width: 767px) {
     .serviceCard {
         width: 220px;

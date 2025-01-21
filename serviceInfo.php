@@ -48,7 +48,7 @@ if (isset($_POST['btnBuyNow'])) {
 $serviceInfoQuery = "SELECT * FROM items WHERE itemID = $serviceInfoID";
 $serviceInfoResult = executeQuery($serviceInfoQuery);
 
-$serviceListQuery = "SELECT * FROM items WHERE type = 'service'";
+$serviceListQuery = "SELECT * FROM items WHERE type = 'service' ORDER BY itemID DESC LIMIT 8";
 $serviceListResult = executeQuery($serviceListQuery);
 
 $userQuery = "SELECT * FROM users WHERE userID = $userID";
@@ -318,6 +318,12 @@ $feedbackResult = executeQuery($feedbackQuery);
                 <?php
             }
             ?>
+
+            <div class="d-flex justify-content-center mb-4">
+                <a href="services.php">
+                    <button class="btnMoreServices rounded-pill">More Services</button>
+                </a>
+            </div>
 
         </div>
     </div>

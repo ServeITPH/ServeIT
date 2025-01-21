@@ -48,7 +48,7 @@ if (isset($_POST['btnBuyNow'])) {
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
 $productInfoResult = executeQuery($productInfoQuery);
 
-$productListQuery = "SELECT * FROM items WHERE type = 'product'";
+$productListQuery = "SELECT * FROM items WHERE type = 'product' ORDER BY itemID DESC LIMIT 8";
 $productListResult = executeQuery($productListQuery);
 
 $userQuery = "SELECT * FROM users WHERE userID = $userID";
@@ -317,6 +317,12 @@ $feedbackResult = executeQuery($feedbackQuery);
                 <?php
             }
             ?>
+
+            <div class="d-flex justify-content-center mb-4">
+                <a href="products.php">
+                    <button class="btnMoreProducts rounded-pill">More Products</button>
+                </a>
+            </div>
 
         </div>
     </div>
