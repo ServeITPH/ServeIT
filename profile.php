@@ -3,7 +3,12 @@ require_once 'sharedAssets/connect.php';
 
 
 include("admin/adminAssets/user.php");
+$page = "Services";
+include("sharedAssets/counter.php");
 
+
+// counter
+$count = 0;
 if (!isset($_SESSION['userID'])) {
     die("Unauthorized access!");
 }
@@ -16,7 +21,10 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $stmt->close();
-
+$serviceListQuery = "SELECT * FROM items WHERE type = 'service' ORDER BY RAND() LIMIT 10";
+$productListQuery = "SELECT * FROM items WHERE type = 'product' ORDER BY RAND() LIMIT 10";
+$serviceListResult = executeQuery($serviceListQuery);
+$productListResult = executeQuery($productListQuery);
 function safe_echo($value)
 {
     return htmlspecialchars($value ?? '', ENT_QUOTES, 'UTF-8');
@@ -44,6 +52,7 @@ function safe_echo($value)
     <link rel="icon" href="assets/images/nav/logo-nav.png">
     <link rel="stylesheet" href="assets/css/footer/footer.css">
     <link rel="stylesheet" href="assets/css/product/product.css">
+    <link rel="stylesheet" href="assets/css/services/services.css">
     <link rel="stylesheet" href="assets/css/profile/profile.css">
     <link
     rel="stylesheet"
@@ -68,7 +77,6 @@ function safe_echo($value)
                     <div>
                         <div class="profile-name"><?php echo safe_echo(ucfirst($user['username'])); ?></div>
                         <div class="since">Member Since 2025</div>
-                        <div class="location">📍 Philippines</div>
                     </div>
                 </div>
                 <div class="header-buttons">
@@ -86,248 +94,78 @@ function safe_echo($value)
 
                 <div id="services" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
-                        <!-- BEGIN First 4 visible items -->
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeIn">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Service Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeIn">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Service Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
+                        <?php
+                        $itemIndex = 0; 
+                        while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
+                            $itemIndex++;
+                            $hiddenClass = $itemIndex > 4 ? 'hidden-item animate__animated animate__backInUp' : 'd-flex flex-row animate__animated animate__fadeIn';
+                            ?>
+                            <div class="col-lg-3 col-6 <?php echo $hiddenClass; ?>  justify-content-center">
+                                <div class="serviceCard rounded mx-auto">
+                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                        <div class="serviceImage">
+                                            <img src="assets/images/items/<?php echo $serviceListRow['attachment'] ?>"
+                                                alt="<?php echo $serviceListRow['title'] ?>">
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <span class="serviceTitle"><?php echo $serviceListRow['title'] ?></span>
+                                            <span class="servicePrice">₱<?php echo $serviceListRow['price'] ?></span>
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <p class="serviceDescription"><?php echo $serviceListRow['shortDescription'] ?></p>
+                                            <a href="serviceInfo.php?itemID=<?php echo $serviceListRow['itemID'] ?>">
+                                                <button class="btnSeeMore rounded-pill">See More</button>
+                                            </a>
+                                        </div>
+                                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                        <div class="category">
+                                            <span><?php echo $serviceListRow['categoryName'] ?></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeIn">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Service Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeIn">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Service Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <!-- END First 4 visible items -->
-                        <div class="col-lg-3 col-6 hidden-item animate__animated animate__backInUp">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Service Titles</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                 
+                            <?php
+                        }
+                        ?>
                     </div>
                     <button class="show-all" onclick="showAllItems('services')">Show all</button>
                 </div>
 
                 <div id="products" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
-                         <!--BEGIN First 4 visible items -->
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeI">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Product Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeI">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Product Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
+                    <?php
+                        $itemIndex = 0; 
+                        while ($productListRow = mysqli_fetch_assoc($productListResult)) {
+                            $itemIndex++;
+                            $hiddenClass = $itemIndex > 4 ? 'hidden-item animate__animated animate__backInUp' : 'd-flex flex-row animate__animated animate__fadeIn';
+                            ?>
+                            <div class="col-lg-3 col-6 <?php echo $hiddenClass; ?>  justify-content-center">
+                                <div class="serviceCard rounded mx-auto">
+                                    <div class="card-body d-flex flex-column justify-content-center align-items-center">
+                                        <div class="serviceImage">
+                                            <img src="assets/images/items/<?php echo $productListRow['attachment'] ?>"
+                                                alt="<?php echo $productListRow['title'] ?>">
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <span class="serviceTitle"><?php echo $productListRow['title'] ?></span>
+                                            <span class="servicePrice">₱<?php echo $productListRow['price'] ?></span>
+                                        </div>
+                                        <div class="w-100 d-flex justify-content-between align-items-center">
+                                            <p class="serviceDescription"><?php echo $productListRow['shortDescription'] ?></p>
+                                            <a href="productInfo.php?itemID=<?php echo $productListRow['itemID'] ?>">
+                                                <button class="btnSeeMore rounded-pill">See More</button>
+                                            </a>
+                                        </div>
+                                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                        <div class="category">
+                                            <span><?php echo $productListRow['categoryName'] ?></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeI">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Product Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-3 col-6 d-flex flex-row animate__animated animate__fadeI">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Product Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                         <!--END First 4 visible items -->
-                        <div class="col-lg-3 col-6 hidden-item  flex-row animate__animated animate__backInUp">
-                            <div class="productCard rounded mx-auto">
-                                <div class="card-body d-flex flex-column justify-content-between align-items-center">
-                                    <div class="productImage">
-                                        <img src="" alt="Product Image">
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <span class="productTitle">Product Title</span>
-                                        <span class="productPrice">₱500</span>
-                                    </div>
-                                    <div class="w-100 d-flex justify-content-between align-items-center">
-                                        <p class="productDescription">Lorem ipsum dolor sit amet</p>
-                                        <a href="productInfo.php">
-                                            <button class="btnSeeMore rounded-pill">See More</button>
-                                        </a>
-                                    </div>
-                                    <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
-                                    <div class="category">
-                                        <span>Asset</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Repeat hidden items here as well -->
+                            <?php
+                        }
+                        ?>
                     </div>
                     <button class="show-all" onclick="showAllItems('products')">Show all</button>
                 </div>

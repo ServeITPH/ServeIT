@@ -135,10 +135,11 @@ body {
 }
 
 .upload-preview {
-  width: 120px;
-  height: 120px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background: #000;
+  border: 1px solid #ddd;
   overflow: hidden;
 }
 

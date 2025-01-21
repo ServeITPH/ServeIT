@@ -156,14 +156,13 @@ function safe_echo($value)
                         <div class="member-since">Member since
                             <?php echo date('Y', strtotime($user['accountDate'] ?? 'now')); ?>
                         </div>
-                        <div class="location">📍 Philippines</div>
                         <span class="change-pass-btn" data-bs-toggle="modal" data-bs-target="#changePasswordModal">
                             Change Password
                         </span>
                     </div>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn" onclick="window.history.back();">Back</button>
+                    <button class="btn" onclick="window.location.href='profile.php';">Back</button>
                     <button class="btn logout-btn" onclick="window.location.href='login.php';">Log out</button>
                 </div>
             </div>
@@ -197,21 +196,12 @@ function safe_echo($value)
                     <div class="form-right">
                         <span class="divider"></span>
                         <div class="profile-upload">
-                            <?php if ($user['profilePicture']): ?>
-                                <img src="uploads/<?php echo safe_echo($user['profilePicture']); ?>" alt="Profile"
-                                    class="upload-preview">
-                            <?php else: ?>
-                                <div class="upload-preview"></div>
-                            <?php endif; ?>
+                            <img id="uploadPreview" src="uploads/<?php echo safe_echo($user['profilePicture']); ?>" 
+                                alt="Profile" class="upload-preview">
                             <label class="select-image-btn">
                                 Select Image
-                                <input type="file" name="profilePicture" style="display: none;">
+                                <input type="file" name="profilePicture" id="profilePictureInput" style="display: none;">
                             </label>
-                            <div class="form-group">
-                                <label>Location</label>
-                                <input type="text" value="Philippines" disabled>
-                            </div>
-
                         </div>
                     </div>
                 </div>
@@ -257,4 +247,17 @@ function safe_echo($value)
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.getElementById('profilePictureInput').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                document.getElementById('uploadPreview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
+
 </html>
