@@ -66,9 +66,9 @@ if ($userID == "" || $role == "") {
         </div>
     </div>
 
-    <div class="container py-5">
+    <div class="container py-5 px-5">
         <div class="row g-5 justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6">
                 <a href="dashboard.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-dashboard-monitor"></i>
@@ -76,7 +76,7 @@ if ($userID == "" || $role == "") {
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6">
                 <a href="addProducts.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-box-open"></i>
@@ -84,7 +84,9 @@ if ($userID == "" || $role == "") {
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
+        </div>
+        <div class="row g-5 justify-content-center mt-4">
+            <div class="col-12 col-md-6">
                 <a href="feedback.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-feedback-review"></i>
@@ -92,17 +94,17 @@ if ($userID == "" || $role == "") {
                     </div>
                 </a>
             </div>
-        </div>
-        <div class="row g-5 justify-content-center mt-4">
-            <!-- <div class="col-12 col-md-6 col-lg-4">
+            <div class="col-12 col-md-6">
                 <a href="managePosts.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-blog-text"></i>
                         <h3>Manage Posts</h3>
                     </div>
                 </a>
-            </div> -->
-            <div class="col-12 col-md-6 col-lg-4">
+            </div>
+        </div>
+        <div class="row g-5 justify-content-center mt-4">
+            <div class="col-12 col-md-6">
                 <a href="manageUsers.php">
                     <div class="card-custom">
                         <i class="fi fi-dashboard fi-rr-user-gear"></i>
@@ -110,8 +112,19 @@ if ($userID == "" || $role == "") {
                     </div>
                 </a>
             </div>
-            <div class="col-12 col-md-6 col-lg-4">
-                <a href="customerChat.php">
+            <div class="col-12 col-md-6">
+                <a href="manageTransaction.php">
+                    <div class="card-custom">
+                        <i class="fi fi-rr-credit-card"></i> <!-- Changed icon -->
+                        <h3>Manage Transaction</h3>
+                    </div>
+                </a>
+            </div>
+          
+        </div>
+        <div class="row g-5 justify-content-center mt-4">
+        <div class="col-12 col-md-6">
+        <a href="customerChat.php">
                     <div class="card-custom">
                         <i class="fi fi-rr-comment-alt"></i>
                         <h3>Customer Support</h3>
@@ -120,6 +133,7 @@ if ($userID == "" || $role == "") {
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
