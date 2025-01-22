@@ -62,8 +62,8 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
 <body>
     <?php include("sharedAssets/nav.php"); ?>
 
-    <div class="container  container-section px-5">
-        <div class="row d-flex justify-content-center ">
+    <div class="container  container-section">
+        <div class="row d-flex justify-content-center" style="padding:12px">
             <div class="card wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <div class="card-title">HELP CENTER</div>
                 <p class="card-body text-center">
@@ -79,7 +79,7 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
         </div>
         <div class="container  container-section wow animate__animated animate__fadeIn">
             <div class="row mt-5">
-                <div class="col-12 col-sm-12 col-md-8 col-lg-8 d-flex align-items-center mt-3">
+                <div class="col-12 col-sm-12 col-md-8 col-lg-8 d-flex align-items-center mt-3" style="padding:0 !important;">
                     <div class="header">
                         Welcome to ServeIT, How can we help?
                     </div>
