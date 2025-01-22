@@ -29,7 +29,7 @@ $checkCartQuery = "SELECT * FROM carts WHERE userID = '$userID' AND itemID = '$s
 $checkCartResult = executeQuery($checkCartQuery);
 
 if (isset($_POST['btnAddCart'])) {
-    if (mysqli_num_rows($checkCartResult) == 0  ) {
+    if (mysqli_num_rows($checkCartResult) == 0) {
         $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$serviceInfoID')";
         executeQuery($addCartQuery);
     }
@@ -42,7 +42,6 @@ if (isset($_POST['btnBuyNow'])) {
         $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$serviceInfoID')";
         executeQuery($addCartQuery);
     }
-
 }
 
 $serviceInfoQuery = "SELECT * FROM items WHERE itemID = $serviceInfoID";
@@ -91,7 +90,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                     <?php
                     while ($serviceInfoRow = mysqli_fetch_assoc($serviceInfoResult)) {
-                        ?>
+                    ?>
 
                         <div class="col-lg-6">
                             <div class="imageContainer">
@@ -148,17 +147,17 @@ $feedbackResult = executeQuery($feedbackQuery);
                                                 echo 'disabled';
                                             } ?>>ADD TO
                                             CART</button>
-                                    
-                                            <input type="hidden" value="Product Item" name="buyNow">
-                                            <button type="submit" class="btnBuyNow rounded-pill" name="btnBuyNow"
-                                                style="font-size: 14px;">BUY NOW</button>
-                                       
+
+                                        <input type="hidden" value="Product Item" name="buyNow">
+                                        <button type="submit" class="btnBuyNow rounded-pill" name="btnBuyNow"
+                                            style="font-size: 14px;">BUY NOW</button>
+
                                     </div>
                                 </form>
                             </div>
                         </div>
 
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -187,7 +186,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                             <div class="row-6">
                                                 <?php while ($userRow = mysqli_fetch_assoc($userResult)) { ?>
                                                     <div class="profilePicture">
-                                                        <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
+                                                        <img src="uploads/<?php echo $userRow['profilePicture'] ?>"
                                                             alt="<?php echo $userRow['profilePicture'] ?>">
                                                     </div>
                                                     <div class="username"><?php echo $userRow['username'] ?></div>
@@ -220,7 +219,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="profilePicture">
-                                                <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
+                                                <img src="uploads/<?php echo $feedbackRow['profilePicture'] ?>"
                                                     alt="<?php echo $feedbackRow['profilePicture'] ?>">
                                             </div>
                                             <div class="username"><?php echo $feedbackRow['username'] ?></div>
@@ -266,7 +265,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
-                ?>
+            ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
@@ -285,7 +284,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>
-                            <div class="line"a style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="line" a style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                             <div class="category">
                                 <span><?php echo $serviceListRow['categoryName'] ?></span>
                             </div>
@@ -293,7 +292,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
 

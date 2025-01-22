@@ -1,14 +1,16 @@
 <?php
 include("../sharedAssets/connect.php");
+include("adminAssets/user.php");
 
-session_start();
-
-$searchProductTerm = '';
-$searchServiceTerm = '';
 
 if ($userID == "" || $role == ""  || $role == "user") {
     header("Location: ../login.php");
 }
+
+$searchProductTerm = '';
+$searchServiceTerm = '';
+
+
 
 if (isset($_POST['btnDelete'])) {
     $deleteID = $_POST['itemID'];

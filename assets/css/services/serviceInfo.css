@@ -1,332 +1,331 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    justify-content: center;
-    align-items: center;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .imageCard {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 500px;
-    height: 440px;
-    border-radius: 23px;
-    overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  height: 440px;
+  border-radius: 23px;
+  overflow: hidden;
 }
 
 .imageCard img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 23px;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 23px;
 }
 
 .serviceTitleInfo {
-    font-weight: bold;
-    margin: 0;
+  font-weight: bold;
+  margin: 0;
 }
 
 .reviewStars i {
-    cursor: pointer;
-    font-size: 24px;
+  cursor: pointer;
+  font-size: 24px;
 }
 
 .btnAddCart {
-    background-color: #19AFA5;
-    width: 100px;
-    height: 35px;
-    border: none;
-    font-size: 10px;
+  background-color: #19afa5;
+  width: 100px;
+  height: 35px;
+  border: none;
+  font-size: 10px;
 }
 
 .btnBuyNow {
-    background-color: #19AFA5;
-    width: 100px;
-    height: 35px;
-    border: none;
-    font-size: 10px;
+  background-color: #19afa5;
+  width: 100px;
+  height: 35px;
+  border: none;
+  font-size: 10px;
 }
 
 .feedbackCardContainer {
-    max-width: 1200px;
-    width: 100%;
-    height: 170px;
-    background-color: #1a1a1a;
-    border-radius: 30px;
-    margin: auto;
-    padding: 20px 40px;
-    overflow: auto;
+  max-width: 1200px;
+  width: 100%;
+  height: 170px;
+  background-color: #1a1a1a;
+  border-radius: 30px;
+  margin: auto;
+  padding: 20px 40px;
+  overflow: auto;
 }
 
 .feedbackCard {
-    background-color: #ffffff;
-    max-width: 100%;
-    width: 100%;
-    height: 130px;
-    text-align: center;
-    border-radius: 18px;
-    position: relative;
-    margin-bottom: 20px;
+  background-color: #ffffff;
+  max-width: 100%;
+  width: 100%;
+  height: 130px;
+  text-align: center;
+  border-radius: 18px;
+  position: relative;
+  margin-bottom: 20px;
 }
 
 .profilePicture {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #6e7f80;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #6e7f80;
 }
 
 .profilePicture img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
 .username {
-    font-size: 14px;
-    color: black;
-    position: absolute;
-    top: 25px;
-    left: 70px;
+  font-size: 14px;
+  color: black;
+  position: absolute;
+  top: 25px;
+  left: 70px;
 }
 
 .feedbackInput {
-    width: 100%;
-    height: 50px;
-    margin-top: 70px;
-    margin-left: 10px;
-    margin-right: 5px;
+  width: 100%;
+  height: 50px;
+  margin-top: 70px;
+  margin-left: 10px;
+  margin-right: 5px;
 }
 
 .feedbackInput::placeholder {
-    font-size: 13px;
+  font-size: 13px;
 }
 
 .feedbackText {
-    font-size: 14px;
-    color: #333;
-    position: absolute;
-    top: 75px;
-    left: 10px;
+  font-size: 14px;
+  color: #333;
+  position: absolute;
+  top: 75px;
+  left: 10px;
 }
 
 .feedbackDate {
-    font-size: 12px;
-    position: absolute;
-    bottom: 5px;
-    right: 20px;
+  font-size: 12px;
+  position: absolute;
+  bottom: 5px;
+  right: 20px;
 }
 
 .stars {
-    font-size: 15px;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    cursor: pointer;
+  font-size: 15px;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
 }
 
 .btnAddFeedback {
-    background-color: #19AFA5;
-    width: 100px;
-    height: 25px;
-    border: none;
-    font-size: 12px;
-    position: absolute;
-    bottom: 10px;
-    right: 20px;
+  background-color: #19afa5;
+  width: 100px;
+  height: 25px;
+  border: none;
+  font-size: 12px;
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
 }
 
 .serviceCard {
-    width: 250px;
-    height: 378px;
+  width: 250px;
+  height: 378px;
+  background-color: #fff;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.serviceImage {
+  width: 100%;
+  height: 250px;
+  background-color: black;
+  border-radius: 23px;
+}
+
+.serviceImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.serviceTitle {
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 190px;
+}
+
+.servicePrice {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.serviceDescription {
+  font-size: 10px;
+}
+
+.btnSeeMore {
+  background-color: #19afa5;
+  width: 100px;
+  height: 25px;
+  border: none;
+  font-size: 12px;
+}
+
+.category {
+  text-align: center;
+  font-size: 14px;
+}
+
+.line-divider {
+  width: 100%;
+  height: 2px;
+  background-color: #19afa5;
+  margin-top: 5px;
+  margin-bottom: 50px;
+}
+
+button:disabled {
+  background-color: #a5b8b9;
+}
+
+.btnMoreServices {
+  background-color: #19afa5;
+  width: 150px;
+  height: 40px;
+  border: none;
+  font-size: 15px;
+}
+
+/* Service Card (Dark Mode) */
+body.dark-mode .serviceCard {
+  background-color: #181818;
+}
+
+body.dark-mode .serviceTitle {
+  color: white;
+}
+
+body.dark-mode .servicePrice {
+  color: #ffffff;
+}
+
+body.dark-mode .serviceDescription {
+  color: #b1b1b1;
+}
+
+body.dark-mode .serviceImage img {
+  border-radius: 23px;
+  filter: brightness(0.7);
+}
+
+body.dark-mode .btnSeeMore {
+  background-color: #16a299;
+  color: white;
+}
+
+body.dark-mode .btnSeeMore:hover {
+  background-color: #19afa5;
+}
+
+body.dark-mode .page-item .page-link {
+  color: white;
+  background-color: #181818;
+}
+
+.page-item .page-link:hover {
+  background-color: #19afa5;
+  color: black;
+}
+
+.page-item .page-link img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+body.dark-mode .page-item .page-link img {
+  filter: brightness(0.7);
+}
+
+body.dark-mode .line {
+  background-color: white !important;
+  border-color: white !important;
+}
+
+body.dark-mode .stars {
+  color: #1a1a1a !important;
+}
+
+@media (max-width: 767px) {
+  .serviceCard {
+    width: 220px;
+    height: 358px;
     background-color: #fff;
     border-radius: 20px;
     margin-bottom: 30px;
     margin-right: auto;
     margin-left: auto;
-}
+  }
 
-.serviceImage {
+  .serviceImage {
     width: 100%;
     height: 250px;
     background-color: black;
-    border-radius: 23px;
-}
+    border-radius: 20px;
+    object-fit: cover;
+  }
 
-.serviceImage img {
+  .serviceImage img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
+    border-radius: 20px;
+  }
 
-.serviceTitle {
+  .serviceTitle {
+    font-size: 16px;
+  }
+
+  .serviceDescription {
+    display: none;
+  }
+
+  .servicePrice {
     font-size: 20px;
-    font-weight: bold;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 190px;
-}
+  }
 
-.servicePrice {
-    font-size: 20px;
-    font-weight: bold;
-}
+  .btnSeeMore {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
 
-.serviceDescription {
-    font-size: 10px;
-}
-
-.btnSeeMore {
-    background-color: #19AFA5;
-    width: 100px;
-    height: 25px;
-    border: none;
+  .category {
     font-size: 12px;
-}
-
-.category {
-    text-align: center;
-    font-size: 14px;
-}
-
-.line-divider {
-    width: 100%;
-    height: 2px;
-    background-color: #19AFA5;
-    margin-top: 5px;
-    margin-bottom: 50px;
-}
-
-button:disabled {
-    background-color: #a5b8b9;
-}
-
-.btnMoreServices {
-    background-color: #19AFA5;
-    width: 150px;
-    height: 40px;
-    border: none;
-    font-size: 15px;
-}
-
-
-/* Service Card (Dark Mode) */
-body.dark-mode .serviceCard {
-    background-color: #181818;
   }
-  
-  body.dark-mode .serviceTitle {
-    color: white;
-  }
-  
-  body.dark-mode .servicePrice {
-    color: #ffffff;
-  }
-  
-  body.dark-mode .serviceDescription {
-    color: #b1b1b1;
-  }
-  
-  body.dark-mode .serviceImage img {
-    border-radius: 23px;
-    filter: brightness(0.7);
-  }
-  
-  body.dark-mode .btnSeeMore {
-    background-color: #16a299;
-    color: white;
-  }
-  
-  body.dark-mode .btnSeeMore:hover {
-    background-color: #19afa5;
-  }
-  
-  body.dark-mode .page-item .page-link {
-    color: white;
-    background-color: #181818;
-  }
-  
-  .page-item .page-link:hover {
-    background-color: #19afa5;
-    color: black;
-  }
-  
-  .page-item .page-link img {
-    width: 45px;
-    height: 45px;
-    object-fit: contain;
-  }
-  
-  body.dark-mode .page-item .page-link img {
-    filter: brightness(0.7);
-  }
-  
-  body.dark-mode .line {
-    background-color: white !important;
-    border-color: white !important;
-  }
-  
-  body.dark-mode .stars{
-    color: #1a1a1a!important;
-  }
-
-@media(max-width: 767px) {
-    .serviceCard {
-        width: 220px;
-        height: 358px;
-        background-color: #fff;
-        border-radius: 20px;
-        margin-bottom: 30px;
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .serviceImage {
-        width: 100%;
-        height: 250px;
-        background-color: black;
-        border-radius: 20px;
-        object-fit: cover;
-    }
-
-    .serviceImage img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 20px;
-    }
-
-    .serviceTitle {
-        font-size: 16px;
-    }
-
-    .serviceDescription {
-        display: none;
-    }
-
-    .servicePrice {
-        font-size: 20px;
-    }
-
-    .btnSeeMore {
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-
-    .category {
-        font-size: 12px;
-    }
 }

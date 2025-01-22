@@ -6,6 +6,7 @@ $userresult = executeQuery($userquery);
 if (mysqli_num_rows($userresult) > 0) {
   while ($currentUserinfo = mysqli_fetch_assoc($userresult)) {
     $userName = $currentUserinfo["username"];
+    $profilePicture = $currentUserinfo["profilePicture"];
   }
 }
 
@@ -38,7 +39,7 @@ if (mysqli_num_rows($userresult) > 0) {
   <div class="offcanvas-body " style="background-color: #555759;">
     <div class="text-center mb-4">
       <div class="rounded-circle bg-light" style="width: 100px; height: 100px; margin: auto;">
-        <img src="adminAssets/img/profile-pic.png" alt="Profile Picture" class="img-fluid rounded-circle">
+        <img src="../uploads/<?php echo $profilePicture ?>" alt="Profile Picture" class="img-fluid rounded-circle">
       </div>
       <h4 class="mt-3 text-light"><?php echo $userName ?></h4>
     </div>

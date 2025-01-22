@@ -113,20 +113,6 @@ if ($userID == "" || $role == ""  || $role == "user") {
                 </a>
             </div>
             <div class="col-12 col-md-6">
-<<<<<<< Updated upstream
-=======
-                <a href="manageTransaction.php">
-                    <div class="card-custom">
-                        <i class="fi fi-rr-credit-card"></i> <!-- Changed icon -->
-                        <h3>Manage Transaction</h3>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-        <div class="row g-5 justify-content-center mt-4">
-            <div class="col-12 col-md-6">
->>>>>>> Stashed changes
                 <a href="customerChat.php">
                     <div class="card-custom">
                         <i class="fi fi-rr-comment-alt"></i>
@@ -134,7 +120,9 @@ if ($userID == "" || $role == ""  || $role == "user") {
                     </div>
                 </a>
             </div>
+
         </div>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

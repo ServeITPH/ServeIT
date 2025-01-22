@@ -42,7 +42,6 @@ if (isset($_POST['btnBuyNow'])) {
         $addCartQuery = "INSERT INTO carts (userID, itemID) VALUES ('$userID','$productInfoID')";
         executeQuery($addCartQuery);
     }
-
 }
 
 $productInfoQuery = "SELECT * FROM items WHERE itemID = $productInfoID";
@@ -91,7 +90,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                     <?php
                     while ($productInfoRow = mysqli_fetch_assoc($productInfoResult)) {
-                        ?>
+                    ?>
 
                         <div class="col-lg-6">
                             <div class="imageContainer">
@@ -158,7 +157,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                             </div>
                         </div>
 
-                        <?php
+                    <?php
                     }
                     ?>
                 </div>
@@ -187,7 +186,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                             <div class="row-6">
                                                 <?php while ($userRow = mysqli_fetch_assoc($userResult)) { ?>
                                                     <div class="profilePicture">
-                                                        <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
+                                                        <img src="uploads/<?php echo $userRow['profilePicture'] ?>"
                                                             alt="<?php echo $userRow['profilePicture'] ?>">
                                                     </div>
                                                     <div class="username"><?php echo $userRow['username'] ?></div>
@@ -220,7 +219,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="profilePicture">
-                                                <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
+                                                <img src="uploads/<?php echo $feedbackRow['profilePicture'] ?>"
                                                     alt="<?php echo $feedbackRow['profilePicture'] ?>">
                                             </div>
                                             <div class="username"><?php echo $feedbackRow['username'] ?></div>
@@ -234,7 +233,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                                     if ($i <= $rating) {
                                                         echo '<i class="fa-solid fa-star" style="color: #19AFA5;"></i>';
                                                     } else {
-                                                        echo '<i class="fa-solid fa-star" style="color: black;"></i>';
+                                                        echo '<i class="star-review fa-solid fa-star" style="color: black;"></i>';
                                                     }
                                                 }
                                                 ?>
@@ -266,7 +265,7 @@ $feedbackResult = executeQuery($feedbackQuery);
 
             <?php
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
-                ?>
+            ?>
 
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="productCard rounded mx-auto">
@@ -293,7 +292,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
 
