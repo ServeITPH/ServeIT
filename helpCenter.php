@@ -12,13 +12,18 @@ include("sharedAssets/counter.php");
 if ($userID == "") {
     header("Location: login.php");
 }
+
+//FAQ categories
 $categories = ['Products', 'Accounts', 'Payments', 'Services'];
+// Converting categories to a string
 $categoriesList = "'" . implode("','", $categories) . "'";
 
 // Fetch FAQ data
 $faqsListsQuery = "SELECT * FROM faqs WHERE category IN ($categoriesList)";
 $faqsListsResult = executeQuery($faqsListsQuery);
 $faqsRows = [];
+
+//Putting the fethed FAQ data into an array
 while ($row = mysqli_fetch_array($faqsListsResult)) {
     $faqsRows[] = $row;
 }

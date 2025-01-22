@@ -11,21 +11,24 @@ class FAQ
         $this->question = $question;
         $this->answer = $answer;
     }
-
+    // Group FAQs by category
     public static function groupByCategory($faqRows)
     {
         $faqsByCategory = [];
         foreach ($faqRows as $row) {
             $category = $row["category"];
             $faq = new FAQ($row["category"], $row["question"], $row["answer"]);
+
+            // Make a new category group if it doesn't already exist
             if (!isset($faqsByCategory[$category])) {
                 $faqsByCategory[$category] = [];
             }
-            $faqsByCategory[$category][] = $faq;
+            $faqsByCategory[$category][] = $faq; // Add FAQ to its category
         }
         return $faqsByCategory;
     }
 
+        // Display one FAQ question with expandable details
     public function renderQuestion()
     {
         return "
@@ -40,11 +43,12 @@ class FAQ
         ";
     }
 
+    // Show FAQs organized by category
     public static function renderCategory($category, $faqs)
     {
         $faqContent = "";
         foreach ($faqs as $faq) {
-            $faqContent .= $faq->renderQuestion();
+            $faqContent .= $faq->renderQuestion(); // Display each FAQ question within the category
         }
         return "
         <div class='row d-flex justify-content-start'>
