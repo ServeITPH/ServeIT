@@ -17,8 +17,8 @@ if (isset($_POST['btnAddFeedback'])) {
 
     if (!empty($feedback) && !empty($ratingValue)) {
         if (mysqli_num_rows($checkFeedbackResult) == 0) {
-            $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue, dateTime) 
-                                VALUES ('$userID','$serviceInfoID', '$feedback', '$ratingValue', NOW())";
+            $addFeedbackQuery = "INSERT INTO ratings (userID, itemID, review, ratingValue) 
+                                VALUES ('$userID','$serviceInfoID', '$feedback', '$ratingValue')";
             executeQuery($addFeedbackQuery);
         }
     }
@@ -174,106 +174,84 @@ $feedbackResult = executeQuery($feedbackQuery);
     <div class="container mb-5">
         <div class="row">
             <div class="col-12 mb-4">
-                <h2 class="serviceFeedbackTitle fw-bold">SERVICE FEEDBACK</h2>
+                <h2 class="productFeedbackTitle fw-bold">SERVICE FEEDBACK</h2>
             </div>
             <div class="col-12">
-                <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-
-                        <div class="carousel-item active">
-                            <div class="feedbackCardContainer d-flex">
-                                <div class="row justify-content-center g-4 w-100">
-                                    <div class="col-lg-4 col-md-6 col-12">
-                                        <form method="POST">
-                                            <div class="feedbackCard">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="row-6">
-                                                            <?php while ($userRow = mysqli_fetch_assoc($userResult)) { ?>
-                                                                <div class="profilePicture">
-                                                                    <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
-                                                                        alt="<?php echo $userRow['profilePicture'] ?>">
-                                                                </div>
-                                                                <div class="username"><?php echo $userRow['username'] ?></div>
-                                                            <?php } ?>
-                                                        </div>
-                                                        <div class="row-6">
-                                                            <input type="text" class="feedbackInput form-control"
-                                                                name="feedback" placeholder="Share feedback..." />
-                                                        </div>
+                <div class="feedbackCardContainer d-flex">
+                    <div class="row justify-content-center g-4 w-100">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <form method="POST">
+                                <div class="feedbackCard">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="row-6">
+                                                <?php while ($userRow = mysqli_fetch_assoc($userResult)) { ?>
+                                                    <div class="profilePicture">
+                                                        <img src="assets/images/items/<?php echo $userRow['profilePicture'] ?>"
+                                                            alt="<?php echo $userRow['profilePicture'] ?>">
                                                     </div>
-                                                    <div class="col-6">
-                                                        <input type="hidden" name="ratingValue" id="ratingValue">
-                                                        <p class="stars" id="ratingStars">
-                                                            <i class="fa-solid fa-star" data-value="1"
-                                                                onclick="setRating(1)"></i>
-                                                            <i class="fa-solid fa-star" data-value="2"
-                                                                onclick="setRating(2)"></i>
-                                                            <i class="fa-solid fa-star" data-value="3"
-                                                                onclick="setRating(3)"></i>
-                                                            <i class="fa-solid fa-star" data-value="4"
-                                                                onclick="setRating(4)"></i>
-                                                            <i class="fa-solid fa-star" data-value="5"
-                                                                onclick="setRating(5)"></i>
-                                                        </p>
-                                                        <button class="btnAddFeedback rounded-pill" type="submit"
-                                                            name="btnAddFeedback">Add Feedback</button>
-                                                    </div>
-                                                </div>
+                                                    <div class="username"><?php echo $userRow['username'] ?></div>
+                                                <?php } ?>
                                             </div>
-                                        </form>
-                                    </div>
-                                    <?php while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) { ?>
-                                        <div class="col-lg-4 col-md-6 col-12">
-                                            <div class="feedbackCard">
-                                                <div class="row">
-                                                    <div class="col-6">
-                                                        <div class="profilePicture">
-                                                            <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
-                                                                alt="<?php echo $feedbackRow['profilePicture'] ?>">
-                                                        </div>
-                                                        <div class="username"><?php echo $feedbackRow['username'] ?></div>
-                                                        <p class="feedbackText"><?php echo $feedbackRow['review'] ?></p>
-                                                    </div>
-                                                    <div class="col-6">
-                                                        <p class="stars">
-                                                            <?php
-                                                            $rating = $feedbackRow['ratingValue'];
-                                                            for ($i = 1; $i <= 5; $i++) {
-                                                                if ($i <= $rating) {
-                                                                    echo '<i class="fa-solid fa-star" style="color: #19AFA5;"></i>';
-                                                                } else {
-                                                                    echo '<i class="fa-solid fa-star" style="color: black;"></i>';
-                                                                }
-                                                            }
-                                                            ?>
-                                                        </p>
-                                                        <p class="feedbackDate mb-0">
-                                                            <?php echo date('m/d/y', strtotime($feedbackRow['dateTime'])); ?>
-                                                        </p>
-                                                    </div>
-                                                </div>
+                                            <div class="row-6">
+                                                <input type="text" class="feedbackInput form-control" name="feedback"
+                                                    placeholder="Share feedback..." />
                                             </div>
                                         </div>
-                                    <?php } ?>
+                                        <div class="col-6">
+                                            <input type="hidden" name="ratingValue" id="ratingValue">
+                                            <p class="stars" id="ratingStars">
+                                                <i class="fa-solid fa-star" data-value="1" onclick="setRating(1)"></i>
+                                                <i class="fa-solid fa-star" data-value="2" onclick="setRating(2)"></i>
+                                                <i class="fa-solid fa-star" data-value="3" onclick="setRating(3)"></i>
+                                                <i class="fa-solid fa-star" data-value="4" onclick="setRating(4)"></i>
+                                                <i class="fa-solid fa-star" data-value="5" onclick="setRating(5)"></i>
+                                            </p>
+                                            <button class="btnAddFeedback rounded-pill" type="submit"
+                                                name="btnAddFeedback">Add Feedback</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <?php while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) { ?>
+                            <div class="col-lg-4 col-md-6 col-12">
+                                <div class="feedbackCard">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <div class="profilePicture">
+                                                <img src="assets/images/items/<?php echo $feedbackRow['profilePicture'] ?>"
+                                                    alt="<?php echo $feedbackRow['profilePicture'] ?>">
+                                            </div>
+                                            <div class="username"><?php echo $feedbackRow['username'] ?></div>
+                                            <p class="feedbackText"><?php echo $feedbackRow['review'] ?></p>
+                                        </div>
+                                        <div class="col-6">
+                                            <p class="stars">
+                                                <?php
+                                                $rating = $feedbackRow['ratingValue'];
+                                                for ($i = 1; $i <= 5; $i++) {
+                                                    if ($i <= $rating) {
+                                                        echo '<i class="fa-solid fa-star" style="color: #19AFA5;"></i>';
+                                                    } else {
+                                                        echo '<i class="fa-solid fa-star" style="color: black;"></i>';
+                                                    }
+                                                }
+                                                ?>
+                                            </p>
+                                            <p class="feedbackDate mb-0">
+                                                <?php echo date('m/d/y', strtotime($feedbackRow['dateTime'])); ?>
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <?php } ?>
                     </div>
-
-                    <button class="carousel-control-prev" type="button" data-bs-target="#feedbackCarousel"
-                        data-bs-slide="prev">
-                        <img src="assets/images/about/prev.png" alt="Previous">
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#feedbackCarousel"
-                        data-bs-slide="next">
-                        <img src="assets/images/about/next.png" alt="Next">
-                    </button>
                 </div>
             </div>
         </div>
     </div>
-
 
     <div class="container">
         <div class="line-divider">
