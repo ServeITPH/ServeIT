@@ -63,7 +63,7 @@ $faqsByCategory = FAQ::groupByCategory($faqsRows);
     <?php include("sharedAssets/nav.php"); ?>
 
     <div class="container  container-section">
-        <div class="row d-flex justify-content-center" style="padding:12px">
+        <div class="row d-flex justify-content-center" style="padding-left:12px; padding-right:12px">
             <div class="card wow animate__animated animate__fadeIn" data-wow-delay="5s">
                 <div class="card-title">HELP CENTER</div>
                 <p class="card-body text-center">
