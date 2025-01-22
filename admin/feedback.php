@@ -5,6 +5,10 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 // Store of filters
 $searchTerm = '';
 $filterRating = '';
@@ -130,13 +134,13 @@ $feedbackResult = executeQuery($feedbackQuery);
                             <select class="form-select" name="filterItem" aria-label="Filter by Item">
                                 <option value="">All Items</option>
                                 <?php while ($itemRow = mysqli_fetch_assoc($itemResult)) : ?>
-                                <option value="<?php echo $itemRow['itemID']; ?>" 
-                           <?php echo ($filterItem == $itemRow['itemID']) ? 'selected' : ''; ?>>
-                        <?php echo $itemRow['title']; ?>
-                     </option>
-                   <?php endwhile; ?>
-                </select>
-            </div>
+                                    <option value="<?php echo $itemRow['itemID']; ?>"
+                                        <?php echo ($filterItem == $itemRow['itemID']) ? 'selected' : ''; ?>>
+                                        <?php echo $itemRow['title']; ?>
+                                    </option>
+                                <?php endwhile; ?>
+                            </select>
+                        </div>
 
                         <!-- Filter by Type -->
                         <div class="col-md-2">
@@ -170,7 +174,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                             <thead>
                                 <tr>
                                     <th scope="col">Item</th>
-                                    <th scope="col">Type</th> 
+                                    <th scope="col">Type</th>
                                     <th scope="col">Username</th>
                                     <th scope="col">Review</th>
                                     <th scope="col">Rating Value</th>
@@ -181,15 +185,15 @@ $feedbackResult = executeQuery($feedbackQuery);
 
                                 if (mysqli_num_rows($feedbackResult) > 0) {
                                     while ($feedbackRow = mysqli_fetch_assoc($feedbackResult)) {
-                                        ?>
+                                ?>
                                         <tr>
                                             <th scope="row"><?php echo $feedbackRow['title']; ?></th>
-                                            <td><?php echo $feedbackRow['type']; ?></td> 
+                                            <td><?php echo $feedbackRow['type']; ?></td>
                                             <td><?php echo $feedbackRow['username']; ?></td>
                                             <td><?php echo $feedbackRow['review']; ?></td>
                                             <td><?php echo $feedbackRow['ratingValue']; ?></td>
                                         </tr>
-                                        <?php
+                                <?php
                                     }
                                 } else {
                                     //If NO results found

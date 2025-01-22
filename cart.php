@@ -233,8 +233,8 @@ $fetchProduct = executeQuery($productQuery);
             ?>
 
             <!-- CHECK OUT PROCESS-->
-            <div class="col-12 col-md-5">
-                <form class="receiptForm" method="post">
+            <div class="receiptForm col-12 col-md-5">
+                <form method="post">
                     <ul class="list-group mt-3 rounded-5">
                         <li class="list-group-item">
                             <p class="fw-bold fs-2 text-center"> SUMMARY </p>

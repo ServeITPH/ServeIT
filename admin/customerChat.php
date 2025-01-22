@@ -2,6 +2,10 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 // Chats Profile
 $chatsQuery = "SELECT 
     users.userID, 

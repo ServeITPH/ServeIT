@@ -7,6 +7,10 @@ $searchTerm = '';
 $sortOrder = '';
 $filterField = '';
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 // Delete sale function
 if (isset($_POST['btnDelete']) && isset($_POST['userID'])) {
     $deleteID = $_POST['userID'];

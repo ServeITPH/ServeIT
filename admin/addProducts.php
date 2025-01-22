@@ -3,6 +3,10 @@
 include("../sharedAssets/connect.php");
 include("adminAssets/user.php");
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 $success = false;
 $error = '';
 

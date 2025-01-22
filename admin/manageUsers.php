@@ -9,6 +9,10 @@ $searchTerm = '';
 $sortOrder = '';
 $filterField = '';
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 // Delete user function
 if (isset($_POST['btnDelete']) && isset($_POST['userID'])) {
     $deleteID = $_POST['userID'];
@@ -133,7 +137,7 @@ $userListResult = executeQuery($userListQuery);
                                 <?php
                                 if (mysqli_num_rows($userListResult) > 0) {
                                     while ($userListRow = mysqli_fetch_assoc($userListResult)) {
-                                        ?>
+                                ?>
                                         <tr>
                                             <th scope="row"><?php echo $userListRow['userID']; ?></th>
                                             <td><?php echo $userListRow['username']; ?></td>
@@ -149,7 +153,7 @@ $userListResult = executeQuery($userListQuery);
                                                 </button>
                                             </td>
                                         </tr>
-                                        <?php
+                                <?php
                                     }
                                 } else {
                                     //If NO results found

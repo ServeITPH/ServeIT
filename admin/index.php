@@ -3,8 +3,8 @@ include("../sharedAssets/connect.php");
 
 include("adminAssets/user.php");
 
-if ($userID == "" || $role == "") {
-    header("Location: login.php");
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
 }
 ?>
 <!doctype html>
@@ -113,6 +113,20 @@ if ($userID == "" || $role == "") {
                 </a>
             </div>
             <div class="col-12 col-md-6">
+<<<<<<< Updated upstream
+=======
+                <a href="manageTransaction.php">
+                    <div class="card-custom">
+                        <i class="fi fi-rr-credit-card"></i> <!-- Changed icon -->
+                        <h3>Manage Transaction</h3>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+        <div class="row g-5 justify-content-center mt-4">
+            <div class="col-12 col-md-6">
+>>>>>>> Stashed changes
                 <a href="customerChat.php">
                     <div class="card-custom">
                         <i class="fi fi-rr-comment-alt"></i>

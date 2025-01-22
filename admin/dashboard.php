@@ -6,6 +6,10 @@ session_start();
 $searchProductTerm = '';
 $searchServiceTerm = '';
 
+if ($userID == "" || $role == ""  || $role == "user") {
+    header("Location: ../login.php");
+}
+
 if (isset($_POST['btnDelete'])) {
     $deleteID = $_POST['itemID'];
     $deleteType = $_POST['type'];
