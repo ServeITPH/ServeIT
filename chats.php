@@ -9,7 +9,6 @@ if (!isset($_SESSION['userID'])) {
 
 $userID = $_SESSION['userID'];
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $message = isset($_POST['message']) ? mysqli_real_escape_string($conn, $_POST['message']) : '';
     $receiverID = 1; // palitan nalang
@@ -23,9 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $fileName = $_FILES['attachment']['name'];
             $fileDest = 'uploads/' . basename($fileName);
 
-
             if (move_uploaded_file($fileTmpPath, $fileDest)) {
-
                 $query = "INSERT INTO chats (senderID, receiverID, message, attachment, isRead, dateAndTime) 
                           VALUES ('$userID', '$receiverID', '$message', '$fileDest', 'no', NOW())";
                 if (!$conn->query($query)) {
@@ -38,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             echo "Invalid file type. Only JPG and PNG are allowed.";
         }
     } elseif (!empty($message)) {
-
         $query = "INSERT INTO chats (senderID, receiverID, message, isRead, dateAndTime) 
                   VALUES ('$userID', '$receiverID', '$message', 'no', NOW())";
         if (!$conn->query($query)) {
@@ -139,13 +135,13 @@ $result = $conn->query($query);
                             $chatClass = $isOwnMessage ? "chatbubble-own" : "chatbubble-other";
                             $infoClass = $isOwnMessage ? "information-own" : "information";
                     ?>
-                            <div class="chatbubble-own-container my-3 ">
+                            <div class="chatbubble-own-container my-3">
                                 <div class="<?= $chatClass; ?>">
                                     <?= htmlspecialchars($row['message']); ?>
                                     <?php if ($row['attachment']) { ?>
                                         <br>
-                                        <a href="<?= $row['attachment']; ?>" target="_blank">
-                                            <img src="<?= $row['attachment']; ?>" alt="Attachment" style="max-width: 200px;">
+                                        <a href="uploads/<?= basename($row['attachment']); ?>" target="_blank">
+                                            <img src="uploads/<?= basename($row['attachment']); ?>" alt="Attachment" style="max-width: 200px;">
                                         </a>
                                     <?php } ?>
                                 </div>
