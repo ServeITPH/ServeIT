@@ -37,6 +37,7 @@ body::before {
   line-height: 1;
   text-align: center;
   color: #19afa5;
+  
 }
 .card-body {
   font-family: Poppins;
@@ -44,7 +45,9 @@ body::before {
   color: #ffffff;
   padding-left: 10vh;
   padding-right: 10vh;
-  text-align: justify;
+  text-align: center;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 .logo {
   display: flex;
@@ -81,11 +84,7 @@ body.dark-mode .active5 {
 body.dark-mode .btnExpand {
   color: white !important;
 }
-@media (max-width: 767px) {
-  .text {
-    font-size: 16px;
-  }
-}
+
 
 .information {
   padding-bottom: 15px;
@@ -97,34 +96,31 @@ body.dark-mode .btnExpand {
 }
 
 @media (max-width: 767px) {
-  .expandbtn-img {
-    width: 20px;
-    height: 20px;
-  }
-}
+    .expandbtn-img {
+        width: 20px;
+        height: 20px;
+    }
 
-@media (max-width: 767px) {
-  .card-title {
-    font-size: 30px;
-    margin-top: 20px;
-  }
-}
-@media (max-width: 767px) {
-  .card-body {
-    font-size: 12px;
-    padding-left: 5vh;
-    padding-right: 5vh;
-  }
-}
+    .card-title {
+        font-size: 30px;
+        margin-top: 20px;
+    }
 
-@media (max-width: 767px) {
-  .header {
-    font-size: 20px;
-  }
-}
+    .card-body {
+        font-size: 12px;
+        padding-left: 5vh;
+        padding-right: 5vh;
+    }
 
-@media (max-width: 767px) {
-  .title-question {
-    font-size: 20px;
-  }
+    .header {
+        font-size: 20px;
+    }
+
+    .title-question {
+        font-size: 20px;
+    }
+
+    .text {
+        font-size: 16px;
+    }
 }
