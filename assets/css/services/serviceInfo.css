@@ -221,6 +221,67 @@ button:disabled {
     font-size: 15px;
 }
 
+
+/* Service Card (Dark Mode) */
+body.dark-mode .serviceCard {
+    background-color: #181818;
+  }
+  
+  body.dark-mode .serviceTitle {
+    color: white;
+  }
+  
+  body.dark-mode .servicePrice {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .serviceDescription {
+    color: #b1b1b1;
+  }
+  
+  body.dark-mode .serviceImage img {
+    border-radius: 23px;
+    filter: brightness(0.7);
+  }
+  
+  body.dark-mode .btnSeeMore {
+    background-color: #16a299;
+    color: white;
+  }
+  
+  body.dark-mode .btnSeeMore:hover {
+    background-color: #19afa5;
+  }
+  
+  body.dark-mode .page-item .page-link {
+    color: white;
+    background-color: #181818;
+  }
+  
+  .page-item .page-link:hover {
+    background-color: #19afa5;
+    color: black;
+  }
+  
+  .page-item .page-link img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+  }
+  
+  body.dark-mode .page-item .page-link img {
+    filter: brightness(0.7);
+  }
+  
+  body.dark-mode .line {
+    background-color: white !important;
+    border-color: white !important;
+  }
+  
+  body.dark-mode .stars{
+    color: #1a1a1a!important;
+  }
+
 @media(max-width: 767px) {
     .serviceCard {
         width: 220px;

@@ -285,7 +285,7 @@ $feedbackResult = executeQuery($feedbackQuery);
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>
-                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                             <div class="category">
                                 <span><?php echo $productListRow['categoryName'] ?></span>
                             </div>

@@ -95,10 +95,10 @@ if ($userID == "" || $role == "") {
                 </a>
             </div>
             <div class="col-12 col-md-6">
-                <a href="managePosts.php">
+                <a href="manageTransactions.php">
                     <div class="card-custom">
-                        <i class="fi fi-dashboard fi-rr-blog-text"></i>
-                        <h3>Manage Posts</h3>
+                        <i class="fi fi-rr-credit-card"></i> <!-- Changed icon -->
+                        <h3>Manage Transaction</h3>
                     </div>
                 </a>
             </div>
@@ -113,18 +113,7 @@ if ($userID == "" || $role == "") {
                 </a>
             </div>
             <div class="col-12 col-md-6">
-                <a href="manageTransaction.php">
-                    <div class="card-custom">
-                        <i class="fi fi-rr-credit-card"></i> <!-- Changed icon -->
-                        <h3>Manage Transaction</h3>
-                    </div>
-                </a>
-            </div>
-          
-        </div>
-        <div class="row g-5 justify-content-center mt-4">
-        <div class="col-12 col-md-6">
-        <a href="customerChat.php">
+                <a href="customerChat.php">
                     <div class="card-custom">
                         <i class="fi fi-rr-comment-alt"></i>
                         <h3>Customer Support</h3>

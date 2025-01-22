@@ -236,6 +236,66 @@ button:disabled {
     font-size: 15px;
 }
 
+body.dark-mode .productCard {
+    background-color: #181818;
+  }
+  
+  body.dark-mode .productTitle {
+    color: white;
+  }
+  
+  body.dark-mode .productPrice {
+    color: #ffffff;
+  }
+  
+  body.dark-mode .productDescription {
+    color: #b1b1b1;
+  }
+  
+  body.dark-mode .productImage {
+    background-color: #333333;
+  }
+  
+  body.dark-mode .productImage img {
+    border-radius: 23px;
+    filter: brightness(0.7);
+  }
+  
+  body.dark-mode .btnSeeMore {
+    background-color: #16a299;
+    color: white;
+  }
+  
+  body.dark-mode .btnSeeMore:hover {
+    background-color: #19afa5;
+  }
+  
+  body.dark-mode .page-item .page-link {
+    color: white;
+    background-color: #181818;
+  }
+  
+  .page-item .page-link:hover {
+    background-color: #19afa5;
+    color: black;
+  }
+  
+  .page-item .page-link img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+  }
+  
+  body.dark-mode .page-item .page-link img {
+    filter: brightness(0.7);
+  }
+  
+  body.dark-mode .line {
+    background-color: white !important;
+    border-color: white !important;
+  }
+  
+
 @media(max-width: 767px) {
     .productCard {
         width: 220px;
