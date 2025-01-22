@@ -202,3 +202,12 @@ body {
 .logout-btn:hover {
   background: rgb(36, 152, 146);
 }
+
+body.dark-mode .profile-card,
+body.dark-mode .profile-form {
+  background-color: #242424 !important;
+}
+
+body.dark-mode .btn {
+  color: white !important;
+}

@@ -36,6 +36,10 @@ include("sharedAssets/counter.php");
         .active4 {
             color: #19AFA5;
         }
+
+        body.dark-mode .active4 {
+            color: #19afa5 !important;
+        }
     </style>
 </head>
 

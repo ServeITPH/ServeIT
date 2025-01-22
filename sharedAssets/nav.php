@@ -46,6 +46,7 @@ if (mysqli_num_rows($userresult) > 0) {
             <li><a class="dropdown-item" href="profile.php"><i class="fa-solid fa-user nav-icons"></i>Profile</a></li>
             <li><a class="dropdown-item" href="cart.php"><i class="fa-solid fa-cart-shopping nav-icons"></i>Cart</a></li>
             <li><a class="dropdown-item" href="chats.php"><i class="fa-solid fa-message nav-icons"></i>Message Us</a></li>
+            <li><button class="dropdown-item dark-mode-toggle" onclick="toggleDarkMode()" id="dark-mode-toggle"> Dark Mode</button></li>
             <li><a class="dropdown-item" href="login.php"><i class="fa-solid fa-right-from-bracket nav-icons"></i>Log-out</a></li>
           </ul>
         </li>
@@ -53,3 +54,5 @@ if (mysqli_num_rows($userresult) > 0) {
     </div>
   </div>
 </nav>
+
+<script src="sharedAssets/darkmode.js"></script>

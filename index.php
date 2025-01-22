@@ -94,6 +94,10 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         .active1 {
             color: #19AFA5;
         }
+
+        body.dark-mode .active1 {
+            color: #19afa5 !important;
+        }
     </style>
 
 </head>
@@ -204,7 +208,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="row d-flex justify-content-center align-items-center">
             <?php
             while ($newArrivalRow = mysqli_fetch_assoc($newArrivalResult)) {
-                ?>
+            ?>
 
                 <div class="col d-flex flex-row">
                     <div class="productCard rounded mx-auto">
@@ -223,7 +227,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>
-                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                             <div class="category">
                                 <span><?php echo $newArrivalRow['categoryName'] ?></span>
                             </div>
@@ -231,7 +235,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
                     </div>
                 </div>
 
-                <?php
+            <?php
             }
             ?>
         </div>
@@ -277,7 +281,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
         <div class="services-container row">
             <?php
             while ($serviceTitleRow = mysqli_fetch_assoc($serviceTitleResult)) {
-                ?>
+            ?>
                 <div class="col-12 col-md-4 my-4">
                     <div class="row">
                         <div class="services-title text-center">
@@ -337,7 +341,7 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
 
                     <?php
                     while ($productTitleRow = mysqli_fetch_assoc($productTitleResult)) {
-                        ?>
+                    ?>
                         <div class="col-12 col-md-4 my-4">
                             <div class="row">
                                 <div class="services-title text-center">
@@ -434,4 +438,6 @@ $serviceTitleResult = executeQuery($serviceTitleQuery);
             mobile: true,
         }).init();
     </script>
+    <script src="sharedAssets/darkmode.js"></script>
+
 </body>

@@ -157,7 +157,7 @@ $fetchProduct = executeQuery($productQuery);
                         if ($counter >= $showLimit)
                             break; // Stop loop after limit
                         $counter++;
-                        ?>
+                ?>
 
                         <div class="border-0 mt-3">
                             <div class="card-body">
@@ -194,12 +194,12 @@ $fetchProduct = executeQuery($productQuery);
                         <div class="mb-5"></div>
 
 
-                        <?php
+                    <?php
                     }
                 } else {
                     ?>
                     <div class="container text-center fs-5"><?php echo "Cart is empty" ?></div>
-                    <?php
+                <?php
                 }
                 ?>
 
@@ -234,7 +234,7 @@ $fetchProduct = executeQuery($productQuery);
 
             <!-- CHECK OUT PROCESS-->
             <div class="col-12 col-md-5">
-                <form method="post">
+                <form class="receiptForm" method="post">
                     <ul class="list-group mt-3 rounded-5">
                         <li class="list-group-item">
                             <p class="fw-bold fs-2 text-center"> SUMMARY </p>
@@ -341,7 +341,7 @@ $fetchProduct = executeQuery($productQuery);
                     <div class="d-flex justify-content-center mt-3">
                         <button type="button" class="btn btn-more btn-primary mx-auto mb-3 mt-0" data-bs-toggle="modal"
                             data-bs-target="#myModal" <?php if ($cartEmpty)
-                                echo 'disabled'; ?>>Check Out</button>
+                                                            echo 'disabled'; ?>>Check Out</button>
                     </div>
 
                     <!-- MODAL FOR CHECK-OUT -->
@@ -394,7 +394,7 @@ $fetchProduct = executeQuery($productQuery);
                         <?php
                         if (mysqli_num_rows($fetchService) > 0) {
                             while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
-                                ?>
+                        ?>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
                                     <div class="serviceCard rounded mx-auto">
                                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -415,7 +415,7 @@ $fetchProduct = executeQuery($productQuery);
                                                     <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                 </a>
                                             </div>
-                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                             <div class="category">
                                                 <span><?php echo $fetchServiceRow['categoryName'] ?></span>
                                             </div>
@@ -423,7 +423,7 @@ $fetchProduct = executeQuery($productQuery);
                                     </div>
                                 </div>
 
-                                <?php
+                        <?php
                             }
                         } else {
                             echo "No service available";
@@ -438,7 +438,7 @@ $fetchProduct = executeQuery($productQuery);
                         <?php
                         if (mysqli_num_rows($fetchProduct) > 0) {
                             while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
-                                ?>
+                        ?>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
                                     <div class="productCard rounded mx-auto">
                                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -459,7 +459,7 @@ $fetchProduct = executeQuery($productQuery);
                                                     <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                 </a>
                                             </div>
-                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                             <div class="category">
                                                 <span><?php echo $fetchProductRow['categoryName'] ?></span>
                                             </div>
@@ -467,7 +467,7 @@ $fetchProduct = executeQuery($productQuery);
                                     </div>
                                 </div>
 
-                                <?php
+                        <?php
                             }
                         } else {
                             echo "No product available";
@@ -539,13 +539,12 @@ $fetchProduct = executeQuery($productQuery);
     <script>
         // Listen for changes in the radio buttons
         document.querySelectorAll('input[name="paymentMode"]').forEach((radio) => {
-            radio.addEventListener('change', function () {
+            radio.addEventListener('change', function() {
                 if (this.value === 'gcash') {
                     // Show the modal when Gcash is selected
                     const modal = new bootstrap.Modal(document.getElementById('gcashQR'));
                     modal.show();
-                }
-                else if (this.value === 'maya') {
+                } else if (this.value === 'maya') {
                     // Show the modal when Maya is selected
                     const modal = new bootstrap.Modal(document.getElementById('mayaQR'));
                     modal.show();

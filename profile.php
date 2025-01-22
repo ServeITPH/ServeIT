@@ -55,9 +55,8 @@ function safe_echo($value)
     <link rel="stylesheet" href="assets/css/services/services.css">
     <link rel="stylesheet" href="assets/css/profile/profile.css">
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
 </head>
 
@@ -95,11 +94,11 @@ function safe_echo($value)
                 <div id="services" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
                         <?php
-                        $itemIndex = 0; 
+                        $itemIndex = 0;
                         while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
                             $itemIndex++;
                             $hiddenClass = $itemIndex > 4 ? 'hidden-item animate__animated animate__backInUp' : 'd-flex flex-row animate__animated animate__fadeIn';
-                            ?>
+                        ?>
                             <div class="col-lg-3 col-6 <?php echo $hiddenClass; ?>  justify-content-center">
                                 <div class="serviceCard rounded mx-auto">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -117,14 +116,14 @@ function safe_echo($value)
                                                 <button class="btnSeeMore rounded-pill">See More</button>
                                             </a>
                                         </div>
-                                        <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                        <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                         <div class="category">
                                             <span><?php echo $serviceListRow['categoryName'] ?></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>
@@ -133,12 +132,12 @@ function safe_echo($value)
 
                 <div id="products" class="tab-content">
                     <div class="row d-flex justify-content-center align-items-center">
-                    <?php
-                        $itemIndex = 0; 
+                        <?php
+                        $itemIndex = 0;
                         while ($productListRow = mysqli_fetch_assoc($productListResult)) {
                             $itemIndex++;
                             $hiddenClass = $itemIndex > 4 ? 'hidden-item animate__animated animate__backInUp' : 'd-flex flex-row animate__animated animate__fadeIn';
-                            ?>
+                        ?>
                             <div class="col-lg-3 col-6 <?php echo $hiddenClass; ?>  justify-content-center">
                                 <div class="serviceCard rounded mx-auto">
                                     <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -163,7 +162,7 @@ function safe_echo($value)
                                     </div>
                                 </div>
                             </div>
-                            <?php
+                        <?php
                         }
                         ?>
                     </div>
@@ -184,21 +183,20 @@ function safe_echo($value)
         crossorigin="anonymous">
     </script>
     <script>
-
         function showTab(tabName) {
             // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(tab => {
                 tab.style.display = 'none';
             });
-            
+
             // Remove 'active' class from all tab buttons
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
-            
+
             // Show the selected tab
             document.getElementById(tabName).style.display = 'block';
-            
+
             // Add 'active' class to the clicked button
             event.target.classList.add('active');
 
@@ -216,9 +214,9 @@ function safe_echo($value)
             const tabContent = document.getElementById(tabId);
             const hiddenItems = tabContent.querySelectorAll('.hidden-item');
             const showAllButton = tabContent.querySelector('.show-all');
-            
+
             let isVisible = hiddenItems[0]?.style.display === 'block';
-            
+
             hiddenItems.forEach(item => {
                 item.style.display = isVisible ? 'none' : 'block';
             });
@@ -226,8 +224,6 @@ function safe_echo($value)
             // Toggle the button text based on visibility of items
             showAllButton.textContent = isVisible ? 'Show All' : 'Show Less';
         }
-
-        
     </script>
 </body>
 

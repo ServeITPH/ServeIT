@@ -62,6 +62,10 @@ $serviceListResult = executeQuery($serviceListQuery);
         .active2 {
             color: #19AFA5;
         }
+
+        body.dark-mode .active2 {
+            color: #19afa5 !important;
+        }
     </style>
 </head>
 
@@ -110,7 +114,7 @@ $serviceListResult = executeQuery($serviceListQuery);
             <?php
             while ($serviceListRow = mysqli_fetch_assoc($serviceListResult)) {
                 $count++;
-                ?>
+            ?>
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="serviceCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -128,19 +132,19 @@ $serviceListResult = executeQuery($serviceListQuery);
                                     <button class="btnSeeMore rounded-pill">See More</button>
                                 </a>
                             </div>
-                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                             <div class="category">
                                 <span><?php echo $serviceListRow['categoryName'] ?></span>
                             </div>
                         </div>
                     </div>
                 </div>
-                <?php
+            <?php
             }
             // eto yung counter na mag ffill ng gap kapag dalawa lang lumabas or isa
             while ($count % 4 !== 0) {
                 $count++;
-                ?>
+            ?>
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center invisible">
                     <div class="serviceCard rounded mx-5"></div>
                 </div>
@@ -262,7 +266,7 @@ $serviceListResult = executeQuery($serviceListQuery);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             updatePage();
         });
     </script>

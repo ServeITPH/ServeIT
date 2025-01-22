@@ -29,7 +29,39 @@ $chatsResult = executeQuery($chatsQuery);
 $username = '';
 $receiverID = '';
 $messagesResult = null;
+$searchUsernameTerm = '';
 
+// Chats Search Query
+$chatsSearchQuery = "SELECT 
+    users.userID, 
+    users.profilePicture, 
+    users.username, 
+    MAX(chats.dateAndTime) AS lastMessageTime, 
+    chats.attachment, 
+    chats.isRead,
+    SUBSTRING_INDEX(GROUP_CONCAT(chats.message ORDER BY chats.dateAndTime DESC), ',', 1) AS recentChat
+FROM 
+    chats 
+LEFT JOIN 
+    users 
+ON 
+    users.userID = chats.senderID 
+WHERE 
+    users.role = 'user' 
+    AND chats.receiverID = $userID";
+
+// If there's a search term, append it to the query
+// Search: Check if there's a search term
+if (isset($_GET['search']) && !empty($_GET['search'])) {
+    $searchUsernameTerm = $_GET['search'];
+    $searchUsernameTerm = str_replace("'", "", $searchUsernameTerm);
+
+    $chatsSearchQuery .= " AND users.username LIKE '%$searchUsernameTerm%'";
+}
+
+$chatsSearchQuery .= " GROUP BY users.userID ORDER BY lastMessageTime DESC;";
+
+$chatsResult = executeQuery($chatsSearchQuery);
 // Send Chats
 if (isset($_GET['id'])) {
     $receiverID = $_GET['id'];
@@ -61,6 +93,7 @@ if (isset($_GET['id'])) {
 ?>
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -75,6 +108,7 @@ if (isset($_GET['id'])) {
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 
 </head>
+
 <body data-bs-theme="light">
     <?php include("adminAssets/nav.php"); ?>
 
@@ -90,10 +124,20 @@ if (isset($_GET['id'])) {
                     </div>
                     <div class="row p-3 search-box">
                         <div class="d-flex align-items-center">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search name" style="flex: 1;">
-                                <span class="input-group-text"><i class="fa fa-search"></i></span>
-                            </div>
+
+                            <form action="" method="GET">
+                                <div class="input-group">
+                                    <input type="text" name="search" class="form-control" placeholder="Search name" value="<?php echo $searchUsernameTerm ?>" style="flex: 1;">
+                                    <span class="input-group-text">
+                                        <button type="submit" class="btn p-0 border-0 bg-transparent">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+
+
+
+                                </div>
+                            </form>
                             <select class="form-select ms-2" style="width: 70px;">
                                 <option value="all">All</option>
                                 <option value="unread">Unread</option>
@@ -211,15 +255,15 @@ if (isset($_GET['id'])) {
     </div>
 </body>
 <script>
-    document.getElementById('attachment').addEventListener('change', function (e) {
+    document.getElementById('attachment').addEventListener('change', function(e) {
         var file = e.target.files[0];
         if (file) {
             var reader = new FileReader();
-            reader.onload = function (event) {
+            reader.onload = function(event) {
                 var preview = document.getElementById('attachment-preview');
                 var image = document.createElement('img');
                 image.src = event.target.result;
-                preview.innerHTML = ''; 
+                preview.innerHTML = '';
                 preview.appendChild(image);
                 preview.style.display = 'block';
             };
@@ -227,4 +271,5 @@ if (isset($_GET['id'])) {
         }
     });
 </script>
+
 </html>

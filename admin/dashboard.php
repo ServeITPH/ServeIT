@@ -94,9 +94,6 @@ while ($salesCountRow = mysqli_fetch_assoc($salesCountResult)) {
 //Service List
 $serviceGetQuery = "SELECT * FROM items WHERE type ='service'";
 
-
-
-
 if (isset($_GET['search']) && !empty($_GET['search'])) {
     $searchServiceTerm = $_GET['search'];
     $searchServiceTerm = str_replace('\'', '', $searchServiceTerm);

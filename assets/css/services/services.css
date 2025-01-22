@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-
 }
 
 body {
@@ -29,7 +28,7 @@ body {
 }
 
 .card-title {
-  color: #19AFA5;
+  color: #19afa5;
   font-size: 70px;
   text-align: center;
   font-weight: bold;
@@ -46,7 +45,7 @@ body {
 
 .search-bar {
   color: black;
-  background-color: #D2D3D3;
+  background-color: #d2d3d3;
   border-color: black;
   width: 625px;
   max-width: 100%;
@@ -54,7 +53,7 @@ body {
 
 .filter {
   color: black;
-  background-color: #D2D3D3;
+  background-color: #d2d3d3;
   border-color: black;
   width: 100%;
   max-width: 300px;
@@ -67,7 +66,7 @@ body {
   border-radius: 10px;
   border: none;
   color: black;
-  background-color: #19AFA5;
+  background-color: #19afa5;
 }
 
 .serviceCard {
@@ -114,7 +113,7 @@ body {
 }
 
 .btnSeeMore {
-  background-color: #19AFA5;
+  background-color: #19afa5;
   width: 100px;
   height: 25px;
   border: none;
@@ -154,7 +153,75 @@ body {
   object-fit: contain;
 }
 
-@media(max-width: 767px) {
+/* darkmode */
+.servicePrice {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+}
+
+.serviceDescription {
+  font-size: 10px;
+  color: black;
+}
+
+/* Service Card (Dark Mode) */
+body.dark-mode .serviceCard {
+  background-color: #181818;
+}
+
+body.dark-mode .serviceTitle {
+  color: white;
+}
+
+body.dark-mode .servicePrice {
+  color: #ffffff;
+}
+
+body.dark-mode .serviceDescription {
+  color: #b1b1b1;
+}
+
+body.dark-mode .serviceImage img {
+  border-radius: 23px;
+  filter: brightness(0.7);
+}
+
+body.dark-mode .btnSeeMore {
+  background-color: #16a299;
+  color: white;
+}
+
+body.dark-mode .btnSeeMore:hover {
+  background-color: #19afa5;
+}
+
+body.dark-mode .page-item .page-link {
+  color: white;
+  background-color: #181818;
+}
+
+.page-item .page-link:hover {
+  background-color: #19afa5;
+  color: black;
+}
+
+.page-item .page-link img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+body.dark-mode .page-item .page-link img {
+  filter: brightness(0.7);
+}
+
+body.dark-mode .line {
+  background-color: white !important;
+  border-color: white !important;
+}
+
+@media (max-width: 767px) {
   .card-title {
     font-size: 30px;
   }

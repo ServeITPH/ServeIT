@@ -30,7 +30,6 @@ class FAQ
     {
         return "
             <button class='btnExpand btn p-0 border-0 d-flex justify-content-start' onclick='expandContent(this)'>
-                <img src='assets/images/helpCenter/plus.png' alt='Expand Button' class='expandbtn-img'>
                 <div class='text ps-2 pb-1 d-flex align-items-center'>
                     <p>$this->question</p>
                 </div>
@@ -48,17 +47,18 @@ class FAQ
             $faqContent .= $faq->renderQuestion();
         }
         return "
-            <div class='row d-flex justify-content-start'>
-                <button class='btnExpand btn p-0 border-0 d-flex justify-content-start' onclick='expandContent(this)'>
-                    <img src='assets/images/helpCenter/plus.png' alt='Expand Button' class='expandbtn-img'>
-                    <div class='text ps-2 pb-1 d-flex align-items-center'>
-                        <p>{$category}</p>
-                    </div>
-                </button>
-                <div class='information ps-4' style='display: none;'>
-                    {$faqContent}
-                </div>
+        <div class='row d-flex justify-content-start'>
+        <button class='btnExpand btn p-0 border-0 d-flex justify-content-start' onclick='expandContent(this)'>
+            <i style='margin-top: 3px;' class='fa fa-plus expandbtn-icon' aria-hidden='true'></i>
+            
+            <div class='text ps-2 pb-1 d-flex align-items-center'>
+                <p>{$category}</p>
             </div>
+        </button>
+        <div class='information ps-4' style='display: none;'>
+            {$faqContent}
+        </div>
+    </div>
         ";
     }
 }

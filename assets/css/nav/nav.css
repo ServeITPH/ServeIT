@@ -1,84 +1,200 @@
 body {
-    font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-
-.navbar{
-    background-color: transparent !important;
-
+.navbar {
+  background-color: transparent !important;
 }
 
-.nav-bar-style{
-   
-    border-bottom: 1px solid #19AFA5;
+.nav-bar-style {
+  border-bottom: 1px solid #19afa5;
 }
 
 .nav-link {
-    position: relative;
-    transition: color 0.3s ease; 
+  position: relative;
+  transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #19AFA5 !important; 
+  color: #19afa5 !important;
 }
 
 .nav-link::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0px; 
-    width: 0;
-    height: 3px;
-    background: #19AFA5;
-    transition: width 0.3s ease; 
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 0;
+  height: 3px;
+  background: #19afa5;
+  transition: width 0.3s ease;
 }
 
 .nav-link:hover::after {
-    width: 100%; 
+  width: 100%;
 }
 
 .dropdown-toggle {
-    background: none ;
-    border: none !important;
-    padding: 0;
-    display: flex;
-    align-items: center;
-    gap: 5px; 
+  background: none;
+  border: none !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
-.dropdown-toggle::after { 
-    border: none !important;
+.dropdown-toggle::after {
+  border: none !important;
 }
 
-.nav-account-title{
-    padding-left: 15px;
-    font-weight:bolder;
+.nav-account-title {
+  padding-left: 15px;
+  font-weight: bolder;
 }
 
 /* nav icons */
-.nav-icons{
-    color: #19AFA5;
-    padding-right: 5px;
+.nav-icons {
+  color: #19afa5;
+  padding-right: 5px;
 }
-
 
 .log-in-btn {
-    background: #000000;
-    width: 125px;
-    height: 35px;
-    font-size: 12px;
-    border: none !important;
-    color: white;
-    transition: background 0.3s ease, transform 0.2s ease;
-
+  background: #000000;
+  width: 125px;
+  height: 35px;
+  font-size: 12px;
+  border: none !important;
+  color: white;
+  transition: background 0.3s ease, transform 0.2s ease;
 }
-
-
 
 .log-in-btn:hover {
-    background: #16a299;
-    transform: scale(1.05); 
-    color: #fff; 
+  background: #16a299;
+  transform: scale(1.05);
+  color: #fff;
 }
 
+/* dark */
 
+.dark-mode-toggle {
+  cursor: pointer;
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+  background-color: #181818;
+}
+
+body {
+  background-color: white;
+  color: #181818;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #181818 !important;
+  color: white;
+}
+
+body.dark-mode .navbar,
+body.dark-mode .navbar-brand,
+body.dark-mode .nav-link,
+body.dark-mode .dropdown-toggle {
+  color: white !important;
+}
+
+body.dark-mode .navbar-toggler-icon {
+  filter: invert(100%);
+}
+
+body .nav-link.active {
+  color: #19afa5 !important;
+}
+
+body .nav-link:hover {
+  color: #19afa5 !important;
+}
+
+.dark-mode-toggle {
+  cursor: pointer;
+  padding: 10px 15px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  transform: scale(1.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .log-in-btn {
+  background: #16a299;
+  color: white;
+}
+
+body.dark-mode .log-in-btn:hover {
+  background: #19afa5;
+  color: white;
+}
+
+.dropdown {
+  background: none;
+  border: none !important;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: inherit;
+}
+
+body.dark-mode .dropdown-toggle {
+  color: white !important;
+}
+
+body.dark-mode .dropdown-toggle::after {
+  border: none !important;
+  border-color: white !important;
+}
+
+body.dark-mode .dropdown-menu {
+  background-color: #181818 !important;
+}
+
+body.dark-mode .dropdown-item {
+  color: white !important;
+}
+
+body.dark-mode .dropdown-item:hover {
+  color: black !important;
+}
+
+.nav-account-title {
+  padding-left: 15px;
+  font-weight: bolder;
+  color: inherit;
+}
+
+body.dark-mode .nav-account-title {
+  color: white !important;
+}
+
+.nav-icons {
+  color: #19afa5;
+  padding-right: 5px;
+}
+
+body.dark-mode .dropdown-item {
+  color: white !important;
+}
+
+body.dark-mode .dropdown-item:hover {
+  background-color: #181818;
+  color: rgb(255, 255, 255) !important;
+}

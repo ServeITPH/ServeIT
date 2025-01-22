@@ -170,3 +170,12 @@
 .hidden-item {
   display: none;
 }
+
+body.dark-mode .profile-header {
+  background-color: #242424 !important;
+}
+
+body.dark-mode .line {
+  background-color: white !important;
+  border-color: white !important;
+}

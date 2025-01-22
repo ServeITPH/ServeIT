@@ -81,7 +81,6 @@
   }
 } */
 
-
 .productCard {
   width: 250px;
   height: 378px;
@@ -165,9 +164,6 @@
   }
 } */
 
-
-
-
 .tabs {
   padding: 20px;
 }
@@ -199,4 +195,15 @@
   width: 100%;
   height: 2px;
   background-color: #20b2aa;
+}
+
+body.dark-mode .receiptForm {
+  background-color: #242424 !important;
+}
+body.dark-mode .serviceCard {
+  background-color: #181818 !important;
+}
+body.dark-mode .line {
+  background-color: white !important;
+  border-color: white !important;
 }
