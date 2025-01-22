@@ -56,15 +56,6 @@ if (isset($_POST['updateCartID'])) {
     exit();
 }
 
-
-// DELETION OF ITEMS AFTER CHECKOUT
-if (isset($_POST['delCheckoutCart'])) {
-    $deleteAll = "DELETE FROM carts";
-    executeQuery($deleteAll);
-    header("Location: cart.php");
-    exit();
-}
-
 // THIS IF FOR THE INTEREST SECTION - PRODUCTS AND SERVICES
 $items = "SELECT * FROM items";
 $fetchItem = executeQuery($items);
@@ -157,7 +148,7 @@ $fetchProduct = executeQuery($productQuery);
                         if ($counter >= $showLimit)
                             break; // Stop loop after limit
                         $counter++;
-                ?>
+                        ?>
 
                         <div class="border-0 mt-3">
                             <div class="card-body">
@@ -194,12 +185,12 @@ $fetchProduct = executeQuery($productQuery);
                         <div class="mb-5"></div>
 
 
-                    <?php
+                        <?php
                     }
                 } else {
                     ?>
                     <div class="container text-center fs-5"><?php echo "Cart is empty" ?></div>
-                <?php
+                    <?php
                 }
                 ?>
 
@@ -233,7 +224,7 @@ $fetchProduct = executeQuery($productQuery);
             ?>
 
             <!-- CHECK OUT PROCESS-->
-            <div class="receiptForm col-12 col-md-5">
+            <div class="col-12 col-md-5">
                 <form method="post">
                     <ul class="list-group mt-3 rounded-5">
                         <li class="list-group-item">
@@ -283,15 +274,14 @@ $fetchProduct = executeQuery($productQuery);
 
                         <!-- TOTAL-->
                         <li class="list-group-item mb-0">
-                            <p class="fw-bolder fs-5 text-start ms-5 text-center mb-0">Total:
+                            <p class="fw-bolder fs-5 text-start text-center mb-0">Total:
                                 ₱<span><?php echo $grandTotal ?></span>
                             </p>
                         </li>
                     </ul>
 
                     <!-- MODAL FOR GCASH -->
-                    <div class="modal fade" id="gcashQR" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="gcashQR" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -300,12 +290,12 @@ $fetchProduct = executeQuery($productQuery);
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
-                                    <p class="text-center fw-bolder mt-3">
-                                        Pay via QR or send to 09123456789
-                                    </p>
+                                <div class="modal-body d-flex justify-content-center">
+                                    <img src="assets/images/cart/gcashQR.png" alt="gcash qr code" class="img-fluid">
                                 </div>
+                                <p class="text-center fw-bolder mt-3">
+                                    Pay via QR or send to 09123456789
+                                </p>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
                                 </div>
@@ -314,8 +304,7 @@ $fetchProduct = executeQuery($productQuery);
                     </div>
 
                     <!-- MODAL FOR MAYA -->
-                    <div class="modal fade" id="mayaQR" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
+                    <div class="modal fade" id="mayaQR" tabindex="-1" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -324,12 +313,12 @@ $fetchProduct = executeQuery($productQuery);
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
-                                    <p class="text-center fw-bolder mt-3">
-                                        Pay via QR or send to 09123456789
-                                    </p>
+                                <div class="modal-body d-flex justify-content-center">
+                                    <img src="assets/images/cart/mayaQR.png" alt="maya qr code" class="img-fluid">
                                 </div>
+                                <p class="text-center fw-bolder mt-3">
+                                    Pay via QR or send to 09987654321
+                                </p>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
                                 </div>
@@ -341,7 +330,7 @@ $fetchProduct = executeQuery($productQuery);
                     <div class="d-flex justify-content-center mt-3">
                         <button type="button" class="btn btn-more btn-primary mx-auto mb-3 mt-0" data-bs-toggle="modal"
                             data-bs-target="#myModal" <?php if ($cartEmpty)
-                                                            echo 'disabled'; ?>>Check Out</button>
+                                echo 'disabled'; ?>>Check Out</button>
                     </div>
 
                     <!-- MODAL FOR CHECK-OUT -->
@@ -394,7 +383,7 @@ $fetchProduct = executeQuery($productQuery);
                         <?php
                         if (mysqli_num_rows($fetchService) > 0) {
                             while ($fetchServiceRow = mysqli_fetch_assoc($fetchService)) {
-                        ?>
+                                ?>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex">
                                     <div class="serviceCard rounded mx-auto">
                                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -415,7 +404,7 @@ $fetchProduct = executeQuery($productQuery);
                                                     <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                 </a>
                                             </div>
-                                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                             <div class="category">
                                                 <span><?php echo $fetchServiceRow['categoryName'] ?></span>
                                             </div>
@@ -423,7 +412,7 @@ $fetchProduct = executeQuery($productQuery);
                                     </div>
                                 </div>
 
-                        <?php
+                                <?php
                             }
                         } else {
                             echo "No service available";
@@ -438,7 +427,7 @@ $fetchProduct = executeQuery($productQuery);
                         <?php
                         if (mysqli_num_rows($fetchProduct) > 0) {
                             while ($fetchProductRow = mysqli_fetch_assoc($fetchProduct)) {
-                        ?>
+                                ?>
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12 d-flex flex-row">
                                     <div class="productCard rounded mx-auto">
                                         <div class="card-body d-flex flex-column justify-content-between align-items-center">
@@ -459,7 +448,7 @@ $fetchProduct = executeQuery($productQuery);
                                                     <button class="btnSeeMore rounded-pill ms-2">See More</button>
                                                 </a>
                                             </div>
-                                            <div class="line" style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
+                                            <div style="border-top: 2px solid black; width: 100%; margin: 10px 0;"></div>
                                             <div class="category">
                                                 <span><?php echo $fetchProductRow['categoryName'] ?></span>
                                             </div>
@@ -467,7 +456,7 @@ $fetchProduct = executeQuery($productQuery);
                                     </div>
                                 </div>
 
-                        <?php
+                                <?php
                             }
                         } else {
                             echo "No product available";
@@ -539,12 +528,13 @@ $fetchProduct = executeQuery($productQuery);
     <script>
         // Listen for changes in the radio buttons
         document.querySelectorAll('input[name="paymentMode"]').forEach((radio) => {
-            radio.addEventListener('change', function() {
+            radio.addEventListener('change', function () {
                 if (this.value === 'gcash') {
                     // Show the modal when Gcash is selected
                     const modal = new bootstrap.Modal(document.getElementById('gcashQR'));
                     modal.show();
-                } else if (this.value === 'maya') {
+                }
+                else if (this.value === 'maya') {
                     // Show the modal when Maya is selected
                     const modal = new bootstrap.Modal(document.getElementById('mayaQR'));
                     modal.show();
