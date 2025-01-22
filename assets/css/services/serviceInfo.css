@@ -280,6 +280,9 @@ body.dark-mode .line {
 body.dark-mode .stars {
   color: #1a1a1a !important;
 }
+body.dark-mode .feedbackDate {
+  color: #1a1a1a !important;
+}
 
 @media (max-width: 767px) {
   .serviceCard {

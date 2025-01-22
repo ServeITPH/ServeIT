@@ -78,6 +78,15 @@ $feedbackResult = executeQuery($feedbackQuery);
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <style>
+        .active3 {
+            color: #19afa5 !important;
+        }
+
+        body.dark-mode .active3 {
+            color: #19afa5 !important;
+        }
+    </style>
 </head>
 
 <body>
