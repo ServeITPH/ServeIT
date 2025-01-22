@@ -42,7 +42,8 @@ if (isset($_POST['deleteCartID'])) {
 // insert into transaction
 if (isset($_POST['insertToTransaction'])) {
     $paymentMode = $_POST['paymentMode'];
-    $addToTransationQuery = "INSERT INTO transactions (consumerID, paymentMethod, transactionDate) VALUES ('$userID','$paymentMode', NOW())";
+    $referenceNum = $_POST['reference'];
+    $addToTransationQuery = "INSERT INTO transactions (consumerID, paymentMethod, referenceNumber, transactionDate) VALUES ('$userID','$paymentMode','$referenceNum', NOW())";
     executeQuery($addToTransationQuery);
 }
 
@@ -232,51 +233,88 @@ $fetchProduct = executeQuery($productQuery);
             ?>
 
             <!-- CHECK OUT PROCESS-->
-
             <div class="col-12 col-md-5">
                 <form method="post">
                     <ul class="list-group mt-3 rounded-5">
                         <li class="list-group-item">
                             <p class="fw-bold fs-2 text-center"> SUMMARY </p>
-                            <p class="fw-lighter fs-6 text-start ms-5"> Items:</p>
-                            <p class="fw-medium fs-6 ms-5 ms-5"><?php echo $itemsList; ?></p>
+                            <p class="fw-lighter fs-6 text-start ms-5 mb-0"> Items:</p>
+                            <p class="fw-medium fs-6 ms-5 mb-0"><?php echo $itemsList; ?></p>
                         </li>
                         <li class="list-group-item">
-                            <p class="fw-lighter fs-6 text-start ms-5"> Subtotal:
+                            <p class="fw-lighter fs-6 text-start ms-5 mb-0"> Subtotal:
                                 ₱<span><?php echo $grandTotal ?></span>
                             </p>
                         </li>
-
                         <li class="list-group-item">
-                            <p class="fw-lighter fs-6 text-start ms-5"> Mode Of Payment:</p>
-                            <!-- Radio for Cash On Delivery -->
-                            <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                                <input class="form-check-input" type="radio" name="paymentMode" id="cod"
-                                    value="Cash On Delivery" checked>
-                                <label class="form-check-label" for="cod">Cash On Delivery</label>
-                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="fw-lighter fs-6 text-start ms-5 mb-1"> Mode Of Payment:</p>
+                                    <!-- Radio for Maya-->
+                                    <div class="form-check fw-lighter fs-6 text-start ms-5">
+                                        <input class="form-check-input" type="radio" name="paymentMode" id="maya"
+                                            value="maya">
+                                        <label class="form-check-label" for="maya">Maya</label>
+                                    </div>
 
-                            <!-- Radio for Gcash -->
-                            <div class="form-check fw-lighter fs-6 text-start ms-5 ms-5">
-                                <input class="form-check-input" type="radio" name="paymentMode" id="gcash"
-                                    value="gcash">
-                                <label class="form-check-label" for="gcash">Gcash</label>
-                            </div>
+                                    <!-- Radio for Gcash -->
+                                    <div class="form-check fw-lighter fs-6 text-start ms-5">
+                                        <input class="form-check-input" type="radio" name="paymentMode" id="gcash"
+                                            value="gcash">
+                                        <label class="form-check-label" for="gcash">Gcash</label>
+                                    </div>
+                                </div>
 
+                                <!-- ENTER REFERENCE -->
+                                <div class="col-6">
+                                    <div class="mt-4">
+                                        <label class="form-label fs-6 mb-0">Enter Reference Number</label>
+                                        <input type="text" class="form-control" name="reference"
+                                            placeholder="Reference Number" required>
+                                    </div>
+                                </div>
+                            </div>
                         </li>
+
+                        <!-- VAT-->
                         <li class="list-group-item">
-                            <p class="fw-lighter fs-6 text-start ms-5"> VAT: ₱0.00 </p>
+                            <p class="fw-lighter fs-6 text-start ms-5 mb-0"> VAT: ₱0.00 </p>
                         </li>
+
                         <!-- TOTAL-->
                         <li class="list-group-item mb-0">
-                            <p class="fw-bolder fs-5 text-start ms-5 text-center">Total:
+                            <p class="fw-bolder fs-5 text-start ms-5 text-center mb-0">Total:
                                 ₱<span><?php echo $grandTotal ?></span>
                             </p>
                         </li>
                     </ul>
 
                     <!-- MODAL FOR GCASH -->
-                    <div class="modal fade" id="myQR" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    <div class="modal fade" id="gcashQR" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Please pay the total amount:
+                                        ₱<?php echo $grandTotal ?></h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <img src="assets/images/cart/qr.png" alt="qr code" class="img-fluid">
+                                    <p class="text-center fw-bolder mt-3">
+                                        Pay via QR or send to 09123456789
+                                    </p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">DONE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODAL FOR MAYA -->
+                    <div class="modal fade" id="mayaQR" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -301,12 +339,9 @@ $fetchProduct = executeQuery($productQuery);
 
 
                     <div class="d-flex justify-content-center mt-3">
-                        <!-- <form method="post">
-                        <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>"> -->
-                        <button type="button" class="btn btn-more btn-primary mx-auto mb-3" data-bs-toggle="modal"
+                        <button type="button" class="btn btn-more btn-primary mx-auto mb-3 mt-0" data-bs-toggle="modal"
                             data-bs-target="#myModal" <?php if ($cartEmpty)
                                 echo 'disabled'; ?>>Check Out</button>
-                        <!-- </form> -->
                     </div>
 
                     <!-- MODAL FOR CHECK-OUT -->
@@ -465,6 +500,7 @@ $fetchProduct = executeQuery($productQuery);
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 
+    <!-- JS FOR REDIRECTING SHOW ALL AND FOR ACTIVE SERVICE OR PRODUCT-->
     <script>
         function showTab(tabName) {
 
@@ -490,6 +526,7 @@ $fetchProduct = executeQuery($productQuery);
             }
         }
 
+
         window.addEventListener('DOMContentLoaded', () => {
             const activeTab = document.querySelector('.tab-btn.active');
             if (activeTab) {
@@ -505,7 +542,12 @@ $fetchProduct = executeQuery($productQuery);
             radio.addEventListener('change', function () {
                 if (this.value === 'gcash') {
                     // Show the modal when Gcash is selected
-                    const modal = new bootstrap.Modal(document.getElementById('myQR'));
+                    const modal = new bootstrap.Modal(document.getElementById('gcashQR'));
+                    modal.show();
+                }
+                else if (this.value === 'maya') {
+                    // Show the modal when Maya is selected
+                    const modal = new bootstrap.Modal(document.getElementById('mayaQR'));
                     modal.show();
                 }
             });
