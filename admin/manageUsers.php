@@ -99,7 +99,6 @@ $userListResult = executeQuery($userListQuery);
                                 <option value="username" <?php echo ($filterField == 'username') ? 'selected' : ''; ?>>Username</option>
                                 <option value="email" <?php echo ($filterField == 'email') ? 'selected' : ''; ?>>Email</option>
                                 <option value="accountDate" <?php echo ($filterField == 'accountDate') ? 'selected' : ''; ?>>Account Creation</option>
-                                <option value="birthDate" <?php echo ($filterField == 'birthDate') ? 'selected' : ''; ?>>Birthdate</option>
                                 <option value="phoneNumber" <?php echo ($filterField == 'phoneNumber') ? 'selected' : ''; ?>>Phone Number</option>
                             </select>
                         </div>
@@ -128,7 +127,6 @@ $userListResult = executeQuery($userListQuery);
                                     <th scope="col">Username</th>
                                     <th scope="col">Email</th>
                                     <th scope="col">Phone Number</th>
-                                    <th scope="col">Birthdate</th>
                                     <th scope="col">Account Date</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -143,7 +141,6 @@ $userListResult = executeQuery($userListQuery);
                                             <td><?php echo $userListRow['username']; ?></td>
                                             <td><?php echo $userListRow['email']; ?></td>
                                             <td><?php echo $userListRow['phoneNumber']; ?></td>
-                                            <td><?php echo $userListRow['birthDate']; ?></td>
                                             <td><?php echo $userListRow['accountDate']; ?></td>
                                             <td>
                                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal"
