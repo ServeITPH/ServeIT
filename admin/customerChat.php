@@ -73,54 +73,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
-    <style>
-        body {
-            background-color: #ffffff;
-            position: relative;
-        }
 
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url("assets/images/about/bg.png");
-            background-size: cover;
-            filter: blur(5px);
-            z-index: -1;
-            opacity: 0.8;
-        }
-
-        .attachment-btn-img,
-        .send-btn-img {
-            width: 30px;
-            height: 30px;
-        }
-
-        #attachment-preview {
-            margin-top: 10px;
-            max-height: 80px;
-            overflow: hidden;
-            display: none;
-            text-align: center;
-        }
-
-        #attachment-preview img {
-            max-height: 80px;
-            max-width: 100%;
-            object-fit: cover;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            text-align: center;
-        }
-
-        .col.d-flex.align-items-end.flex-column {
-            max-height: 68vh;
-            overflow-y: auto;
-        }
-    </style>
 </head>
 <body data-bs-theme="light">
     <?php include("adminAssets/nav.php"); ?>
