@@ -39,6 +39,14 @@ if (isset($_POST['deleteCartID'])) {
     exit();
 }
 
+// TRASHBIN REMOVEMENT FOR THE CART
+if (isset($_POST['removeALLFromCart'])) {
+    $deleteAll = "DELETE FROM carts";
+    executeQuery($deleteAll);
+    header("Location: cart.php");
+    exit();
+}
+
 // insert into transaction
 if (isset($_POST['insertToTransaction'])) {
     $paymentMode = $_POST['paymentMode'];
@@ -117,9 +125,7 @@ $fetchProduct = executeQuery($productQuery);
                     </p>
                     <div class="ms-auto d-flex align-items-center">
                         <form method="POST" class="d-flex align-items-center">
-                            <input type="hidden" name="delCheckoutCart" value="<?php echo $fetchCartRow['cartID']; ?>">
-
-
+                            <input type="hidden" name="removeALLFromCart" value="<?php echo $fetchCartRow['cartID']; ?>">
                             <button type="submit" class="btn p-0 me-2">
                                 <img src="assets/images/cart/trashBin.png" alt="Delete Cart" class="img-fluid">
                             </button>

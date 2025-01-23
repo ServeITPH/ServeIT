@@ -40,6 +40,10 @@ function validateInput($input, $requiredFields)
   if (isset($input['price']) && !filter_var($input['price'], FILTER_VALIDATE_FLOAT)) {
     return "The price must be a valid number.";
   }
+  if (isset($input['itemID']) && !filter_var($input['itemID'], FILTER_VALIDATE_INT)) {
+    return "The ItemID must be a valid integer.";
+  }
+
   return null;
 }
 
@@ -101,20 +105,37 @@ function handlePost($pdo, $inputs)
   }
 }
 
-function handlePut($pdo, $input)
+function handlePut($pdo, $inputs)
 {
-  if ($input === null) {
+  if ($inputs === null) {
     http_response_code(400); // Bad Request
     echo json_encode(['error' => 'Invalid or missing JSON input']);
     return;
   }
 
   $requiredFields = ['itemID', 'title', 'description', 'price', 'attachment', 'type', 'categoryName', 'shortDescription'];
-  $error = validateInput($input, $requiredFields);
-  if ($error) {
-    http_response_code(400);
-    echo json_encode(['error' => $error]);
-    return;
+
+  foreach ($inputs as $input) {
+    $error = validateInput($input, $requiredFields);
+    if ($error) {
+      http_response_code(400); // Bad Request
+      echo json_encode(['error' => $error]);
+      return;
+    }
+
+
+    // Check if the itemID exists in the database before attempting to delete it
+    $sqlCheck = "SELECT COUNT(*) FROM items WHERE itemID = :itemID";
+    $stmtCheck = $pdo->prepare($sqlCheck);
+    $stmtCheck->execute(['itemID' => $input]);
+    $itemCount = $stmtCheck->fetchColumn();
+
+    if ($itemCount == 0) {
+      // If the item doesn't exist, return a 404 Not Found error
+      http_response_code(404); // Not Found
+      echo json_encode(['error' => "Item with ID {$input['itemID']} not found."]);
+      return;
+    }
   }
 
   try {
@@ -123,17 +144,19 @@ function handlePut($pdo, $input)
                     attachment = :attachment, type = :type, categoryName = :categoryName, shortDescription = :shortDescription
                 WHERE itemID = :itemID";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-      'itemID' => $input['itemID'],
-      'title' => htmlspecialchars($input['title']),
-      'description' => htmlspecialchars($input['description']),
-      'price' => $input['price'],  // Ensure valid price is passed here
-      'attachment' => htmlspecialchars($input['attachment']),
-      'type' => htmlspecialchars($input['type']),
-      'categoryName' => htmlspecialchars($input['categoryName']),
-      'shortDescription' => htmlspecialchars($input['shortDescription'])
-    ]);
+    foreach ($inputs as $input) {
+      $stmt = $pdo->prepare($sql);
+      $stmt->execute([
+        'itemID' => $input['itemID'],
+        'title' => htmlspecialchars($input['title']),
+        'description' => htmlspecialchars($input['description']),
+        'price' => $input['price'],  // Ensure valid price is passed here
+        'attachment' => htmlspecialchars($input['attachment']),
+        'type' => htmlspecialchars($input['type']),
+        'categoryName' => htmlspecialchars($input['categoryName']),
+        'shortDescription' => htmlspecialchars($input['shortDescription'])
+      ]);
+    }
     echo json_encode(['message' => 'Item updated successfully']);
   } catch (Exception $e) {
     http_response_code(500);
