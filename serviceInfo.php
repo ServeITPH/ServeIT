@@ -79,11 +79,11 @@ $feedbackResult = executeQuery($feedbackQuery);
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <style>
-        .active3 {
+        .active2 {
             color: #19afa5 !important;
         }
 
-        body.dark-mode .active3 {
+        body.dark-mode .active2 {
             color: #19afa5 !important;
         }
     </style>

@@ -132,7 +132,7 @@ if (isset($_POST['btnSubmit'])) {
                                 </div>
                                 <div class="col-md-6">
                                     <label for="price" class="form-label">Price</label>
-                                    <input type="text" class="form-control rounded-pill" id="price" name="price"
+                                    <input type="number" class="form-control rounded-pill" id="price" name="price"
                                         placeholder="Enter price">
                                 </div>
                                 <div class="col-md-6 mt-5">

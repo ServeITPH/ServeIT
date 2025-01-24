@@ -4,7 +4,7 @@ date_default_timezone_set('Asia/Manila');
 $dbhost = "localhost";
 $dbuser = "root";
 $dbpass = "";
-$db = "serve_it";
+$db = "final_ecommerce";
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
 
