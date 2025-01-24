@@ -119,7 +119,7 @@ $productFilterResult = executeQuery($productFilterQuery);
                         <option value="">All</option>
                         <?php while ($productFilterRow = mysqli_fetch_assoc($productFilterResult)) { ?>
                             <option <?php if ($categoryNameFilter == $productFilterRow['categoryName'])
-                                        echo "selected"; ?>
+                                echo "selected"; ?>
                                 value="<?php echo $productFilterRow['categoryName']; ?>">
                                 <?php echo $productFilterRow['categoryName']; ?>
                             </option>
@@ -129,19 +129,19 @@ $productFilterResult = executeQuery($productFilterQuery);
 
                 <div class="col-lg-2 col-md-4 col-4 d-flex justify-content-center align-items-center pt-3">
                     <select id="sort" name="sort" class="sort form-control">
-                        <option value="">None</option>
+                        <option value="">Sort by</option>
                         <option <?php if ($sort == "title")
-                                    echo "selected"; ?> value="title">Title</option>
+                            echo "selected"; ?> value="title">Title</option>
                         <option <?php if ($sort == "price")
-                                    echo "selected"; ?> value="price">Price</option>
+                            echo "selected"; ?> value="price">Price</option>
                     </select>
                 </div>
                 <div class="col-lg-2 col-md-4 col-4 d-flex justify-content-center align-items-center pt-3">
                     <select id="order" name="order" class="order form-control">
                         <option <?php if ($order == "ASC")
-                                    echo "selected"; ?> value="ASC">Ascending</option>
+                            echo "selected"; ?> value="ASC">Ascending</option>
                         <option <?php if ($order == "DESC")
-                                    echo "selected"; ?> value="DESC">Descending</option>
+                            echo "selected"; ?> value="DESC">Descending</option>
                     </select>
                 </div>
 
@@ -158,7 +158,7 @@ $productFilterResult = executeQuery($productFilterQuery);
             <?php
             while ($productListRow = mysqli_fetch_assoc($productListResult)) {
                 $count++;
-            ?>
+                ?>
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center">
                     <div class="productCard rounded mx-auto">
                         <div class="card-body d-flex flex-column justify-content-center align-items-center">
@@ -183,12 +183,12 @@ $productFilterResult = executeQuery($productFilterQuery);
                         </div>
                     </div>
                 </div>
-            <?php
+                <?php
             }
             // eto yung counter na mag ffill ng gap kapag dalawa lang lumabas or isa
             while ($count % 4 !== 0) {
                 $count++;
-            ?>
+                ?>
                 <div class="col-lg-3 col-6 d-flex flex-row justify-content-center invisible">
                     <div class="productCard rounded mx-5"></div>
                 </div>
@@ -311,7 +311,7 @@ $productFilterResult = executeQuery($productFilterQuery);
             }
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             updatePage();
         });
     </script>

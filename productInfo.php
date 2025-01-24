@@ -4,6 +4,11 @@ include("sharedAssets/connect.php");
 
 include("admin/adminAssets/user.php");
 
+if ($userID == "") {
+    header("Location: login.php");
+}
+
+
 $userID = isset($_SESSION['userID']) ? $_SESSION['userID'] : '';
 $productInfoID = isset($_GET['itemID']) ? $_GET['itemID'] : '';
 
