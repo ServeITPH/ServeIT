@@ -79,7 +79,7 @@ function validateInput($input, $requiredFields)
   }
 
   if (isset($input['shortDescription'])) {
-    $error = validateStringLength($input['shortDescription'], 'shortDescription', 500);
+    $error = validateStringLength($input['shortDescription'], 'shortDescription', 200);
     if ($error)
       return $error;
   }
@@ -135,6 +135,13 @@ function handlePost($pdo, $inputs)
     return;
   }
 
+  // Check if inputs are empty or not an array
+  if ($inputs === null || !is_array($inputs) || count($inputs) === 0) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['error' => 'Input cannot be empty. At least one item is required.']);
+    return;
+  }
+
   // REQUIRED FIELDS FOR HANDLE POST
   $requiredFields = ['title', 'description', 'price', 'attachment', 'type'];
 
@@ -180,6 +187,13 @@ function handlePut($pdo, $inputs)
   if ($inputs === null) {
     http_response_code(400);
     echo json_encode(['error' => 'Invalid or missing JSON input']);
+    return;
+  }
+
+  // Check if inputs are empty or not an array
+  if ($inputs === null || !is_array($inputs) || count($inputs) === 0) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['error' => 'Input cannot be empty. At least one item is required.']);
     return;
   }
 
@@ -243,9 +257,20 @@ function handleDelete($pdo, $inputs)
     echo json_encode(['error' => 'Invalid or missing JSON input']);
     return;
   }
+  // Check if inputs are empty or not an array
+  if ($inputs === null || !is_array($inputs) || count($inputs) === 0) {
+    http_response_code(400); // Bad Request
+    echo json_encode(['error' => 'Input cannot be empty. At least one item is required.']);
+    return;
+  }
   try {
-
     foreach ($inputs as $input) {
+      // error for inputting json array
+      if (empty((array)$input)) {
+        http_response_code(400); // Bad Request
+        echo json_encode(['error' => 'Input must only be in array of itemID form.']);
+        return;
+      }
       // Check if the itemID exists in the database before attempting to delete it
       $sqlCheck = "SELECT COUNT(*) FROM items WHERE itemID = :itemID";
       $stmtCheck = $pdo->prepare($sqlCheck);
