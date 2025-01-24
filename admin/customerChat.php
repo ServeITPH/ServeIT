@@ -82,7 +82,7 @@ if (isset($_GET['id'])) {
             $dest_path = $uploadFileDir . $fileName;
 
             if (move_uploaded_file($fileTmpPath, $dest_path)) {
-                $attachment = $fileName;
+                $attachment = 'uploads/' . $fileName;
             }
         }
 
@@ -200,7 +200,7 @@ if (isset($_GET['id'])) {
                                             <?php echo $message['message']; ?>
                                             <?php if ($message['attachment']) { ?>
                                                 <div class="mt-2">
-                                                    <img src="../uploads/<?php echo $message['attachment']; ?>" alt="Attachment" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
+                                                    <img src="../<?php echo $message['attachment']; ?>" alt="Attachment" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
                                                 </div>
                                             <?php } ?>
                                         </div>
@@ -216,7 +216,7 @@ if (isset($_GET['id'])) {
                                             <?php echo $message['message']; ?>
                                             <?php if ($message['attachment']) { ?>
                                                 <div class="mt-2">
-                                                    <img src="../uploads/<?php echo $message['attachment']; ?>" alt="Attachment" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
+                                                    <img src="../<?php echo $message['attachment']; ?>" alt="Attachment" style="max-width: 100%; max-height: 200px; border-radius: 10px;">
                                                 </div>
                                             <?php } ?>
                                         </div>

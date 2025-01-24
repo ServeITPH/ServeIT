@@ -179,3 +179,9 @@ body.dark-mode .line {
   background-color: white !important;
   border-color: white !important;
 }
+
+body.dark-mode .modal-content,
+body.dark-mode .modal-body,
+body.dark-mode .modal-header {
+  background-color: #242424 !important;
+}
